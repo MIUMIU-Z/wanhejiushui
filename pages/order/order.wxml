@@ -1,0 +1,34 @@
+<!--pages/order/order.wxml-->
+
+<view class="page-panel"> 
+  <view class="item {{page==0?'active':''}}" style="border-top-left-radius:15rpx;border-bottom-left-radius:15rpx;" bindtap="changepage" data-index="0">
+  未处理订单
+  </view>
+  <view class="item {{page==1?'active':''}}" style="border-top-right-radius:15rpx;border-bottom-right-radius:15rpx;" bindtap="changepage" data-index="1">
+  已确认订单
+  </view>
+</view>
+
+ <view class="orderlist-title">
+  <view class="line"></view>
+ </view>
+ <view class="orderlist-panel">
+    <block wx:if="{{num==0}}">
+    <view class="empty">暂时没有订单</view>
+    </block>
+    <block wx:else>
+      <block wx:for="{{myorders}}">
+      <view wx:if="{{item.state==(page+1)}}" class="item" bindtap="gotodetail" data-index="{{index}}">
+        <view class="lefttext">
+          <text style="color:#6699ff">{{item.addr.user_name}}</text>
+          <text>{{item.addr.user_phone}}</text>
+        </view>
+        <view class="righttext">
+          <text>共计?件商品</text>
+          <text>{{item.time}}</text>
+        </view>
+        <image src="../../images/more.png"/>
+      </view>
+      </block>
+    </block>
+ </view>

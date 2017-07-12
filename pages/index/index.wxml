@@ -1,0 +1,37 @@
+<!--index.wxml-->
+<view class="topitem">
+  <view  bindtap="bindViewTap" class="userinfo">
+    <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+    <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+  </view>
+  
+</view>
+
+<view class="info_list">
+
+      <navigator url="../order/order">
+      <view class="order_cell" bindtap="news" >
+            <view class="weui_cell_hd">
+            <image src="../../images/Order.png"></image>
+            </view>
+            <view class="weui_cell_bd">
+                <view class="weui_cell_bd_p"> 我的订单                           </view>
+            </view>
+      </view>
+      </navigator>
+
+        <navigator url="../addresslist/addresslist">
+        <view class="weui_cell" bindtap="news" >
+            <view class="weui_cell_hd"><image src="../../images/Location.png"></image>
+            </view>
+            <view class="weui_cell_bd">
+                <view class="weui_cell_bd_p">地址更改                           </view>
+            </view>
+        </view>
+        </navigator>
+      
+<view class="contact-area">
+          <button open-type="contact" type="default-dark" session-from="weapp" class="contact-btn">联系客服</button>
+</view>
+
+  </view> 

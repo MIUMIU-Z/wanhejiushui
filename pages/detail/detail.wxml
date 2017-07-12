@@ -1,0 +1,52 @@
+<!--pages/detail/detail.wxml-->
+    <view>
+        <swiper class="swiper_box" indicator-dots autoplay interval="5000" duration="1000">
+            <block wx:for="{{goodswiper}}">
+                <swiper-item>
+                    <image src="{{item.img}}" class="slide-image"/>
+                </swiper-item>
+            </block>
+        </swiper>
+    </view>
+
+
+<view class="shopping_container">
+    <view class="title">
+        <text>{{goodsinfo.name}}</text>
+        <text style="color:red;margin-top:25rpx;margin-bottom:15rpx">￥{{goodsinfo.price}}</text>
+    </view>
+
+    <view class="operate">
+        <view class="numoperate">
+            <view class="numtext">数量： </view>
+            <view class="numbutton" bindtap="numreduce">-</view>
+            <view class="numbutton" style="background:white">{{num}}</view>
+            <view class="numbutton" bindtap="numincrease">+</view>
+        </view>
+            <view bindtap="addtocart" class="addtocart">加入购物车</view>
+    </view>
+</view>
+
+<view class="detail">
+<view class="detailtext">
+    <view class="title">
+        <text>产品信息</text>
+    </view>
+    <view class="content">
+        <text>{{goodsinfo.describe}}</text>
+    </view>
+</view>
+</view>
+
+<view class="detail">
+    <view class="detailtext">
+    <view class="title">
+        <text>图文详情</text>
+    </view>
+    </view>
+    <view class="image">
+      <block wx:for="{{goodimg}}">
+        <image src="{{item.img}}"></image>
+    </block>
+    </view>
+</view>

@@ -1,0 +1,20 @@
+<!--pages/commodity/commodity.wxml-->
+
+
+<scroll-view class="com_left" scroll-y='true'>
+    <block wx:for="{{types}}">
+      <view bindtap="switchRightTab" data-index="{{index}}" class="com_left_items {{selectLeftid == index ? 'active' : ''}}" >{{item}}</view>
+    </block>
+</scroll-view>
+
+<scroll-view class="com_right" scroll-y='true'>
+    <block wx:for="{{goods}}">
+        <view class="com_right_items" bindtap="gotodetail" data-index="{{index}}">
+            <image node="aspectFit" src="{{imgRoute+item.img}}"></image>
+            <view class="righttext">
+            <text class="name">{{item.name}}</text>
+            <text class="price">￥{{item.price}}</text>
+            </view>
+        </view>
+    </block>
+</scroll-view>

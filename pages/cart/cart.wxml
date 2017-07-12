@@ -1,0 +1,116 @@
+<!--pages/trolley/trolley.wxml-->
+
+<view wx:if="{{num==0}}"  class="container">
+  <image src="../../images/cart-null.png" class="cart-image"/>
+  <view style="color:#666666;margin-bottom:50rpx;">购物车快饿扁了T.T</view>
+  <navigator url="../commodity/commodity" open-type="switchTab">
+  <view class="jumpbutton">去逛逛</view> 
+  </navigator>
+</view>
+
+<view wx:else>
+<view class="com-panel"> </view>
+  <view class="com-list-panel">
+      <view class="com-operate">
+          <view class="com-operate-select" bindtap="selectall">
+            <image wx:if="{{selectall==0}}" src="../../images/select.png"></image>
+            <image wx:if="{{selectall==1}}" src="../../images/selected.png"></image>
+            <text>全选</text>
+          </view>
+          <view bindtap="edittap">
+          <block wx:if="{{edit==0}}">
+          <text class="com-operate-edit">编辑</text>
+          </block>
+          <block wx:else>
+          <text class="com-operate-edit">退出编辑</text>
+          </block>
+          </view>
+      </view>
+
+      <block wx:for="{{orderItems}}">
+      <view class="com-item">
+
+          <view bindtap="select" data-index="{{index}}">
+          <block wx:if="{{item.edit==0}}">
+          <image class="com-item-select" src="../../images/select.png"></image>
+          </block>
+          <block wx:else>
+          <image class="com-item-select" src="../../images/selected.png"></image>
+          </block>
+          </view>
+
+          <view class="com-item-detail">
+                <image src="{{imgRoute+item.img}}"></image>
+                <view class="righttext">
+                <text class="name">{{item.name}}</text>
+                <view class="bottomtext">
+                <text class="price">￥{{item.price}}</text>
+            
+                <text class="num">×{{item.num}}</text>
+                
+                </view>
+                </view>
+          </view>
+
+          <block wx:if="{{edit==1}}">
+          <view bindtap="comdelete"  data-index="{{index}}" class="delete-panel">
+          删除
+          </view>
+          </block>
+
+      </view>
+      </block>
+      
+      <view  class="comadd">
+            <navigator url="../commodity/commodity" open-type="switchTab">
+        <image src="../../images/com-add.png"></image>
+            </navigator>
+      </view>
+  </view>
+
+  <view class="com-count-panel"> 
+      <view class="sumcount">
+      <text style="color:#ff4444;font-weight: bold;">合计: ￥{{amount}}.00</text>
+      <text style="color:#999999;text-align:center">(含运费: ￥0)</text>
+      </view>
+      <view bindtap="ordersubmit" class="settlement">{{btntext}}</view>
+  </view>
+</view>
+
+<view wx:if="{{addr==0 && num>0}}">
+<image bindtouchend='addrpanel' src="../../images/up.png" class="uparrow"></image>
+</view>
+<view wx:if="{{addr==1 && num>0}}">
+<image bindtouchend='addrpanel' src="../../images/up.png" class="downarrow"></image>
+
+<view wx:if="{{addrnum>0 && num>0}}" class="address-panel">
+  <view bindtap="former" class="selectbtn">
+  <image src="../../images/latter.png" style="transform:rotate(180deg);"></image>
+  </view>
+  <view class="content">
+    <view class="toptext">
+      <view class="contact">
+        {{addresslist[addrid].user_name}}
+      </view>
+      <view class="phone">
+      {{addresslist[addrid].user_phone}}
+      </view>
+    </view>
+    <view class="address">
+    {{addresslist[addrid].province}}{{addresslist[addrid].city}}{{addresslist[addrid].county}}
+    </view>
+    <view class="addressdetail">
+    {{addresslist[addrid].detailed}}
+    </view>
+  </view>
+  <view bindtap="latter" class="selectbtn">
+  <image src="../../images/latter.png" ></image>
+  </view>
+</view>
+<view wx:if="{{addrnum==0 && num>0}}" bindtap="gotoaddress" class="empty-address-panel">
+请添加地址
+<image src="../../images/add.png" />
+</view>
+
+
+</view>

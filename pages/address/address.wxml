@@ -1,0 +1,60 @@
+<!--pages/address/address.wxml-->
+<form bindsubmit="addresssubmit">
+<view class="address-panel">
+
+<view class="address-item">
+    <view class="address-item-title">
+    收货人
+    </view>
+    <view class="address-item-input">
+    <input name="contact" placeholder="请输入收货人姓名" placeholder-class="placeholder-text" value="{{address.contact}}"></input>
+    </view>
+</view>
+
+<view class="address-item">
+    <view class="address-item-title">
+    联系电话
+    </view>
+    <view class="address-item-input">
+    <input name="phone" placeholder="请输入收货人电话" placeholder-class="placeholder-text" value="{{address.phone}}"></input>
+    </view>
+</view>
+<view class="address-item">
+    <view class="address-item-title">
+    省/直辖市
+    </view>
+    <view class="address-item-input">
+    <input name="province" placeholder="请输入省/直辖市" placeholder-class="placeholder-text" value="{{address.province}}"></input>
+    </view>
+</view>
+<view class="address-item">
+    <view class="address-item-title">
+    市
+    </view>
+    <view class="address-item-input">
+    <input name="city" placeholder="请输入市" placeholder-class="placeholder-text" value="{{address.city}}"></input>
+    </view>
+</view>
+<view class="address-item">
+    <view class="address-item-title">
+    区/县
+    </view>
+    <view class="address-item-input">
+    <input name="county" placeholder="请输入区/县" placeholder-class="placeholder-text" value="{{address.county}}"></input>
+    </view>
+</view>
+<view class="address-item">
+    <view class="address-item-title">
+    详细地址
+    </view>
+    <view class="address-item-input">
+    <input name="address" placeholder="请输入详细地址" placeholder-class="placeholder-text" value="{{address.address}}"></input>
+    </view>
+</view>
+</view>
+
+
+<button class="save-button" formType="submit">
+<text>保存</text>
+</button>
+</form>

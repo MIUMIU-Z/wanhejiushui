@@ -1,0 +1,64 @@
+<!--comcard.wxml-->
+<view class="cardcontainer">
+    <view class="{{isshow?'filter':(isqrshow?'filter':'')}}">
+        <swiper class="swiper_box" indicator-dots="{{indicatorDots}}"  autoplay="{{autoplay}}" circular="true" interval="{{interval}}" duration="{{duration}}">
+            <block wx:for="{{images}}">
+                <swiper-item>
+                    <image id="{{index}}" bindload= "loadingImg" src="{{item}}" bindtap="popImg" class="slide-image"/>
+                </swiper-item>
+            </block>
+        </swiper>
+    </view>
+
+    <view class="{{isshow?'filter titlebox':(isqrshow?'filter titlebox':'titlebox')}}">
+        <image mode="scaleToFill" src="http://or63njgev.bkt.clouddn.com/line.png"></image>
+        <view class="title"><text>商家简介</text></view>
+        <view class="line_flag"></view>
+    </view>
+    
+
+    <view class="{{isshow?'filter text':(isqrshow?'filter text':'text')}}">
+       <view style="display:inline-block; width:80rpx; height:5rpx;"></view><text>{{intruduce}}</text>
+    </view>
+    
+    <view class="{{isshow?'filter info_list':(isqrshow?'filter info_list':'info_list')}}">
+          <view bindtap="popQr" class="left">
+            <image mode="scaleToFill" src="{{qrcode}}"></image>
+          </view>
+          <view class="right">
+            <block wx:for="{{comListInfo}}">
+              <view class="info_cell" bindtap="{{index==0?'goaddr':(index==1?'ppp':'gocall')}}">
+                  <view class="info_cell_hd"><image mode="aspectFit" src="{{item.icon}}"></image></view>
+                  <view class="info_cell_bd">
+                      <view class="info_cell_bd_p"> {{item.text}} </view>
+                  </view>
+                  <view  class="badge"><image wx:if="{{item.isunread}}" mode="aspectFit" src="{{item.icon1}}"></image></view>
+              </view>
+            </block>
+          </view>
+   </view>
+   <view bindtap="goourcall" class="{{isshow?'filter footer':(isqrshow?'filter footer':'footer')}}">
+      <view>技术支持@哈工大社会网络研究室</view>
+      <view>联系我们：13945103823</view>
+   </view>
+
+   <view class="popui" bindtap="delImg" wx:if="{{isshow}}"><image src="{{curImg}}"></image></view>
+   
+   <view class="popqr" bindtap="delQr" wx:if="{{isqrshow}}">
+      <image bindlongtap="downloadImg" src="{{qrcode}}"></image>
+      <view>微信号：<text>yingxiong1975</text></view>
+      <view>截屏扫码 可添加店家微信</view>
+   </view>
+
+   <view id="loading" wx:if="{{!loaded}}">
+	  <view id="loading-center">
+	    <view id="loading-center-absolute">
+	      <view class="object" id="object_one"></view>
+	      <view class="object" id="object_two"></view>
+	      <view class="object" id="object_three"></view>
+	      <view class="object" id="object_four"></view>
+	      <view class="object" id="object_big"></view>
+	    </view>
+	  </view>
+	 </view>
+</view>

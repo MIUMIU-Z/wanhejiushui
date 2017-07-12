@@ -1,0 +1,70 @@
+{
+  "pages": [
+
+    "pages/Home/Home",
+    "pages/CoShow/CoShow",
+    "pages/cart/cart",
+    "pages/commodity/commodity",
+    "pages/index/index",
+    "pages/detail/detail",
+    "pages/address/address",
+    "pages/addresslist/addresslist",
+    "pages/search/search",
+    "pages/order/order",
+    "pages/orderdetail/orderdetail",
+    "pages/news/news",
+    "pages/comcard/comcard"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#171742",
+    "navigationBarTitleText": "企业商城",
+    "navigationBarTextStyle": "white",
+    "enablePullDownRefresh": "True",
+    "backgroundColor": "#f9f9f9"
+  },
+  "tabBar": {
+    "color": "#FFF",
+    "selectedColor": "#1AFA29",
+    "backgroundColor": "#171742",
+    "borderStyle": "white",
+    "position": "bottom",
+    "list": [
+      {
+        "pagePath": "pages/Home/Home",
+        "text": "首页",
+        "selectedIconPath": "images/home2.png",
+        "iconPath": "images/home2-0.png"
+      },
+      {
+        "pagePath": "pages/commodity/commodity",
+        "text": "产品分类",
+        "selectedIconPath": "images/list.png",
+        "iconPath": "images/list1.png"
+      },
+      {
+        "pagePath": "pages/cart/cart",
+        "text": "购物车",
+        "selectedIconPath": "images/car.png",
+        "iconPath": "images/car1.png"
+      },
+      {
+        "pagePath": "pages/comcard/comcard",
+        "text": "企业信息",
+        "selectedIconPath": "images/comp.png",
+        "iconPath": "images/comp1.png"
+      },
+      {
+        "pagePath": "pages/index/index",
+        "text": "用户中心",
+        "selectedIconPath": "images/wo.png",
+        "iconPath": "images/wo1.png"
+      }
+    ]
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "downloadFile": 10000
+  },
+  "debug": false
+}

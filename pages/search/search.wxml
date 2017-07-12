@@ -1,0 +1,39 @@
+<!--pages/search/search.wxml-->
+<view class="search-panel">
+    <image class="search-image-search"                 src="../../images/search.png"></image>
+    <input placeholder="请输入您想要的商品" bindinput="getsearch" value="{{search}}"></input>
+    <image class="search-image-reset"  bindtap="reset"               src="../../images/reset.png"></image>
+
+</view>
+<view class="search-button" bindtap="search">
+<text>搜索</text>
+</view>
+
+<view class="recommend-panel">
+    <view class="recommend-title">
+        <text>推荐搜索</text>
+    </view>
+    <view class="recommend-item-panel">
+    <block wx:for="{{recommend_list}}">
+        <view class="recommend-item">
+        <text>{{item}}</text>
+        </view>
+    </block>
+    </view>
+</view>
+
+
+<view wx:if="{{num>0}}" class="com_panel">
+<block wx:for="{{goods}}">
+        <view class="com_items" bindtap="gotodetail" data-index="{{index}}">
+            <image src="{{imgRoute+item.img}}"></image>
+            <view class="righttext">
+            <text class="name">{{item.name}}</text>
+            <text class="price">￥{{item.price}}</text>
+            </view>
+        </view>
+    </block>
+</view>
+<view wx:if="{{num==0}}" class="empty">
+暂时还没有这种商品
+</view>

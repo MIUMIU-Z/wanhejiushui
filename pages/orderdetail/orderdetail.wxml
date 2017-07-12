@@ -1,0 +1,50 @@
+<!--pages/orderdetail/orderdetail.wxml-->
+<view class="detail-chief">
+    <view class="title">
+      单号：{{order.id}}
+    </view>
+    <view class="term">
+      <view class="term-item">
+        <text >收货人员： </text>
+        <text>{{address.user_name}}</text>
+      </view>
+      <view class="term-item">
+        <text>联系电话：</text>
+        <text>{{address.user_phone}}</text>
+      </view>
+      <view class="term-item">
+          <text>所在地域：</text>
+          <text>{{address.province}}{{address.city}}{{address.county}}</text>
+      </view>
+      <view class="term-item">
+        <text style="width:150rpx;">详细地址：</text>
+        <text>{{address.detailed}}</text>
+      </view>
+      <view class="term-item"  style="border-bottom:#FFF">
+        <text>下单时间：</text>
+        <text>{{order.time}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="detail-remark">
+    <view class="title">选购列表：</view>
+    <view class="com-item">
+        <block wx:for="{{goods}}">
+          <view class="com-item-detail">
+                <image src="{{imgRoute+item.goods_info.picture}}"></image>
+                <view class="righttext">
+                <text class="name">{{item.goods_info.name}}</text>
+                <view class="bottomtext">
+                <text class="price">￥{{item.goods_info.price}}</text>
+            
+                <text class="num">×{{item.goods_num}}</text>
+                
+                </view>
+                </view>
+          </view>
+        </block>
+  </view>
+  </view>
+
+

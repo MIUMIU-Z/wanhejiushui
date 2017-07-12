@@ -1,0 +1,47 @@
+/* pages/CoShow/CoShow.wxss */
+page{
+    background-color: #FFF;
+}
+view.title {
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 10px 10px 10px 12px;
+    font-size: 15px;
+    color: #656565;
+    margin-bottom:30rpx;
+}
+
+.line_flag {
+    width: 3px;
+    height: 35rpx;
+    display: inline-block;
+    background-color: #f9f027;
+}
+view.title text {
+    margin-left: 10px;
+    line-height: 18px;
+    font-weight: bold;
+}
+.comtext{
+    padding: 0 30rpx;
+    margin: 30rpx 0;
+    font-size:30rpx;
+    word-wrap:break-word;
+    word-break:break-all; 
+    padding-bottom:70rpx;
+}
+.contacttext{
+    display: flex;
+    flex-direction: column;
+    line-height: 50rpx;
+    padding: 0 30rpx;
+    margin: 30rpx 0;
+    font-size:30rpx;
+    padding-bottom:70rpx;
+}
+.comimage{
+    margin-top: 10rpx;
+    width: 100%;
+    overflow: hidden;
+}

@@ -1,0 +1,36 @@
+<!--pages/CoShow/CoShow.wxml-->
+<!--<video src="http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400" ></video>-->
+
+    <view class="title">
+        <view class="line_flag"></view>
+        <text>公司简介</text>
+    </view>
+    <view class="comtext">{{introduce}}
+    </view>
+
+
+
+    <view class="title">
+        <view class="line_flag"></view>
+        <text>联系方式</text>
+    </view>
+    <view class="contacttext">
+    <text>联系人：  {{contact_way.contact}}</text>
+    <text>联系电话： {{contact_way.tel}}</text>
+    <text>传真：   {{contact_way.fax}}</text>
+    <text>地址：   {{contact_way.address}}</text>
+    </view>
+
+
+
+    <view class="title">
+        <view class="line_flag"></view>
+        <text>厂区场貌</text>
+    </view>
+
+<view class="comimage">
+<block wx:for="{{comimage}}">
+<image mode="aspectFit" src="{{item.img}}"></image>
+</block>
+</view>
+

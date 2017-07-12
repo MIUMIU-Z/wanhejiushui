@@ -1,0 +1,31 @@
+<view class="addresslist-panel">
+
+<view wx:if="{{num!=0}}" class="addresslist">
+<block wx:for="{{addresslist}}">
+  <view class="item">
+    <view class="toptext">
+      <view class="contact">
+        {{item.user_name}}
+      </view>
+      <view class="phone">
+      {{item.user_phone}}
+      </view>
+    </view>
+    <view class="address">
+    {{item.province}}{{item.city}}{{item.county}}
+    </view>
+    <view class="addressdetail">
+    {{item.detailed}}
+    </view>
+    <image src="../../images/modify.png" style="top:15%;"></image>
+    <image src="../../images/delete.png" style="top:55%;"></image>
+  </view>
+</block>
+</view>
+
+<view class="add" bindtap="add">
+添加新地址
+</view>
+
+</view>
+
