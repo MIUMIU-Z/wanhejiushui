@@ -1,12 +1,12 @@
 /* pages/addresslist/addresslist.wxss */
 .addresslist-panel{
-  padding:80rpx 5% 0rpx 5%;
+  padding:50rpx 5% 0rpx 5%;
   width:90%;
 }
 .addresslist-panel .addresslist{
   width:100%;
-  margin-bottom:200rpx;
-  min-height:500rpx;
+  margin-bottom:100rpx;
+ 
 }
 .addresslist-panel .addresslist .item{
   width:100%;
@@ -22,6 +22,7 @@
   display:flex;
   flex-direction:row;
   color: rgba(78,77,79,0.8);
+  max-width:80%;
 }
 .addresslist-panel .addresslist .item .toptext .contact{
   margin-left:50rpx;
@@ -35,29 +36,29 @@
   line-height:60rpx;
 }
 .addresslist-panel .addresslist .item .address{
-  margin-left:50rpx;
+  padding-left:50rpx;
   height:60rpx;
   line-height:60rpx;
   font-family: "微软雅黑";
   color: rgba(78,77,79,0.8);
-  max-width:70%;
+  max-width:72%;
   overflow: hidden;
   text-overflow:ellipsis;
   white-space: nowrap;
 }
 .addresslist-panel .addresslist .item .addressdetail{
-  margin-left:50rpx;
+  padding-left:50rpx;
   height:60rpx;
   line-height:60rpx;
   font-family: "微软雅黑";
   color: rgba(78,77,79,0.8);
-  max-width:70%;
+  max-width:72%;
   overflow: hidden;
   text-overflow:ellipsis;
   white-space: nowrap;
 }
 
-.addresslist-panel .addresslist .item image{
+.addresslist-panel .addresslist .item .tapnote{
   position:absolute;
   right:60rpx;
   width:50rpx;
@@ -74,4 +75,10 @@
   text-align:center;
   color:#FFF;
   border-radius: 12rpx;
+}
+.addresslist-panel .addresslist .item .defaultnote{
+  position:absolute;
+  right:0rpx;
+  width:80rpx;
+  height:80rpx;
 }

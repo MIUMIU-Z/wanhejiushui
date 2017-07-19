@@ -9,14 +9,95 @@ Page({
 
   add:function(){
     wx.navigateTo({
-      url: '../address/address',
+      url: '../address/address?style=0',
+    })
+  },
+  setdefault: function (e) {
+    var that = this
+    console.log(e.currentTarget.dataset.index)
+    wx.request({
+      url: app.data.imgRoute + '/shop/change_default_addr/',
+      data: {
+        addr_id: e.currentTarget.dataset.index
+      },
+      method: 'GET',
+      success: function (resu) {
+        console.log('设置默认地址', resu)
+        if (resu.data == 1) {
+          wx.request({
+            url: app.data.imgRoute + '/shop/user_addrs/',
+            data: {
+              user_id: app.data.userid
+            },
+            method: 'GET',
+            success: function (resu) {
+              console.log('地址列表', resu)
+              that.setData({
+                addresslist: resu.data.infos,
+                num: resu.data.infos.length
+              })
+            }
+          })
+        }
+        else {
+          wx.showToast({
+            title: '设置失败',
+            image: '../../images/tip.png'
+          })
+        }
+      }
     })
   },
   onLoad: function (options) {
   
   },
-
-
+  addrmodify:function(e){
+    var that =this
+    wx.setStorage({
+      key: 'addr',
+      data: that.data.addresslist[e.target.dataset.index],
+    })
+    wx.navigateTo({
+      url: '../address/address?style=1',
+    })
+    
+  },
+  addrdelete:function(e){
+    var that = this
+    wx.request({
+      url: app.data.imgRoute + '/shop/delete_user_addr',
+      data: {
+        addr_id: that.data.addresslist[e.target.dataset.index].addr_id
+      },
+      method: 'GET',
+      success: function (resu) {
+        console.log('删除地址', resu)
+        if (resu.data==1)
+        {
+          wx.request({
+            url: app.data.imgRoute + '/shop/user_addrs/',
+            data: {
+              user_id: app.data.userid
+            },
+            method: 'GET',
+            success: function (resu) {
+              console.log('地址列表', resu)
+              that.setData({
+                addresslist: resu.data.infos,
+                num: resu.data.infos.length
+              })
+            }
+          })
+        }
+        else{
+          wx.showToast({
+            title: '删除失败',
+            image:'../../images/tip.png'
+          })
+        }
+      }
+    })
+  },
   onReady: function () {
   
   },

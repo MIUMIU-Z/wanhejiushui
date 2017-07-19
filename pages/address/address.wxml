@@ -7,7 +7,7 @@
     收货人
     </view>
     <view class="address-item-input">
-    <input name="contact" placeholder="请输入收货人姓名" placeholder-class="placeholder-text" value="{{address.contact}}"></input>
+    <input name="contact" placeholder="请输入收货人姓名" placeholder-class="placeholder-text" value="{{address.user_name}}"></input>
     </view>
 </view>
 
@@ -16,7 +16,7 @@
     联系电话
     </view>
     <view class="address-item-input">
-    <input name="phone" placeholder="请输入收货人电话" placeholder-class="placeholder-text" value="{{address.phone}}"></input>
+    <input name="phone" placeholder="请输入收货人电话" placeholder-class="placeholder-text" value="{{address.user_phone}}"></input>
     </view>
 </view>
 <view class="address-item">
@@ -48,10 +48,21 @@
     详细地址
     </view>
     <view class="address-item-input">
-    <input name="address" placeholder="请输入详细地址" placeholder-class="placeholder-text" value="{{address.address}}"></input>
+    <input name="address" placeholder="请输入详细地址" placeholder-class="placeholder-text" value="{{address.detailed}}"></input>
     </view>
 </view>
+
+<view class="prolink">
+  <view class="content">
+      <checkbox-group bindchange="agreedefault">
+        <checkbox value="250" checked="{{defaultaddr}}" />
+      </checkbox-group>
+      <text bindtap="readPro">设置为默认地址</text>
+  </view>
 </view>
+
+</view>
+
 
 
 <button class="save-button" formType="submit">

@@ -1,0 +1,24 @@
+<!--pages/settlement_addr/settlement_addr.wxml-->
+<view class="title-panel">
+<image src="../../images/address.png"></image>
+<view class="title">选择收货地址</view>
+<image bindtap="gotoaddress" style="width:45rpx;height:45rpx;position:absolute;right:70rpx;" src="../../images/modify2.png"></image>
+</view>
+
+<view class="address-panel">
+  <block wx:for="{{addresslist}}">
+  <view class="item" bindtap="selectaddr" data-index="{{index}}">
+    <image wx:if="{{addrid!=index}}" src="../../images/select.png"></image>
+    <image wx:if="{{addrid==index}}" src="../../images/selected.png"></image>
+    <view class="text-panel">
+    <view class="uptext">
+      {{item.province}}{{item.city}}{{item.county}}-{{item.detailed}}
+    </view>
+    
+    <view class="bottomtext">
+      {{item.user_name}} {{item.user_phone}}
+    </view>
+    </view>
+  </view>
+  </block>
+</view>

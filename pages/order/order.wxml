@@ -18,16 +18,19 @@
     </block>
     <block wx:else>
       <block wx:for="{{myorders}}">
-      <view wx:if="{{item.state==(page+1)}}" class="item" bindtap="gotodetail" data-index="{{index}}">
+      <view wx:if="{{(item.state<4 && page==0 )||(item.state==4 && page==1 ) }}" class="item" bindtap="gotodetail" data-index="{{index}}">
         <view class="lefttext">
           <text style="color:#6699ff">{{item.addr.user_name}}</text>
           <text>{{item.addr.user_phone}}</text>
         </view>
         <view class="righttext">
-          <text>共计?件商品</text>
+          <text>下单时间：</text>
           <text>{{item.time}}</text>
         </view>
-        <image src="../../images/more.png"/>
+        <image class="moreimg" src="../../images/more.png"/>
+        <image mode="aspectFit" wx:if="{{item.state==3}}" class="state-note" src="../../images/confirm.png"></image>
+        <image mode="aspectFit" wx:if="{{item.state==1}}" class="state-note" src="../../images/placed.png"></image>
+        <image mode="aspectFit" wx:if="{{item.state==2}}" class="state-note" src="../../images/send.png"></image>
       </view>
       </block>
     </block>

@@ -169,7 +169,7 @@ page{
   height:100rpx;
   background-color:#ff4444;
   text-align:center;
-  line-height:110rpx;
+  line-height:100rpx;
   font-size:40rpx;
   color:white;
 }

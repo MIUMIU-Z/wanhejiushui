@@ -25,9 +25,9 @@
 <view class="Recommend">
 <label wx:for="{{recommend}}">
     <view class="Recblock" bindtap="gotodetail" data-index="{{index}}">
-    <image mode="scaleToFill" class="Recblockimage" src="{{imgRoute+item.img}}"></image>
-    <view class="Recblocktext"> <text>{{item.name}}</text></view>
-    <view class="Recblockprice"> <text>￥{{item.price}}</text></view>
+      <image mode="scaleToFill" class="Recblockimage" src="{{imgRoute+item.img}}"></image>
+      <view class="Recblocktext"> <text>{{item.name}}</text></view>
+      <view class="Recblockprice"> <text>￥{{item.price}}</text></view>
     </view>
 </label>
 </view>

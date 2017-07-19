@@ -46,8 +46,9 @@ page{
 }
 .orderlist-panel .empty{
   padding-top:60rpx;
-  font-size:35rpx;
+  font-size:40rpx;
   text-align:center;
+  font-family:'隶书';
 }
 .orderlist-panel .item{
   width:100%;
@@ -83,11 +84,19 @@ page{
   text-overflow: ellipsis;
   color:black;
 }
-.orderlist-panel .item image{
+.orderlist-panel .item .moreimg{
   margin-top:30rpx;
   width:30rpx;
   height:60rpx;
   right:10rpx;
   position:absolute;
+}
+
+.state-note{
+  max-width:200rpx;
+  height:120rpx;
+  position:absolute;
+  left:90rpx;
+  top:3rpx;
 }
 

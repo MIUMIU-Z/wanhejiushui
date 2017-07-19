@@ -7,6 +7,22 @@ Page({
     address: {},
     goods: []
   },
+  orderconfirm:function(){
+    wx.request({
+      url: app.data.imgRoute +'/shop/confirm_gotgoods/',
+      data: {
+        order_id:this.data.order.order_id
+        },
+      method:'GET',
+      success:function(res){
+          console.log('确认收货',res)
+      }
+    })
+    wx.navigateBack({
+      delta:1
+    })
+    
+  },
   onLoad: function () {
     var that = this
     that.setData({

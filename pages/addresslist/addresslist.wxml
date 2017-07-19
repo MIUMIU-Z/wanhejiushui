@@ -2,8 +2,9 @@
 
 <view wx:if="{{num!=0}}" class="addresslist">
 <block wx:for="{{addresslist}}">
-  <view class="item">
-    <view class="toptext">
+  <view class="item" >
+    <image wx:if="{{item.remark==1}}" src="../../images/default.png" class="defaultnote"></image>
+    <view class="toptext" bindtap="setdefault" data-index="{{item.addr_id}}">
       <view class="contact">
         {{item.user_name}}
       </view>
@@ -11,14 +12,14 @@
       {{item.user_phone}}
       </view>
     </view>
-    <view class="address">
+    <view class="address" bindtap="setdefault" data-index="{{item.addr_id}}">
     {{item.province}}{{item.city}}{{item.county}}
     </view>
-    <view class="addressdetail">
+    <view class="addressdetail" bindtap="setdefault" data-index="{{item.addr_id}}">
     {{item.detailed}}
     </view>
-    <image src="../../images/modify.png" style="top:15%;"></image>
-    <image src="../../images/delete.png" style="top:55%;"></image>
+    <image class="tapnote" bindtap="addrmodify" data-index="{{index}}" src="../../images/modify.png" style="top:15%;"></image>
+    <image class="tapnote" bindtap="addrdelete" data-index="{{index}}" src="../../images/delete.png" style="top:55%;"></image>
   </view>
 </block>
 </view>

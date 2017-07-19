@@ -59,6 +59,8 @@ page{
 
   display: flex;
   flex-direction: column;
+  margin-bottom:120rpx;
+  padding-bottom:100rpx;
 
 }
 .detail-remark .title{
@@ -132,4 +134,15 @@ page{
   margin-left: 150rpx;
   color: #999999;
   
+}
+
+.btn{
+  position:fixed;
+  bottom:0;
+  width:100%;
+  height:90rpx;
+  background:mediumaquamarine;
+  color:#fff;
+  text-align:center;
+  line-height:90rpx;
 }

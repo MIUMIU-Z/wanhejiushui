@@ -3,7 +3,7 @@
         <swiper class="swiper_box" indicator-dots autoplay interval="5000" duration="1000">
             <block wx:for="{{goodswiper}}">
                 <swiper-item>
-                    <image src="{{item.img}}" class="slide-image"/>
+                    <image src="{{imgRoute+item}}" class="slide-image"/>
                 </swiper-item>
             </block>
         </swiper>
@@ -33,7 +33,7 @@
         <text>产品信息</text>
     </view>
     <view class="content">
-        <text>{{goodsinfo.describe}}</text>
+        <text>{{goodsinfo.introduction}}</text>
     </view>
 </view>
 </view>
@@ -46,7 +46,7 @@
     </view>
     <view class="image">
       <block wx:for="{{goodimg}}">
-        <image src="{{item.img}}"></image>
+        <image mode="aspectFit" src="{{imgRoute+item}}"></image>
     </block>
     </view>
 </view>

@@ -26,7 +26,7 @@
 <view wx:if="{{num>0}}" class="com_panel">
 <block wx:for="{{goods}}">
         <view class="com_items" bindtap="gotodetail" data-index="{{index}}">
-            <image src="{{imgRoute+item.img}}"></image>
+            <image mode="aspectFit" src="{{imgRoute+item.img}}"></image>
             <view class="righttext">
             <text class="name">{{item.name}}</text>
             <text class="price">￥{{item.price}}</text>

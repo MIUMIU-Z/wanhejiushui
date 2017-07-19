@@ -3,14 +3,24 @@
 
 <scroll-view class="com_left" scroll-y='true'>
     <block wx:for="{{types}}">
-      <view bindtap="switchRightTab" data-index="{{index}}" class="com_left_items {{selectLeftid == index ? 'active' : ''}}" >{{item}}</view>
+      <view bindtap="switchRightTab" data-index="{{index}}" class="com_left_items {{selectLeftid == index ? 'active' : ''}}" >
+      <view style="text-align:center;width:140rpx;">{{item.class_name}}</view>
+       <image  class="leftimage" src='../../images/arrow_down.png'></image>
+      </view>
+      <view  wx:if="{{selectLeftid == index}}" class="subitem-panel">
+      <block wx:if="{{selectLeftid == index}}" wx:for="{{item.data}}" wx:for-index="subindex" wx:for-item="subitem">
+      <view bindtap="switchsubleftTab" data-index="{{subindex}}" data-id="{{subitem.brand_id}}" class="com-left-subitem {{selectLeftsubid == subindex ? 'active' : ''}}" style="{{selectLeftsubid > subindex?'background: -webkit-gradient(linear, left bottom, left top, from(#836FFF),color-stop(0, #20c720),to(#836FFF));':''}}">
+      {{subitem.brand}}
+      </view>
+      </block>
+      </view>
     </block>
 </scroll-view>
 
 <scroll-view class="com_right" scroll-y='true'>
     <block wx:for="{{goods}}">
         <view class="com_right_items" bindtap="gotodetail" data-index="{{index}}">
-            <image node="aspectFit" src="{{imgRoute+item.img}}"></image>
+            <image mode="aspectFit" src="{{imgRoute+item.img}}"></image>
             <view class="righttext">
             <text class="name">{{item.name}}</text>
             <text class="price">￥{{item.price}}</text>

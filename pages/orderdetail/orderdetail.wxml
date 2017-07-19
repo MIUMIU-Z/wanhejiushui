@@ -1,7 +1,7 @@
 <!--pages/orderdetail/orderdetail.wxml-->
 <view class="detail-chief">
     <view class="title">
-      单号：{{order.id}}
+      单号：{{order.order_id}}
     </view>
     <view class="term">
       <view class="term-item">
@@ -47,4 +47,7 @@
   </view>
   </view>
 
+<view class="btn" bindtap="orderconfirm">
+确认收货
+</view>
 

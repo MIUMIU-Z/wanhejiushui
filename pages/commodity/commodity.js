@@ -2,20 +2,47 @@
 var app = getApp()
 Page({
   data:{
-    types:{},
+    types:[],
     goods:{},
-    selectLeftid: 0,
+    selectLeftid: -1,
+    selectLeftsubid: -1
   },
   switchRightTab: function(e) {
     var that =this
     console.log(e)
     this.setData({
-        selectLeftid: e.target.dataset.index, 
+      selectLeftid: e.currentTarget.dataset.index == that.data.selectLeftid ? -1 : e.currentTarget.dataset.index, 
+      selectLeftsubid: 0
+    })
+    if (that.data.selectLeftid!=-1)
+    {
+
+    wx.request({
+      url: app.data.imgRoute + '/shop/goods_class/',
+      data: {
+        goods_class: that.data.types[this.data.selectLeftid].data[0].brand_id
+      },
+      method: 'GET',
+      success: function (res) {
+        console.log('商品列表', res)
+        that.setData({
+          goods: res.data.infos,
+        })
+      }
+    })
+
+    }
+  },
+  switchsubleftTab:function(e){
+    var that = this
+    console.log(e)
+    this.setData({
+      selectLeftsubid: e.target.dataset.index,
     })
     wx.request({
       url: app.data.imgRoute + '/shop/goods_class/',
       data: {
-        goods_class: that.data.selectLeftid + 1
+        goods_class: e.currentTarget.dataset.id
       },
       method: 'GET',
       success: function (res) {
@@ -45,18 +72,17 @@ Page({
        url: app.data.imgRoute+'/shop/get_class/',
        success: function(res) {
           console.log('商品类别',res)
-          res.data.class_list.splice(0,1)
           that.setData({
-            types: res.data.class_list,
+            types: res.data.infos,
           })
           wx.request({
             url: app.data.imgRoute +'/shop/goods_class/',
             data:{
-              goods_class: that.data.selectLeftid+1
+              goods_class: res.data.infos[0].data[0].brand_id
             },
             method: 'GET',
             success: function (res) {
-              console.log('商品列表',res)
+              console.log('商品列表', res, res.data.infos)
               that.setData({
                 goods: res.data.infos,
               })

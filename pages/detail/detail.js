@@ -6,7 +6,8 @@ Page({
     goodsinfo:{},
     goodswiper:[],
     goodimg:[],
-    num:0
+    num:0,
+    imgRoute: ''
     },
   numreduce:function(){
     if (this.data.num>0)
@@ -59,6 +60,9 @@ Page({
 
   onLoad:function(){
     var that=this;
+    that.setData({
+      imgRoute: app.data.imgRoute
+    })
     wx.getStorage({
       key: 'selectedgoods',
       success: function(res) {
@@ -76,32 +80,20 @@ Page({
             break
           }
         }
-        console.log('位置',that.data.orderindex)
         console.log(that.data.goodsinfo.goods_id)
-        /*wx.request({
-           url: 'http://zwx.wikibady.com/getgoodswiper',
+        wx.request({
+          url: app.data.imgRoute+'/shop/show_goods_detail/',
           data: {
-            id: that.data.goodsinfo.goods_id
+            goods_id: that.data.goodsinfo.goods_id
           },
           success: function(resu) {
             console.log(resu)
               that.setData({
-                goodswiper: resu.data
+                goodswiper: resu.data.infos.img_list,
+                goodimg:resu.data.infos.detail_list
               })
           }
         })
-         wx.request({
-           url: 'http://zwx.wikibady.com/getgoodimg',
-           data: {
-             id: that.data.goodsinfo.id
-           },
-           success: function (resu) {
-             console.log(resu)
-             that.setData({
-               goodimg: resu.data
-             })
-           }
-         })*/
       },
     })
    

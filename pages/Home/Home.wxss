@@ -89,7 +89,7 @@ view.text {
 
 .Recblock{
     width: 330rpx;
-    height: 350rpx;
+
     margin: 30rpx 8rpx 8rpx 30rpx;
     align-items: center;
     text-align: center;
@@ -110,7 +110,7 @@ view.text {
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
-    -webkit-line-clamp: 2; 
+    -webkit-line-clamp: 3; 
     -webkit-box-orient: vertical
 }
 .Recblockprice{

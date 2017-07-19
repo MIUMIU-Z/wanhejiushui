@@ -1,0 +1,81 @@
+<!--pages/settlement/settlement.wxml-->
+<view class="deliver-panel">
+  <view class="item" bindtap="selectAddr">
+    <view class="up-panel">
+      <image src="../../images/address.png"/>
+      <view class="uptext">
+       {{addresslist[addrid].city}}{{addresslist[addrid].county}} {{addresslist[addrid].detailed}}
+      </view>
+    </view>
+
+    <view class="bottom-panel">
+      <view class="name">
+      {{addresslist[addrid].user_name}}
+      </view>
+      <view class="phone">
+      {{addresslist[addrid].user_phone}}
+      </view>
+    </view>
+    <image class="more-img" src="../../images/more-right.png" ></image>
+  </view>
+
+<picker bindchange="selectPaymethod" value="{{paymethod}}" range="{{paymethodlist}}">
+  <view class="item">
+    <view class="up-panel" bindtap="selectPaymethod">
+      <image src="../../images/pay.png"/>
+      <view class="uptext">
+       <text>付款方式:</text> 
+
+       <text style="color:red;font-size:40rpx;font-family:'华文行楷';">{{paymethodlist[paymethod]}}</text>
+      </view>
+    </view>
+
+    <view class="bottom-panel">
+      <view class="name">
+      <text wx:if="{{paymethod==1}}">使用微信支付的方式线上支付</text>
+      <text wx:if="{{paymethod==0}}">配送员为您配送货物时接收付款</text>
+      </view>
+    </view>
+    <image class="more-img" src="../../images/more-right.png" ></image>
+  </view>
+</picker>
+
+    <view class="item" style="height:80rpx;border-bottom:#FFF;">
+    <view class="up-panel">
+      <image src="../../images/remark.png"/>
+      <view class="uptext" style="font-size:35rpx;">
+      备注
+      </view>
+    </view>
+  </view>
+</view>
+
+
+<view  class="order-panel">
+  <view class="title-panel">
+    <image src="../../images/shop.png"></image>
+    <view class="title">万和酒水</view>
+  </view>
+
+  <view class="goods-panel">
+    <block wx:for="{{orderlist}}">
+        <view class="item">
+            <image class="goodsimage" mode="aspectFit" src="{{imgRoute+item.img}}"></image>
+            <view class="name">{{item.name}}</view>
+            <view class="num">×{{item.num}}</view>
+            <view class="price">￥{{item.price}}</view>
+        </view>
+    </block>
+  </view>
+
+<view class="count-panel">
+  <view class="lefttext">订单￥{{amount}}+运费￥{{freight}}</view>
+  <view class="righttext">应付￥{{amount}}元</view>
+  </view>
+</view>
+
+
+<view class="btn" bindtap="ordersubmmit"> 
+  提交订单
+</view>
+

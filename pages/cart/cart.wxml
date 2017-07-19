@@ -70,13 +70,15 @@
 
   <view class="com-count-panel"> 
       <view class="sumcount">
-      <text style="color:#ff4444;font-weight: bold;">合计: ￥{{amount}}.00</text>
-      <text style="color:#999999;text-align:center">(含运费: ￥0)</text>
+      <text style="color:#ff4444;font-weight: bold;">合计: ￥{{amount}}</text>
+      <text style="color:#999999;text-align:center">(另附运费: ￥{{(startprice-amount>0 && amount>0)?startprice-amount:0}})</text>
       </view>
-      <view bindtap="ordersubmit" class="settlement">{{btntext}}</view>
+      <view wx:if="{{commitconfirm==0}}" style="background:#CDCDB4;font-size:30rpx;"  class="settlement">{{btntext}}</view>
+      <view wx:if="{{commitconfirm==1}}"  bindtap="ordersubmit" class="settlement">结算</view>
   </view>
 </view>
 
+<!--
 <view wx:if="{{addr==0 && num>0}}">
 <image bindtouchend='addrpanel' src="../../images/up.png" class="uparrow"></image>
 </view>
@@ -114,3 +116,4 @@
 
 
 </view>
+-->
