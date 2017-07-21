@@ -41,7 +41,7 @@ page{
 .orderlist-panel{
   margin-left:5%;
   width:90%;
-  min-height:850rpx;
+  height:850rpx;
   background:#FFF;
 }
 .orderlist-panel .empty{

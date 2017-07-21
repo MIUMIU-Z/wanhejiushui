@@ -69,7 +69,7 @@ Page({
         console.log('订单列表',res)
         var sub = 0
         for (var i = 0; i < res.data.infos.length; i++) 
-        {
+        { 
           if (res.data.infos[i].state < 4)
             sub = sub + 1
 

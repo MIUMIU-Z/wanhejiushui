@@ -12,7 +12,7 @@
  <view class="orderlist-title">
   <view class="line"></view>
  </view>
- <view class="orderlist-panel">
+ <scroll-view class="orderlist-panel" scroll-y="true">
     <block wx:if="{{num==0}}">
     <view class="empty">暂时没有订单</view>
     </block>
@@ -34,4 +34,4 @@
       </view>
       </block>
     </block>
- </view>
+ </scroll-view>
