@@ -88,17 +88,17 @@ view.text {
 }
 
 .Recblock{
-    width: 330rpx;
+    width: 335rpx;
 
-    margin: 30rpx 8rpx 8rpx 30rpx;
+    margin: 30rpx 25rpx 30rpx 20rpx;
     align-items: center;
     text-align: center;
     display: flex;
     flex-direction: column;
 }
 .Recblockimage{
-    width: 250rpx;
-    height: 250rpx;
+    width: 300rpx;
+    height: 300rpx;
     border: 6rpx solid #954bdb;
 }
 

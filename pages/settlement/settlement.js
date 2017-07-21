@@ -166,8 +166,8 @@ Page({
                 }
               }
               console.log('下完单的购物车', app.data.orderlist)
-              wx.navigateBack({
-                delta: 1
+              wx.redirectTo({
+                url: '../order/order',
               })
             },
             fail: function (res) {

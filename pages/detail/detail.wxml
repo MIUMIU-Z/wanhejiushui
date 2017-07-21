@@ -1,5 +1,5 @@
 <!--pages/detail/detail.wxml-->
-    <view>
+<view>
         <swiper class="swiper_box" indicator-dots autoplay interval="5000" duration="1000">
             <block wx:for="{{goodswiper}}">
                 <swiper-item>
@@ -7,7 +7,7 @@
                 </swiper-item>
             </block>
         </swiper>
-    </view>
+</view>
 
 
 <view class="shopping_container">

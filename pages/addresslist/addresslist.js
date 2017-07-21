@@ -32,6 +32,7 @@ Page({
             method: 'GET',
             success: function (resu) {
               console.log('地址列表', resu)
+              wx.hideLoading()
               that.setData({
                 addresslist: resu.data.infos,
                 num: resu.data.infos.length
@@ -40,11 +41,24 @@ Page({
           })
         }
         else {
+          wx.hideLoading()
           wx.showToast({
             title: '设置失败',
             image: '../../images/tip.png'
           })
         }
+      },
+      fail:function(){
+        wx.hideLoading()
+        wx.showToast({
+          title: '网络错误',
+          image: '../../images/tip.png'
+        })
+      },
+      complete:function(){
+        wx.showLoading({
+          title: '正在修改默认地址',
+        })
       }
     })
   },
