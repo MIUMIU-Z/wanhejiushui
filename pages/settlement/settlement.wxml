@@ -8,7 +8,7 @@
       </view>
     </view>
 
-    <view class="bottom-panel">
+    <view class="bottom-panel" >
       <view class="name">
       {{addresslist[addrid].user_name}}
       </view>

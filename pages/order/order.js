@@ -5,7 +5,7 @@ Page({
   data: {
     myorders: [],
     select:-1,
-    num:0,
+    num:-1,
     page:0
   },
   changepage:function(e){
@@ -59,6 +59,9 @@ Page({
   onShow: function () {
     var that =this
     console.log('订单请求')
+    wx.showLoading({
+      title: '加载中',
+    })
     wx.request({
     url: app.data.imgRoute+'/shop/search_order_info',
       data: {
@@ -74,15 +77,18 @@ Page({
             sub = sub + 1
 
         }
+        wx.hideLoading()
         that.setData({
           myorders: res.data.infos,
           num: sub
         })
       },
       fail: function (res) {
+        wx.hideLoading()
         console.log('失败', res)
       },
       complete: function (res) {
+        wx.hideLoading()
         console.log('完成', res)
       }
     })

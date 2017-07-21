@@ -15,7 +15,7 @@ page{
   display: flex;
   flex-direction: row;
   align-items: left;
-
+  box-shadow: 1rpx 1rpx 1rpx rgba(30,33,39,0.4) inset;
 
   opacity:0.8;/*其他，透明度50%*/
 }

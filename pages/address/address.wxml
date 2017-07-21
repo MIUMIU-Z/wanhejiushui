@@ -20,47 +20,47 @@
     </view>
 </view>
 
-<view class="address-item">
+<view class="address-item" style="border-bottom:#FFF;">
     <view class="address-item-title">
-    省/直辖市
+    送货地区
     </view>
 
-    <view class="address-item-input" bindtap="pickertap">
-    <picker z-index="9999" bindchange="selectProvince"  value="{{provinceid}}" range="{{provinceList}}">
-        <input disabled="true" class="pickerinput" name="province" placeholder="请选择所在省/直辖市" placeholder-class="placeholder-text" value="{{province}}"></input>
+    <view class="address-item-input">
+    <picker mode="region" bindchange="selectRegion" value="{{region}}" >
+        <view class="pickerinput {{province_got?'':'unactive'}}">{{region[0]}}</view>
         <image src="../../images/pulldown.png"></image>
     </picker>
     </view>
 </view>
 
-<view class="address-item" wx:if="{{citypanel}}">
+<view class="address-item" style="border-bottom:#FFF;">
     <view class="address-item-title">
-    市
+    
     </view>
     <view class="address-item-input">
-    <picker mode = "selector" name="city" bindchange="selectCity" value="{{cityid}}" range="{{cityList}}">
-    <input disabled="true" class="pickerinput" name="city" placeholder="请选择所在市" placeholder-class="placeholder-text" value="{{city}}"></input>
-    <image src="../../images/pulldown.png"></image>
+    <picker mode = "region" bindchange="selectRegion" value="{{region}}" >
+      <view  class="pickerinput {{city_got?'':'unactive'}}">{{region[1]}}</view>
+      <image src="../../images/pulldown.png"></image>
     </picker>
     </view>
 </view>
-<view class="address-item" wx:if="{{countypanel}}">
+<view class="address-item">
     <view class="address-item-title">
-    区/县
+    
     </view>
     <view class="address-item-input">
-    <picker mode = "selector" name="county" bindchange="selectCounty" value="{{countyid}}" range="{{countyList}}">
-    <input disabled="true" class="pickerinput" name="county" placeholder="请选择所在县/区" placeholder-class="placeholder-text" value="{{county}}"></input>
-    <image src="../../images/pulldown.png"></image>
+    <picker mode = "region" bindchange="selectRegion" value="{{region}}" >
+      <view  class="pickerinput {{county_got?'':'unactive'}}" >{{region[2]}}</view>
+      <image src="../../images/pulldown.png"></image>
     </picker>
     </view>
 </view>
-<view class="address-item" wx:if="{{addrpanel}}">
+<view class="address-item" style="height:185rpx;" >
     <view class="address-item-title">
     详细地址
     </view>
     <view class="address-item-input">
-    <input name="address" placeholder="请输入详细地址" placeholder-class="placeholder-text" value="{{address.detailed}}"></input>
+    <textarea max-rows="2" name="address" class="textarea" placeholder="请输入详细地址" placeholder-style="line-height:80rpx;" value="{{address.detailed}}"></textarea>
     </view>
 </view>
 

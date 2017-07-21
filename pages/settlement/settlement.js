@@ -181,6 +181,7 @@ Page({
           })
 
         }
+        
       },
       complete: function () {
         wx.showLoading({

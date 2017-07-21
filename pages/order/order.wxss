@@ -36,7 +36,7 @@ page{
   position:absolute;
   top:20rpx;
   width:100%;
-  border-bottom:7rpx dotted #FFF;
+  border-bottom:7rpx dashed #FFF;
 }
 .orderlist-panel{
   margin-left:5%;

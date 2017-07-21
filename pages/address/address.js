@@ -5,64 +5,47 @@ Page({
     address:{},
     style:0,
     defaultaddr:true,
-    theProvinceList: [],
-    provinceList:[],
-    province:'',
-    provinceid:0,
-    theCityList:[],
-    cityList:[],
-    city: '',
-    cityid:0,
-    citypanel:false,
-    theCountyList: [],
-    countyList:[],
-    county:'',
-    countyid:0,
-    countypanel:false,
-    addrpanel:false
+    region:[],
+    region_got:false,
+    province_got:false,
+    city_got: false,
+    county_got: false
   },
   onLoad:function(options){
     var that = this
     that.setData({
       style:options.style
     })
-    wx.request({
-      url: app.data.imgRoute + '/shop/get_region/',
-      data: {
-        region_id: 1
-      },
-      method: 'GET',
-      success: function (res) {
-        console.log('省', res)
-        for (var i = 0; i < res.data.infos.length; i++) {
-          that.data.provinceList.push(res.data.infos[i].region_name)
-        }
-        that.setData({
-          theProvinceList: res.data.infos,
-          provinceList: that.data.provinceList,
-          citypanel: false,
-          countypanel: false,
-          addrpanel: false
-        })
-        if (options.style == 1) {
-          wx.getStorage({
-            key: 'addr',
-            success: function (res) {
-              that.setData({
-                address: res.data,
-                defaultaddr: res.data.remark == 0 ? false : true,
-                countypanel: true,
-                addrpanel: true,
-                citypanel: true,
-                province: res.data.province,
-                city: res.data.city,
-                county: res.data.county
-              })
-            },
+    if (options.style == 1) {
+      wx.getStorage({
+        key: 'addr',
+        success: function (res) {
+          var sub = []
+          sub[0] = res.data.province
+          sub[1] = res.data.city
+          sub[2] = res.data.county
+          that.setData({
+            address: res.data,
+            defaultaddr: res.data.remark == 0 ? false : true,
+            region:sub,
+            province_got: true,
+            city_got: true,
+            county_got: true,
+            region_got:true
           })
-        }
-      }
-    })
+        },
+      })
+    }
+    else
+    {
+      that.setData({
+        region: ['请选择所在省/直辖市', '请选择所在市','请选择所在县/区'],
+        province_got: false,
+        city_got: false,
+        county_got: false,
+        region_got:false
+      })
+    }
 
     that.setData({
       imgRoute: app.data.imgRoute
@@ -81,9 +64,12 @@ Page({
       var that = this
       var sub = e.detail.value
       sub.userid = app.data.userid
+      sub.province = that.data.region[0]
+      sub.city = that.data.region[1]
+      sub.county = that.data.region[2]
       sub.remark = this.data.defaultaddr?1:0
       console.log('地址表单',sub)
-      if (sub.contact != '' && sub.phone != '' && sub.province != '' && sub.city != '' && sub.county != '' && sub.address != '') {
+      if (sub.contact != '' && sub.phone != '' && that.data.region_got==true && sub.address != '') {
         console.log('address', sub)
         wx.request({
           url: app.data.imgRoute + (that.data.style == 0 ? '/shop/add_useraddr/' : '/shop/change_user_addr/'),
@@ -133,76 +119,18 @@ Page({
         })
       }
   },
-  selectProvince:function(e){
+  selectRegion:function(e){
     var that =this
-    that.data.cityList = []
-    this.setData({
-      province: that.data.theProvinceList[e.detail.value].region_name,
-      provinceid: e.detail.value
-    })
-    wx.request({
-      url: app.data.imgRoute + '/shop/get_region/',
-      data: {
-        region_id: that.data.theProvinceList[e.detail.value].region_id
-      },
-      method: 'GET',
-      success: function (res) {
-        console.log('市', res)
-        for (var i = 0; i < res.data.infos.length; i++) {
-          that.data.cityList.push(res.data.infos[i].region_name)
-        }
-        that.setData({
-          theCityList: res.data.infos,
-          cityList: that.data.cityList,
-          citypanel:true,
-          countypanel: false,
-          addrpanel: false,
-          city: '',
-          county:''
-        })
-      }
+    console.log(e)
+    that.setData({
+      region:e.detail.value,
+      province_got:true,
+      city_got: true,
+      county_got: true,
+      region_got: true
     })
   },
-  selectCity: function (e) {
-    var that = this
-    that.data.countyList = []
-    this.setData({
-      city: that.data.theCityList[e.detail.value].region_name,
-      cityid: e.detail.value
-    })
-    wx.request({
-      url: app.data.imgRoute + '/shop/get_region/',
-      data: {
-        region_id: that.data.theCityList[e.detail.value].region_id
-      },
-      method: 'GET',
-      success: function (res) {
-        console.log('县', res)
-        for (var i = 0; i < res.data.infos.length; i++) {
-          that.data.countyList.push(res.data.infos[i].region_name)
-        }
-        that.setData({
-          theCountyList: res.data.infos,
-          countyList: that.data.countyList,
-          countypanel:true,
-          county: '',
-          addrpanel: false
-        })
-      }
-    })
-    
-  },
-  selectCounty: function (e) {
-    var that = this
-    var sub = this.data.address
-   
-    this.setData({
-      county: that.data.theCountyList[e.detail.value].region_name,
-      countyid:e.detail.value,
-      addrpanel: true,
-      
-    })
-  },
+
   onReady:function(){
     // 页面渲染完成
   },
