@@ -16,34 +16,46 @@
     联系电话
     </view>
     <view class="address-item-input">
-    <input name="phone" placeholder="请输入收货人电话" placeholder-class="placeholder-text" value="{{address.user_phone}}"></input>
+    <input type="number" name="phone" placeholder="请输入收货人电话" placeholder-class="placeholder-text" value="{{address.user_phone}}"></input>
     </view>
 </view>
+
 <view class="address-item">
     <view class="address-item-title">
     省/直辖市
     </view>
-    <view class="address-item-input">
-    <input name="province" placeholder="请输入省/直辖市" placeholder-class="placeholder-text" value="{{address.province}}"></input>
+
+    <view class="address-item-input" bindtap="pickertap">
+    <picker z-index="9999" bindchange="selectProvince"  value="{{provinceid}}" range="{{provinceList}}">
+        <input disabled="true" class="pickerinput" name="province" placeholder="请选择所在省/直辖市" placeholder-class="placeholder-text" value="{{province}}"></input>
+        <image src="../../images/pulldown.png"></image>
+    </picker>
     </view>
 </view>
-<view class="address-item">
+
+<view class="address-item" wx:if="{{citypanel}}">
     <view class="address-item-title">
     市
     </view>
     <view class="address-item-input">
-    <input name="city" placeholder="请输入市" placeholder-class="placeholder-text" value="{{address.city}}"></input>
+    <picker mode = "selector" name="city" bindchange="selectCity" value="{{cityid}}" range="{{cityList}}">
+    <input disabled="true" class="pickerinput" name="city" placeholder="请选择所在市" placeholder-class="placeholder-text" value="{{city}}"></input>
+    <image src="../../images/pulldown.png"></image>
+    </picker>
     </view>
 </view>
-<view class="address-item">
+<view class="address-item" wx:if="{{countypanel}}">
     <view class="address-item-title">
     区/县
     </view>
     <view class="address-item-input">
-    <input name="county" placeholder="请输入区/县" placeholder-class="placeholder-text" value="{{address.county}}"></input>
+    <picker mode = "selector" name="county" bindchange="selectCounty" value="{{countyid}}" range="{{countyList}}">
+    <input disabled="true" class="pickerinput" name="county" placeholder="请选择所在县/区" placeholder-class="placeholder-text" value="{{county}}"></input>
+    <image src="../../images/pulldown.png"></image>
+    </picker>
     </view>
 </view>
-<view class="address-item">
+<view class="address-item" wx:if="{{addrpanel}}">
     <view class="address-item-title">
     详细地址
     </view>

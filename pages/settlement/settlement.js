@@ -11,7 +11,7 @@ Page({
     amount:0,
     goodsubmmit:[],
     paymethodlist: ['货到付款','线上支付'],
-    paymethod:1,
+    paymethod:0
   },
   selectAddr:function(){
     wx.setStorage({
@@ -26,6 +26,8 @@ Page({
     })
   },
   selectPaymethod:function(e){
+    console.log('paymethod', this.data.paymethod)
+    console.log(e.detail.value)
     this.setData({
       paymethod:e.detail.value
     })
@@ -98,7 +100,7 @@ Page({
           key: 'selectedaddr',
           success: function (res) { },
         })
-/*
+
         if (res.data==0)
         {
           setTimeout(function () {
@@ -141,22 +143,44 @@ Page({
         else
         {
           console.log('线上支付')
-
           wx.requestPayment({
-            timeStamp: '',
-            nonceStr: '',
-            package: '',
-            signType: '',
-            paySign: '',
+            timeStamp: res.data.timeStamp,
+            nonceStr: res.data.nonceStr,
+            package: res.data.package,
+            signType: res.data.signType,
+            paySign: res.data.paySign,
             success: function (res) {
               console.log('支付成功返回', res)
+              wx.hideLoading()
+              wx.showToast({
+                title: '支付成功',
+                mask: true
+              })
+              console.log('下单前的购物车', app.data.orderlist)
+              for (var i = 0; i < that.data.orderlist.length; i++) {
+                for (var j = 0; j < app.data.orderlist.length; j++) {
+                  if (that.data.orderlist[i].goods_id == app.data.orderlist[j].goods_id) {
+                    app.data.orderlist.splice(j, 1)
+                    break
+                  }
+                }
+              }
+              console.log('下完单的购物车', app.data.orderlist)
+              wx.navigateBack({
+                delta: 1
+              })
             },
             fail: function (res) {
               console.log('支付失败返回', res)
+              wx.hideLoading()
+              wx.showToast({
+                title: '支付失败',
+                image:'../../images/tip.png'
+              })
             }
           })
 
-        }*/
+        }
       },
       complete: function () {
         wx.showLoading({

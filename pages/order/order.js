@@ -13,6 +13,7 @@ Page({
     that.setData({
       page: e.target.dataset.index,
     })
+
     wx.request({
       url: app.data.imgRoute + '/shop/search_order_info',
       data: {
@@ -57,6 +58,7 @@ Page({
 
   onShow: function () {
     var that =this
+    console.log('订单请求')
     wx.request({
     url: app.data.imgRoute+'/shop/search_order_info',
       data: {
@@ -76,6 +78,12 @@ Page({
           myorders: res.data.infos,
           num: sub
         })
+      },
+      fail: function (res) {
+        console.log('失败', res)
+      },
+      complete: function (res) {
+        console.log('完成', res)
       }
     })
   },

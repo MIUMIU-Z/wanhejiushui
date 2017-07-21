@@ -15,8 +15,8 @@ Page({
     addrnum:-1,
     addrid:0,
     touchmove:false,
-    btntext:'还差1元起送',
-    startprice:1,
+    btntext:'还差0.1元起送',
+    startprice:0.1,
     commitconfirm:0
   },
   select:function(e){

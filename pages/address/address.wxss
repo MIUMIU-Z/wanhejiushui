@@ -20,6 +20,7 @@ page{
     padding-left:30rpx;
     display: flex;
     flex-direction: row;
+    position: relative;
 }
 .address-item-title{
     text-align:center;
@@ -28,9 +29,7 @@ page{
     font-weight:500;
 }
 .address-item input{
-    position:absolute;
-    left:250rpx;
-    margin-top:10rpx;
+ 
     font-size:30rpx;
     border-radius: 10rpx;
     box-shadow: 1rpx 1rpx 1rpx 1rpx rgba(35, 34, 33, 0.2) inset;
@@ -38,6 +37,37 @@ page{
     width:400rpx;
     text-align:center;
 }
+.address-item-input{
+    position:absolute;
+    left:250rpx;
+    margin-top:10rpx;
+    height:80rpx;
+    width:400rpx;
+}
+.address-item .pickerinput{
+
+    
+    
+    font-size:30rpx;
+    border-radius: 10rpx;
+    /*border:1rpx solid #E8E8E8;*/
+    box-shadow: 1rpx 1rpx 1rpx 1rpx rgba(35, 34, 33, 0.2) ;
+    height:80rpx;
+    width:400rpx;
+    line-height:80rpx;
+    text-align:center;
+}
+.address-item .pickerinput active{
+  color:#000;
+}
+.address-item image{
+  width:40rpx;
+  height:30rpx;
+  position:absolute;
+  right:25rpx;
+  top:25rpx;
+}
+
 
 .save-button{
     background-color:#0092d8;

@@ -1,12 +1,12 @@
 {
   "pages": [
-
+    
     "pages/Home/Home",
     "pages/CoShow/CoShow",
     "pages/cart/cart",
     "pages/settlement/settlement",
     "pages/settlement_addr/settlement_addr",
-        "pages/commodity/commodity",
+    "pages/commodity/commodity",
     "pages/index/index",
     "pages/detail/detail",
     "pages/address/address",

@@ -1,7 +1,9 @@
 //app.js
 App({
   data:{
-    imgRoute: 'http://192.168.255.26:8000',
+    //imgRoute: 'http://192.168.255.26:8000',
+    //imgRoute: 'https://vxlab.gxxnr.cn',
+    imgRoute: 'http://47.94.109.22:8000',
     orderlist:[],
     userid:-1
   },
