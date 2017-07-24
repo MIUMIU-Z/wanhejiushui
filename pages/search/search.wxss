@@ -1,4 +1,5 @@
 /* pages/search/search.wxss */
+@import "../../font/font.wxss";
 page{
     background-color:#ffffff; 
 }
@@ -6,10 +7,10 @@ page{
   position:absolute;
   top:20rpx;
   left:5%;
-  height:50rpx;
+  height:60rpx;
   width:75%;
   background-color:#eeeeee;
-  border-radius: 10rpx;
+  border-radius: 60rpx;
 
   display: flex;
   flex-direction: row;
@@ -17,35 +18,36 @@ page{
 
   color:#8A8A8A;
   font-size:30rpx;
-  line-height:50rpx;
+  line-height:60rpx;
 }
 
 .search-image-search{
   height:40rpx;
   width:40rpx;
-  margin:5rpx 10rpx 0rpx 20rpx;
+  margin:10rpx 10rpx 0rpx 20rpx;
 }
 .search-image-reset{
     position:absolute;
     right:10rpx;
     height:35rpx;
     width:36rpx;
-    margin-top:8rpx;
+    margin-top:13rpx;
 }
 .search-button{
-    width:80rpx;
-    height:50rpx;
+    width:90rpx;
+    height:60rpx;
     background-color:#0092d8;
-
+    
     position:absolute;
-    top:19rpx;
+    top:20rpx;
     right:5%;
     text-align:center;
+
 }
 .search-button text{
     color:#fff;
-    line-height:50rpx;
     font-size:30rpx;
+    line-height:60rpx;
 }
 .recommend-panel{
     margin:120rpx 0rpx 80rpx 5%;
@@ -68,7 +70,7 @@ page{
     height:50rpx;
     margin-top:15rpx;
     margin-right:30rpx;
-    line-height:40rpx;
+    line-height:45rpx;
     text-align:center;
 }
 .recommend-item text{
@@ -115,4 +117,5 @@ page{
 .empty{
   font-size:35rpx;
   text-align:center;
+  font-family: "黑体";
 }

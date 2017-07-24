@@ -1,36 +1,45 @@
 /* pages/order/order.wxss */
+@import "../../font/font.wxss";
 page{
-  background:#e8e8e8;
+  background:#f8f8f8;
 }
 .page-panel{
-  margin:30rpx 5% 30rpx 5%;
-  width:90%;
-  height:70rpx;
-  display:flex;
-  flex-direction:row;
-  border:1rpx solid e5e4e2;
+  position:fixed;
+  width:100%;
+  display: flex;
+  flex-direction: row;
+  height:90rpx;
+  background:#FFF;
 }
 .page-panel .item{
-  width:50%;
-  height:70rpx;
-  line-height:70rpx;
-  background:#f2f2f2;
+  align-items:center;
   text-align:center;
-  font-size:30rpx;
-  color:#828282;
+  width:25%;
+  line-height:90rpx;
+  height:90rpx;
 }
-.page-panel .item.active{
-  color:#f2f2f2;
-  background:#828282;
-  border-bottom:1rpx solid #91b7e6;
+.page-panel .item .text{
+  margin-left:22%;
+  width:-webkit-fit-content;
+  font-size:30rpx;
+  height:95%;
+}
+.page-panel .item .text.active{
+  color:#ff2424;
+  border-bottom:5rpx solid #ff2424;
 }
 
 .orderlist-title{
+  top:120rpx;
   margin-left:5%;
   background:#a1bbee;
   width:90%;
-  height:90rpx;
+  height:80rpx;
   position:relative;
+  border-top-left-radius: 10rpx;
+  border-top-right-radius: 10rpx;
+  box-shadow: 1rpx 1rpx 1rpx 1rpx rgba(35, 34, 33, 0.2) ;
+  z-index:999;
 }
 .orderlist-title .line{
   position:absolute;
@@ -39,6 +48,8 @@ page{
   border-bottom:7rpx dashed #FFF;
 }
 .orderlist-panel{
+  top:120rpx;
+  position:relative;
   margin-left:5%;
   width:90%;
   height:850rpx;
@@ -96,7 +107,48 @@ page{
   max-width:200rpx;
   height:120rpx;
   position:absolute;
-  left:90rpx;
+  left:130rpx;
   top:3rpx;
 }
+.state-note.shake{
+  width:50rpx;
+  height:50rpx;
+  top:10rpx;
+  animation:shaking .1s infinite;
 
+}
+
+.loading-panel{
+  width:100%;
+  height:50rpx;
+  display:flex;
+  flex-direction: row;
+  padding-top:80rpx;
+}
+.loading-panel image{
+  margin-left:35%;
+  width:50rpx;
+  height:50rpx;
+}
+.loading-panel text{
+  margin-left:20rpx;
+  font-size:30rpx;
+  line-height:50rpx;
+}
+
+
+
+@keyframes shaking{
+  0% {
+    transform:rotate(0deg) scaleX(-1);
+  }
+  33%{
+    transform:rotate(5deg) scaleX(-1);
+  }
+  66%{
+    transform:rotate(-5deg) scaleX(-1);
+  }
+  100%{
+    transform:rotate(0deg) scaleX(-1);
+  }
+}

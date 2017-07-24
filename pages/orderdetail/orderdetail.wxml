@@ -25,6 +25,7 @@
         <text>{{order.time}}</text>
       </view>
     </view>
+    <image class="state-note" src="../../images/paid2.png"></image>
   </view>
 
   <view class="detail-remark">
@@ -47,7 +48,9 @@
   </view>
   </view>
 
-<view class="btn" bindtap="orderconfirm">
+<view wx:if="{{order.state==2}}" class="btn" bindtap="orderconfirm">
 确认收货
 </view>
-
+<view wx:if="{{order.state==1 && order.is_paid==0}}" class="btn" style="background:#EB3F2F;" bindtap="payorder">
+在线付款
+</view>

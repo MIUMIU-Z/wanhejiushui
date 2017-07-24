@@ -1,0 +1,91 @@
+<!--pages/receipt/receipt.wxml-->
+<view class="isreceipt-panel">
+  <view class="title">
+  是否开具发票
+  </view>
+  <view class="checkbox-panel">
+    <view bindtap="need_bill" class="check-box {{need_bill==0?'':'active'}}">
+      <image wx:if="{{need_bill==1}}"  src="../../images/select2.png"></image>
+      <view class="text">需要发票</view>
+    </view>
+  </view>
+  <view wx:if="{{need_bill==0}}" class="remark-panel" style="color:#EB3F2F;">
+  如果您不需要，我们将不为您提供本次购买的发票
+  </view>
+</view>
+
+<view wx:if="{{need_bill==1}}" class="receipttype-panel">
+  <view class="title">
+  发票类型
+  </view>
+  <view class="checkbox-panel">
+    <view bindtap="is_paper" data-index="0" class="check-box {{is_paper==0?'active':''}}">
+      <image wx:if="{{is_paper==0}}"  src="../../images/select2.png"></image>
+      <view class="text">电子发票</view>
+    </view>
+    <view bindtap="is_paper" data-index="1" class="check-box {{is_paper==1?'active':''}}">
+      <image wx:if="{{is_paper==1}}"  src="../../images/select2.png"></image>
+      <view class="text">纸质发票</view>
+    </view>
+  </view>
+  <view wx:if="{{is_paper==0}}" class="remark-panel">
+  {{typetip}}
+  </view>
+</view>
+
+<view wx:if="{{need_bill==1}}" class="receipttop-panel">
+  <view class="title">
+  发票抬头
+  </view>
+
+  <view class="toptitle-panel">
+    <image bindtap="is_people" data-index="1" src="../../images/yuan{{is_people==1?'1':''}}.png"></image>
+    <view bindtap="is_people" data-index="1" class="toptitle">
+    个人发票
+    </view>
+  </view>
+  <view class="toptitle-panel" style="margin-top:15rpx;">
+    <image bindtap="is_people" data-index="0" src="../../images/yuan{{is_people==1?'':'1'}}.png"></image>
+    <view bindtap="is_people" data-index="0" class="toptitle">
+    公司发票
+    </view>
+  </view>
+
+  <view class="topcontent-panel">
+    <view class="contentitem">
+      <view class="contenttitle">抬头内容：</view>
+      <input bindinput="bill_top" value="" name="bill_top"></input>
+    </view>
+  </view>
+
+  <view wx:if="{{is_people==0}}" class="topcontent-panel">
+    <view class="contentitem">
+      <view class="contenttitle">纳税人识别号：</view>
+      <input bindinput="identify_num" value="" name="identify_num"></input>
+    </view>
+  </view>
+
+</view>
+
+<view wx:if="{{need_bill==1}}" class="receiptcontent-panel">
+  <view class="title">
+    发票内容
+  </view>
+
+
+  <view class="checkbox-panel">
+    <block wx:for="{{contentlist}}">
+    <view bindtap="selectcontent" data-index="{{index}}" class="check-box {{selectid==index?'active':''}}">
+      <image wx:if="{{selectid==index}}"  src="../../images/select2.png"></image>
+      <view class="text">{{item}}</view>
+    </view>
+    </block>
+  </view>
+  <view class="remark-panel">
+  {{contenttip}}
+  </view>
+</view>
+
+<view class="button-panel">
+<view bindtap="commit" class="button">确定</view>
+</view>

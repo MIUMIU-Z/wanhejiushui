@@ -1,7 +1,8 @@
 /* comcard.wxss */
+@import "../../font/font.wxss";
 .cardcontainer {
   width: 100%;
-  background-color: rgba(17, 17, 143, 0.8);
+  background-color: #FFF;
   font-family: "微软雅黑";
 }
 .swiper_box {

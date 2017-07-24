@@ -7,8 +7,9 @@ Page({
   data:{
     amount:0,
     edit:0,
-    selectall:0,
-    orderItems: [],
+    selectall:1,
+    /*orderItems: [{goods_id:1,price:0.2,name:'啤酒',num:2,edit:1}],*/
+    orderItems:[],
     num:0,
     addr:0,
     addresslist:[],
@@ -69,21 +70,63 @@ Page({
       edit: node
     })
   },
+  decrease:function(e){
+    console.log('减少',e.target.dataset.index)
+    var index = e.target.dataset.index
+    if (this.data.orderItems[index].num>1)
+    {
+      this.data.orderItems[index].num = this.data.orderItems[index].num-1;
+      app.data.orderlist[index].num = app.data.orderlist[index].num -1;
+      if (this.data.orderItems[index].edit==1)
+      {
+        this.data.amount = this.data.amount - this.data.orderItems[index].price;
+      }
 
+    }
+    this.data.amount = fomatFloat(this.data.amount, 3)
+    this.setData({
+      orderItems: this.data.orderItems,
+      num: this.data.orderItems.length,
+      amount: this.data.amount
+    })
+  },
+  increase: function (e) {
+    var index = e.target.dataset.index
+    console.log('增加', e.target.dataset.index)
+    if (this.data.orderItems[index].num <=50)
+    {
+      this.data.orderItems[index].num = this.data.orderItems[index].num + 1;
+      app.data.orderlist[index].num = app.data.orderlist[index].num +1;
+      if (this.data.orderItems[index].edit == 1)
+      {
+        this.data.amount = this.data.amount + this.data.orderItems[index].price;
+      }
+
+    }
+    this.data.amount = fomatFloat(this.data.amount, 3)
+    this.setData({
+      orderItems: this.data.orderItems,
+      num: this.data.orderItems.length,
+      amount: this.data.amount
+    })
+  },
   comdelete:function(e){
-    console.log(e)
+    var sub = this.data.orderItems[e.currentTarget.dataset.index]
+    if (this.data.orderItems[e.currentTarget.dataset.index].edit == 1)
+    {
+      this.data.amount = this.data.amount - sub.price * sub.num
+    }
     app.data.orderlist.splice(e.currentTarget.dataset.index, 1)
-    //this.data.orderItems.splice(e.currentTarget.dataset.index, 1)
+    this.data.orderItems.splice(e.currentTarget.dataset.index, 1)
     this.setData({
       orderItems: this.data.orderItems,
       orderItems: app.data.orderlist,
-      num: this.data.num-1
+      num: this.data.num-1,
+      amount:this.data.amount
     })
 },
   ordersubmit:function(){
-    wx.showLoading({
-      title: '请等待结算',
-    })
+
     var that =this
     var theorderlist = []
     for (var i = 0; i < that.data.orderItems.length; i++) {
@@ -111,7 +154,7 @@ Page({
           orderlist: theorderlist
         },
       })
-      wx.hideLoading()
+
       wx.navigateTo({
         url: '../settlement/settlement',
       })
@@ -169,13 +212,28 @@ Page({
 
   },
   onShow:function(){
+    
+    var sub = app.data.orderlist
+    var sum = 0
+    for (var i = 0; i < sub.length; i++) {
+      sum = sum + sub[i].price * sub[i].num
+    }
+    sum = fomatFloat(sum, 3)
 
     this.setData({
       orderItems:app.data.orderlist,
       num: app.data.orderlist.length,
-      selectall:0,
-      addrid: 0
+      selectall:1,
+      addrid: 0,
+      amount: sum
     })
+
+    if (this.data.amount < this.data.startprice) {
+      this.setData({ btntext: '还差' + (this.data.startprice - this.data.amount) + '元起送', commitconfirm: 0 })
+    }
+    else {
+      this.setData({ btntext: '提交订单', commitconfirm: 1 })
+    }
     console.log('购物车',app.data.orderlist)
   },
   onHide:function(){

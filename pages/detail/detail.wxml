@@ -3,7 +3,7 @@
         <swiper class="swiper_box" indicator-dots autoplay interval="5000" duration="1000">
             <block wx:for="{{goodswiper}}">
                 <swiper-item>
-                    <image src="{{imgRoute+item}}" class="slide-image"/>
+                    <image mode="aspectFit" src="{{imgRoute+item}}" class="slide-image"/>
                 </swiper-item>
             </block>
         </swiper>
@@ -20,10 +20,9 @@
         <view class="numoperate">
             <view class="numtext">数量： </view>
             <view class="numbutton" bindtap="numreduce">-</view>
-            <view class="numbutton" style="background:white">{{num}}</view>
+            <view class="numbutton" style="background:white;width:80rpx;">{{num}}</view>
             <view class="numbutton" bindtap="numincrease">+</view>
         </view>
-            <view bindtap="addtocart" class="addtocart">加入购物车</view>
     </view>
 </view>
 
@@ -38,7 +37,50 @@
 </view>
 </view>
 
-<view class="detail">
+<view class="panel">
+  <block wx:if="{{evaluate.num>0}}">
+  <view class="title">
+    <view class="titletext">评价 ({{evaluate.num}})</view>
+    <view class="more" bindtap="gotopraise">
+      <view class="praise">好评度</view>
+      <view class="praise" style="color:#ef3030;margin-left:10rpx;">{{evaluate.praise}}%</view>
+      <image src="../../images/more.png"></image>
+    </view>
+  </view>
+  <view class="content">
+    <block wx:for="{{evaluate.content}}">
+    <view class="item">
+      <view class="toppanel">
+        <text>{{item.name}}</text>
+        <view class="star">
+          <block wx:for="{{[1,2,3,4,5]}}" wx:for-index="starid" wx:for-item="star">
+          <image src="../../images/star{{star<=item.star?'1':''}}.png"></image>
+          </block>
+        </view>
+      </view>
+      <view class="textpanel">
+        <view>{{item.text}}</view>
+      </view>
+      <view class="imgpanel">
+        <block wx:for="{{item.img}}" wx:for-item="imgUrl">
+        <image mode="aspectFit" src="{{imgUrl}}"></image>
+        </block>
+      </view>
+      <view class="timepanel">
+        <text>{{item.time}}</text>
+      </view>
+    </view>
+    </block>
+  </view>
+  </block>
+  <block wx:else>
+  <view class="title">
+    <view class="titletext">暂无评价</view>
+  </view>
+  </block>
+</view>
+
+<view class="detail" style="margin-bottom:120rpx;">
     <view class="detailtext">
     <view class="title">
         <text>图文详情</text>
@@ -49,4 +91,17 @@
         <image mode="aspectFit" src="{{imgRoute+item}}"></image>
     </block>
     </view>
+</view>
+
+<view class="settlement-panel">
+  <view class="part" bindtap="gotocart" style="width:20%;">
+    <image src="../../images/cart1.png"></image>
+    <view class="num">{{cartlength}}</view>
+  </view>
+  <view class="part" bindtap="addtocart" style="background:#ff8c00;">
+  加入购物车
+  </view>
+  <view class="part" bindtap="buynow" style="background:#ff5757;">
+  立即购买
+  </view>
 </view>

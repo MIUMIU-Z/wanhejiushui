@@ -1,28 +1,29 @@
-
+@import "../../font/font.wxss";
 .title-panel{
   width:100%;
-  height:100rpx;
-
+  height:70rpx;
   display:flex;
   flex-direction:row;
-  padding:50rpx 0rpx 30rpx 50rpx;
+  padding:20rpx 0rpx 0rpx 50rpx;
+  align-items:center;
 }
 
 .title-panel image{
-  width:50rpx;
-  height:50rpx;
+  width:40rpx;
+  height:40rpx;
 }
 
 .title-panel .title{
   margin-left:20rpx;
   color:#a9a9a9;
-  font-size:35rpx;
+  font-size:30rpx;
   height:50rpx;
   line-height:50rpx;
 }
 
 .address-panel{
   width:100%;
+  margin-top:50rpx;
 }
 .address-panel .item{
   width:80%;
@@ -30,34 +31,34 @@
   margin:20rpx 0rpx 0rpx 50rpx;
   display:flex;
   flex-direction:row;
+  align-items:center;
 }
 
 .address-panel .item image{
-  width:60rpx;
-  height:50rpx;
-  margin-top:45rpx;
+  width:45rpx;
+  height:40rpx;
 }
 .address-panel .item .text-panel{
   width:100%;
-  height:50rpx;
-
+  height:120rpx;
+  margin-left:30rpx;
+  border-bottom:1rpx solid #e8e6e6;
+  padding-bottom:10rpx;
 }
 .address-panel .item .text-panel .uptext{
-  font-size:40rpx;
+  font-size:30rpx;
   font-weight:bold;
   margin-left:30rpx;
-  font-family:'华文行楷';
+  font-family:'STXingkai';
   height:60rpx;
   line-height:60rpx;
   overflow: hidden;
   text-overflow:ellipsis;
 }
 .address-panel .item .text-panel .bottomtext{
-  font-size:35rpx;
+  font-size:25rpx;
   margin-left:30rpx;
   font-family:'楷体';
   height:60rpx;
   line-height:60rpx;
-  padding-bottom:20rpx;
-  border-bottom:1rpx solid #e8e6e6;
 }

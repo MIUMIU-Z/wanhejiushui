@@ -2,7 +2,7 @@
 
 <view wx:if="{{num==0}}"  class="container">
   <image src="../../images/cart-null.png" class="cart-image"/>
-  <view style="color:#666666;margin-bottom:50rpx;">购物车快饿扁了T.T</view>
+  <view style="color:#666666;margin-bottom:50rpx;font-size:45rpx;font-family:'楷体';">购物车快饿扁了T.T</view>
   <navigator url="../commodity/commodity" open-type="switchTab">
   <view class="jumpbutton">去逛逛</view> 
   </navigator>
@@ -43,18 +43,28 @@
                 <image src="{{imgRoute+item.img}}"></image>
                 <view class="righttext">
                 <text class="name">{{item.name}}</text>
-                <view class="bottomtext">
-                <text class="price">￥{{item.price}}</text>
-            
-                <text class="num">×{{item.num}}</text>
-                
+                <view class="bottomtext" wx:if="{{edit==0}}">
+                  <text class="price">￥{{item.price}}</text>
+                  <text class="num" >×{{item.num}}</text>
                 </view>
+                <view class="bottomtext" wx:if="{{edit==1}}">
+                  <text class="price" style="">￥{{item.price}}</text>
+                </view>
+
+
+
+                <view class="operate-panel" wx:if="{{edit==1}}">
+                      <view bindtap="decrease" data-index="{{index}}" class="item">-</view>
+                      <view class="numitem" style="width:80rpx;">{{item.num}}</view>
+                      <view bindtap="increase" data-index="{{index}}" class="item">+</view>
+                  </view>
                 </view>
           </view>
 
           <block wx:if="{{edit==1}}">
           <view bindtap="comdelete"  data-index="{{index}}" class="delete-panel">
-          删除
+          
+          <image src="../../images/delete.png"></image>
           </view>
           </block>
 
@@ -70,8 +80,8 @@
 
   <view class="com-count-panel"> 
       <view class="sumcount">
-      <text style="color:#ff4444;font-weight: bold;">合计: ￥{{amount}}</text>
-      <text style="color:#999999;text-align:center">(另附运费: ￥{{(startprice-amount>0 && amount>0)?startprice-amount:0}})</text>
+      <text>合计: </text>
+      <text style="color:#e3101e;">￥{{amount}}元</text>
       </view>
       <view wx:if="{{commitconfirm==0}}" style="background:#CDCDB4;font-size:30rpx;"  class="settlement">{{btntext}}</view>
       <view wx:if="{{commitconfirm==1}}"  bindtap="ordersubmit" class="settlement">结算</view>

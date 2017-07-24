@@ -11,7 +11,8 @@ Page({
     amount:0,
     goodsubmmit:[],
     paymethodlist: ['货到付款','线上支付'],
-    paymethod:0
+    paymethod:0,
+    receipt:{}
   },
   selectAddr:function(){
     wx.setStorage({
@@ -32,6 +33,14 @@ Page({
       paymethod:e.detail.value
     })
   },
+  getremark:function(e){
+    console.log(e)
+  },
+  gotoreceipt:function(){
+    wx.navigateTo({
+      url: '../receipt/receipt',
+    })
+  },
   onLoad: function (options) {
     var that =this
     wx.getStorage({
@@ -44,27 +53,15 @@ Page({
         })
       },
     })
-
-    wx.request({
-      url: app.data.imgRoute + '/shop/user_addrs/',
+    wx.setStorage({
+      key: 'receipt',
       data: {
-        user_id: app.data.userid
+        need_bill: 1,
+        is_paper: 1,
+        is_people: 1,
       },
-      method: 'GET',
-      success: function (resu) {
-        console.log('结算页面地址列表', resu)
-        for (var i = 0; i < resu.data.infos.length;i++)
-        {
-          if (resu.data.infos[i].remark==1)
-            break
-        }
-        that.setData({
-          addresslist: resu.data.infos,
-          addrnum: resu.data.infos.length,
-          addrid: i
-        })
-      }
     })
+
   },
   ordersubmmit:function(){
     if (this.data.addrid > (this.data.addresslist.length-1))

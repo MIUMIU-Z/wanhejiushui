@@ -3,7 +3,7 @@ var app = getApp()
 Page({
 
   data: {
-    addrid:0,
+    addrid:-1,
     addresslist:[]
   },
   gotoaddress:function(){

@@ -1,18 +1,31 @@
 <!--pages/order/order.wxml-->
 
 <view class="page-panel"> 
-  <view class="item {{page==0?'active':''}}" style="border-top-left-radius:15rpx;border-bottom-left-radius:15rpx;" bindtap="changepage" data-index="0">
-  未处理订单
+  <view class="item"  bindtap="changepage" data-index="0">
+    <view class="text {{page==0?'active':''}}" style="margin-left:30%;">全部</view>
   </view>
-  <view class="item {{page==1?'active':''}}" style="border-top-right-radius:15rpx;border-bottom-right-radius:15rpx;" bindtap="changepage" data-index="1">
-  已确认订单
+  <view class="item"  bindtap="changepage" data-index="1">
+    <view class="text {{page==1?'active':''}}">待收货</view>
   </view>
+  <view class="item"  bindtap="changepage" data-index="2">
+    <view class="text {{page==2?'active':''}}">已完成</view>
+  </view>
+    <view class="item" bindtap="changepage" data-index="3">
+    <view class="text {{page==3?'active':''}}">已取消</view>
+  </view>
+
 </view>
 
  <view class="orderlist-title">
   <view class="line"></view>
  </view>
  <scroll-view class="orderlist-panel" scroll-y="true">
+
+    <view class="loading-panel" wx:if="{{loading}}">
+     <image src="../../images/loading.gif"></image>
+     <text>加载中···</text>
+    </view>
+
     <block wx:if="{{num==0}}">
     <view class="empty">暂时没有订单</view>
     </block>
@@ -28,8 +41,10 @@
           <text>{{item.time}}</text>
         </view>
         <image class="moreimg" src="../../images/more.png"/>
-        <image mode="aspectFit" wx:if="{{item.state==3}}" class="state-note" src="../../images/confirm.png"></image>
-        <image mode="aspectFit" wx:if="{{item.state==1}}" class="state-note" src="../../images/placed.png"></image>
+        <image mode="aspectFit" wx:if="{{item.state==3}}" class="state-note" src="../../images/got.png"></image>
+        <image mode="aspectFit" wx:if="{{item.state==1 && item.is_paid==1}}" class="state-note" src="../../images/paid.png"></image>
+        <image mode="aspectFit" wx:if="{{item.state==1 && item.is_paid==0}}" class="state-note" src="../../images/unpaid.png"></image>
+        <image mode="aspectFit" wx:if="{{item.state==1 && item.is_paid==0}}" class="state-note shake" src="../../images/unpaid_note.png"></image>
         <image mode="aspectFit" wx:if="{{item.state==2}}" class="state-note" src="../../images/send.png"></image>
       </view>
       </block>

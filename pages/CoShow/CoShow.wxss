@@ -1,4 +1,5 @@
 /* pages/CoShow/CoShow.wxss */
+@import "../../font/font.wxss";
 page{
     background-color: #FFF;
 }

@@ -1,12 +1,11 @@
 /* pages/addresslist/addresslist.wxss */
+@import "../../font/font.wxss";
 .addresslist-panel{
   padding:50rpx 5% 0rpx 5%;
   width:90%;
 }
 .addresslist-panel .addresslist{
   width:100%;
-  margin-bottom:100rpx;
- 
 }
 .addresslist-panel .addresslist .item{
   width:100%;
@@ -66,6 +65,7 @@
 }
 
 .add{
+  margin-top:100rpx;
   width:90%;
   margin-left:5%;
   background:#0092d8;

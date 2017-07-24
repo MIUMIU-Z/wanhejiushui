@@ -3,7 +3,7 @@ var app = getApp()
 Page({
   data:{
     search:"",
-    recommend_list:["生活家电","热水器","冰箱","彩电","洗衣机","空调","加湿器"],
+    recommend_list:["葡萄酒","玉泉","北大仓","五粮液","酒鬼"],
     goods: [],
     imgRoute:'',
     num:-1
@@ -20,12 +20,39 @@ Page({
       search:""
     })
   },
+  clicksearch:function(e){
+    var that =this
+    var index = e.currentTarget.dataset.index
+    wx.request({
+      url: that.data.imgRoute + '/shop/goods_search/',
+      data: {
+        keyword: that.data.recommend_list[index]
+      },
+      method: 'GET',
+      success: function (res) {
+        console.log(res)
+        that.setData({
+          goods: res.data.infos,
+          num: res.data.infos.length
+        })
+        setTimeout(function () {
+          wx.hideLoading()
+        }, 500)
+      },
+      complete: function () {
+        wx.showLoading({
+          title: '查询中',
+          mask: true
+        })
+      }
+    })
+  },
   search:function(e){
     var that =this
     if (that.data.search!="")
     {
       wx.request({
-        url: 'http://192.168.255.26:8000/shop/goods_search/',
+        url: that.data.imgRoute+'/shop/goods_search/',
         data: {
           keyword: that.data.search
         },

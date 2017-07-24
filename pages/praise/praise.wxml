@@ -1,0 +1,49 @@
+<!--pages/praise/praise.wxml-->
+<view class="top-panel">
+  <view bindtap="changetype" data-index="0" class="btn {{type==0?'active':''}}">
+    全部({{praisenum[0]}})
+  </view>
+  <view bindtap="changetype" data-index="1" class="btn {{type==1?'active':''}}">
+    好评({{praisenum[1]}})
+  </view>
+  <view bindtap="changetype" data-index="2" class="btn {{type==2?'active':''}}">
+    中评({{praisenum[2]}})
+  </view>
+  <view bindtap="changetype" data-index="3" class="btn {{type==3?'active':''}}">
+    差评({{praisenum[3]}})
+  </view>
+  <view class="degreetext">
+    <view class="title">好评度</view>
+    <view class="degree">
+    <text style="font-size:35rpx;">{{praise_degree}}</text>
+    <text>%</text>
+    </view>
+  </view>
+</view>
+
+
+  <view class="praiselist">
+    <block wx:for="{{praiselist}}">
+    <view class="item">
+      <view class="toppanel">
+        <text>{{item.name}}</text>
+        <view class="star">
+          <block wx:for="{{[1,2,3,4,5]}}" wx:for-index="starid" wx:for-item="star">
+          <image src="../../images/star{{star<=item.star?'1':''}}.png"></image>
+          </block>
+        </view>
+      </view>
+      <view class="textpanel">
+        <view>{{item.text}}</view>
+      </view>
+      <view class="imgpanel">
+        <block wx:for="{{item.img}}" wx:for-item="imgUrl">
+        <image mode="aspectFit" src="{{imgUrl}}"></image>
+        </block>
+      </view>
+      <view class="timepanel">
+        <text>{{item.time}}</text>
+      </view>
+    </view>
+    </block>
+  </view>

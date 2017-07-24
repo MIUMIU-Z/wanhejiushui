@@ -1,4 +1,5 @@
 /* pages/address/address.wxss */
+@import "../../font/font.wxss";
 page{
     background-color: #f4f4f4;
 }
@@ -24,7 +25,7 @@ page{
 }
 .address-item-title{
     text-align:center;
-    font-size:35rpx;
+    font-size:30rpx;
     line-height:100rpx;
     font-weight:500;
 }
@@ -88,7 +89,7 @@ page{
 }
 .save-button text{
     color:#FFF;
-    font-size:40rpx;
+    font-size:30rpx;
 }
 
 .prolink{
@@ -99,8 +100,8 @@ page{
 }
 .prolink .content{
   width:100%;
-  height:80rpx;
-  margin:50rpx 0rpx 0rpx 20rpx;
+  height:50rpx;
+  margin:30rpx 0rpx 0rpx 20rpx;
   display:flex;
   flex-direction: row;
 }
@@ -112,6 +113,6 @@ page{
   height:50rpx;
   line-height:50rpx;
   color:#C51A29;
-  font-size:35rpx;
+  font-size:30rpx;
 
 }

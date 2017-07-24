@@ -4,11 +4,13 @@
     "pages/Home/Home",
     "pages/CoShow/CoShow",
     "pages/cart/cart",
-    "pages/settlement/settlement",
+    "pages/receipt/receipt",
     "pages/settlement_addr/settlement_addr",
+    "pages/settlement/settlement",
     "pages/commodity/commodity",
     "pages/index/index",
     "pages/detail/detail",
+    "pages/praise/praise",
     "pages/address/address",
     "pages/addresslist/addresslist",
     "pages/search/search",
@@ -19,48 +21,48 @@
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#171742",
-    "navigationBarTitleText": "企业商城",
-    "navigationBarTextStyle": "white",
-    "enablePullDownRefresh": "True",
-    "backgroundColor": "#f9f9f9"
+    "navigationBarBackgroundColor": "#FFF",
+    "navigationBarTitleText": "万和酒水经销行",
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh": "false",
+    "backgroundColor": "#FFF"
   },
   "tabBar": {
-    "color": "#FFF",
-    "selectedColor": "#1AFA29",
-    "backgroundColor": "#171742",
-    "borderStyle": "white",
+    "color": "#808080",
+    "selectedColor": "#d7000f",
+    "backgroundColor": "#FFF",
+    "borderStyle": "#cccccc",
     "position": "bottom",
     "list": [
       {
         "pagePath": "pages/Home/Home",
         "text": "首页",
-        "selectedIconPath": "images/home2.png",
-        "iconPath": "images/home2-0.png"
+        "selectedIconPath": "images/home1.png",
+        "iconPath": "images/home.png"
       },
       {
         "pagePath": "pages/commodity/commodity",
-        "text": "产品分类",
-        "selectedIconPath": "images/list.png",
-        "iconPath": "images/list1.png"
+        "text": "分类",
+        "selectedIconPath": "images/list1.png",
+        "iconPath": "images/list.png"
       },
       {
         "pagePath": "pages/cart/cart",
         "text": "购物车",
-        "selectedIconPath": "images/car.png",
-        "iconPath": "images/car1.png"
+        "selectedIconPath": "images/car1.png",
+        "iconPath": "images/car.png"
       },
       {
         "pagePath": "pages/comcard/comcard",
-        "text": "企业信息",
-        "selectedIconPath": "images/comp.png",
-        "iconPath": "images/comp1.png"
+        "text": "商家",
+        "selectedIconPath": "images/comp1.png",
+        "iconPath": "images/comp.png"
       },
       {
         "pagePath": "pages/index/index",
-        "text": "用户中心",
-        "selectedIconPath": "images/wo.png",
-        "iconPath": "images/wo1.png"
+        "text": "我的",
+        "selectedIconPath": "images/wo1.png",
+        "iconPath": "images/wo.png"
       }
     ]
   },

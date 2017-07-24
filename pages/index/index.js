@@ -10,7 +10,12 @@ Page({
     userInfo: {}
   },
   
-  
+  gotoorder:function(e){
+    console.log('gotopage' + e.currentTarget.dataset.index)
+    wx.navigateTo({
+      url: '../order/order?page=' + e.currentTarget.dataset.index,
+    })
+  },
   onLoad: function () {
 
     var that = this

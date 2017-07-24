@@ -3,11 +3,14 @@ var app = getApp()
 Page({
   data:{
     orderindex:-1,
+    cartlength:0,
     goodsinfo:{},
     goodswiper:[],
     goodimg:[],
     num:0,
-    imgRoute: ''
+    imgRoute: '',
+    evaluate: {
+      num: 1, praise: 99, content: [{ name: '刘国峰', star: 4, text: '哎吆，不错哦', img: ['../../images/title.png','../../images/title.png'],time:'2017-07-24 17:11'}]}
     },
   numreduce:function(){
     if (this.data.num>0)
@@ -20,7 +23,56 @@ Page({
         num: this.data.num+1
     })
   },
- addtocart:function(){
+  gotopraise:function(){
+    wx.navigateTo({
+      url: '../praise/praise?id=' + this.data.goodsinfo.goods_id,
+    })
+  },
+  gotocart:function(){
+    wx.switchTab({
+      url: '../cart/cart',
+    })
+  },
+  buynow:function(){
+    var that =this
+    if (this.data.num > 0)
+    {
+      wx.setStorage({
+        key: 'ordersummit',
+        data: {
+          "amount": 1,
+          "goodssubmmit": [
+            {
+              "goods_id": this.data.goodsinfo.goods_id,
+              "goods_num": that.data.num
+            }
+          ],
+          "orderlist": [
+            {
+              "goods_id": this.data.goodsinfo.goods_id,
+              "name": this.data.goodsinfo.name,
+              "price": this.data.goodsinfo.price,
+              "img": this.data.goodsinfo.img,
+              "num": that.data.num,
+              "edit": 1
+            }
+          ]
+        },
+      })
+      wx.navigateTo({
+        url: '../settlement/settlement?style=1',
+      })
+    }
+    else{
+      wx.showToast({
+        mask: 'True',
+        title: '请选择商品数量',
+        image: '../../images/tip.png',
+        duration: 1200
+      })
+    }
+  },
+  addtocart:function(){
     var theorder={} 
     if (this.data.orderindex < 0 && this.data.num>0)
     { 
@@ -29,13 +81,20 @@ Page({
       theorder.price = this.data.goodsinfo.price
       theorder.img = this.data.goodsinfo.img
       theorder.num = this.data.num
-      theorder.edit = 0
+      theorder.edit = 1
+      this.setData({
+        orderindex: app.data.orderlist.length
+      })
       app.data.orderlist.push(theorder)
       wx.showToast({
         mask: 'True',
         title: '已添加到购物车',
         duration: 1200
       })
+      this.setData({
+        cartlength: app.data.orderlist.length
+      })
+
     }
     else if (this.data.orderindex >= 0 && this.data.num > 0)
     {
@@ -95,6 +154,9 @@ Page({
           }
         })
       },
+    })
+    this.setData({
+      cartlength: app.data.orderlist.length
     })
    
   },

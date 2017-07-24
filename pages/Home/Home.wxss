@@ -1,8 +1,68 @@
 /* pages/Home/Home.wxss */
+@import "../../font/font.wxss";
 page{
     background-color: white;
 }
+.title-panel{
+  width:100%;
+  height:25%;
+  text-align:center;
+  background:#d7000f;
+}
+.title-panel .titleimg{
+  width:360rpx;
+  height:180rpx;
+}
 
+.search-panel{
+  width:100%;
+  height:100rpx;
+  background:#d7000f;
+}
+.search-panel .inset{
+  background:#FFF;
+  border-radius:50rpx;
+  width:90%;
+  margin-left:5%;
+  height:80rpx;
+  margin-top:10rpx;
+  line-height:80rpx;
+  display:flex;
+  flex-direction:row;
+}
+.search-panel .inset image{
+  width:40rpx;
+  height:40rpx;
+  margin:20rpx 20rpx 0rpx 40rpx;
+}
+.search-panel .inset text{
+  font-size:30rpx;
+  color:#808080;
+}
+.tab-panel{
+  width:100%;
+  height:180rpx;
+  display: flex;
+  flex-direction:row;
+}
+.tab-panel .item{
+  width:25%;
+  height:100%;
+  text-align:center;
+  font-size:30rpx;
+  color:#333333;
+  padding-top:25rpx;
+}
+.tab-panel .item image{
+  width:80rpx;
+  height:80rpx;
+  margin-bottom:10rpx;
+}
+
+
+
+
+/*
 .search-panel{
   position:absolute;
   top:15rpx;
@@ -10,14 +70,14 @@ page{
   height:50rpx;
   width:90%;
   background-color:#fff;
-  border-radius: 10rpx;
+  border-radius: 50rpx;
 
   display: flex;
   flex-direction: row;
   align-items: left;
   box-shadow: 1rpx 1rpx 1rpx rgba(30,33,39,0.4) inset;
 
-  opacity:0.8;/*其他，透明度50%*/
+  opacity:0.8;
 }
 .search-panel text{
   color:#8A8A8A;
@@ -28,11 +88,11 @@ page{
   height:40rpx;
   width:40rpx;
   margin:5rpx 10rpx 0rpx 20rpx;
-}
+}*/
 
 .swiper{
   width:100%;
-  height:400rpx;
+  height:350rpx;
 }
 .swiper-item{
   width:100%;
@@ -80,30 +140,28 @@ view.text {
 }
 
 .Recommend{
-    border-bottom: 1px solid #2B144F;
+    
     display: flex;
     flex-direction: row;
     flex-wrap:wrap;
-    background-color: rgba(17, 17, 143, 0.8);
+    background-color: #f8f8f8;
 }
 
 .Recblock{
-    width: 335rpx;
+    width: 45%;
 
-    margin: 30rpx 25rpx 30rpx 20rpx;
+    margin: 30rpx 2.5% 30rpx 2.5%;
     align-items: center;
-    text-align: center;
     display: flex;
     flex-direction: column;
 }
 .Recblockimage{
-    width: 300rpx;
-    height: 300rpx;
-    border: 6rpx solid #954bdb;
+    width: 100%;
+    height: 350rpx;
 }
 
 .Recblocktext{
-    margin-top: 5rpx;
+    margin-top: 20rpx;
     font-family: "黑体";
     font-size: 30rpx; 
     text-overflow: -o-ellipsis-lastline;
@@ -116,7 +174,7 @@ view.text {
 .Recblockprice{
     font-family: "黑体";
     margin-top: 10rpx;
-    font-size: 30rpx;
+    font-size: 25rpx;
     color: red;
 }
 

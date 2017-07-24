@@ -7,6 +7,11 @@ Page({
     selectLeftid: -1,
     selectLeftsubid: -1
   },
+  gotosearch:function(){
+    wx.navigateTo({
+      url: '../search/search',
+    })
+  },
   switchRightTab: function(e) {
     var that =this
     console.log(e)
@@ -16,7 +21,6 @@ Page({
     })
     if (that.data.selectLeftid!=-1)
     {
-
     wx.request({
       url: app.data.imgRoute + '/shop/goods_class/',
       data: {
