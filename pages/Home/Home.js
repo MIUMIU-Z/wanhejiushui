@@ -5,9 +5,23 @@ Page({
     recommend:[],
     imgRoute: ''
   },
+
   gotosearch:function(){
     wx.navigateTo({
       url: '../search/search',
+    })
+  },
+  gotocard:function(){
+    wx.addCard({
+      cardList: [
+        {
+          cardId: '',
+          cardExt: '{"code": "", "openid": "", "timestamp": "", "signature":""}'
+        }
+      ],
+      success: function (res) {
+        console.log(res.cardList) // 卡券添加结果
+      }
     })
   },
   gotocomcard: function () {
@@ -42,7 +56,7 @@ Page({
   onShow:function(){
     var that=this;
     wx.request({
-      url: app.data.imgRoute +'/shop/hot_goodsimg',
+      url: app.data.imgRoute +'/shop/hot_goodsimg/',
           data: {},
           method: 'GET',
           success: function(resu) {

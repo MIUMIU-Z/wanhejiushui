@@ -1,13 +1,16 @@
 {
   "pages": [
 
+
     "pages/Home/Home",
+    "pages/evaluate/evaluate",
     "pages/CoShow/CoShow",
     "pages/cart/cart",
     "pages/receipt/receipt",
     "pages/settlement_addr/settlement_addr",
     "pages/settlement/settlement",
-    "pages/commodity/commodity",
+      "pages/commodity/commodity",
+    "pages/goodslist/goodslist",
     "pages/index/index",
     "pages/detail/detail",
     "pages/praise/praise",

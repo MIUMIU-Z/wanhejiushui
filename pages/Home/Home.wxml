@@ -10,6 +10,7 @@
 </view>
 
 
+
 <view class="swiper">
 <swiper  autoplay indicator-dots interval="3000" circular class="swiper">
 <block wx:for="{{imgUrls}}">
@@ -29,7 +30,7 @@
 -->
 
 <view class="tab-panel">
-  <view class="item">
+  <view class="item" bindtap="gotocard">
     <image src="../../images/coupon.png"></image>
     <view>领优惠券</view>
   </view>

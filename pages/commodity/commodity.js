@@ -4,12 +4,17 @@ Page({
   data:{
     types:[],
     goods:{},
-    selectLeftid: -1,
-    selectLeftsubid: -1
+    selectLeftid: 0,
   },
   gotosearch:function(){
     wx.navigateTo({
       url: '../search/search',
+    })
+  },
+  gotogoodslist:function(e){
+    console.log(e)
+    wx.navigateTo({
+      url: '../goodslist/goodslist',
     })
   },
   switchRightTab: function(e) {
@@ -21,7 +26,10 @@ Page({
     })
     if (that.data.selectLeftid!=-1)
     {
-    wx.request({
+      that.setData({
+        goods: [{ name: '玉泉方瓶', img: '../../images/tip.png', id: 0 }, { name: '玉泉方瓶', img: '../../images/more.png', id: 0 }, { name: '玉泉方瓶', img: '../../images/order.png', id: 0 }, { name: '玉泉方瓶', img: '../../images/order.png', id: 0 }, { name: '玉泉方瓶', img: '../../images/order.png', id: 0 }, { name: '玉泉方瓶', img: '../../images/order.png', id: 0 }, { name: '玉泉方瓶', img: '../../images/order.png', id: 0 }],
+      })
+    /*wx.request({
       url: app.data.imgRoute + '/shop/goods_class/',
       data: {
         goods_class: that.data.types[this.data.selectLeftid].data[0].brand_id
@@ -33,12 +41,12 @@ Page({
           goods: res.data.infos,
         })
       }
-    })
+    })*/
 
     }
   },
-  switchsubleftTab:function(e){
-    var that = this
+  gotogoodslist:function(e){
+    /*var that = this
     console.log(e)
     this.setData({
       selectLeftsubid: e.target.dataset.index,
@@ -46,7 +54,7 @@ Page({
     wx.request({
       url: app.data.imgRoute + '/shop/goods_class/',
       data: {
-        goods_class: e.currentTarget.dataset.id
+        brand_id: e.currentTarget.dataset.id
       },
       method: 'GET',
       success: function (res) {
@@ -55,7 +63,7 @@ Page({
           goods: res.data.infos,
         })
       }
-    })
+    })*/
   },
   gotodetail:function(e){
     console.log(e.currentTarget.dataset.index)
@@ -77,9 +85,11 @@ Page({
        success: function(res) {
           console.log('商品类别',res)
           that.setData({
-            types: res.data.infos,
+            /*types: res.data.infos,*/
+            types: [{ class_name: '白酒' }, { class_name: '啤酒' }, { class_name: '红酒' }, { class_name: '饮料' }],
+            goods: [{ name: '玉泉方瓶', img: '../../images/tip.png', id: 0 }, { name: '玉泉方瓶', img: '../../images/more.png', id: 0 }, { name: '玉泉方瓶', img: '../../images/order.png', id: 0 }, { name: '玉泉方瓶', img: '../../images/order.png', id: 0 }, { name: '玉泉方瓶', img: '../../images/order.png', id: 0 }, { name: '玉泉方瓶', img: '../../images/order.png', id: 0 }, { name: '玉泉方瓶', img: '../../images/order.png', id: 0 }],
           })
-          wx.request({
+          /*wx.request({
             url: app.data.imgRoute +'/shop/goods_class/',
             data:{
               goods_class: res.data.infos[0].data[0].brand_id
@@ -91,7 +101,7 @@ Page({
                 goods: res.data.infos,
               })
             }
-          })
+          })*/
        }
     })
   },

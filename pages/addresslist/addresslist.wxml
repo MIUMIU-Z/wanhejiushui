@@ -30,3 +30,7 @@
 
 </view>
 
+<view wx:if="{{num>0}}" class="topnote">
+<image src="../../images/tip1.png"></image>
+点击地址列表中任一项可以将其设为默认地址
+</view>

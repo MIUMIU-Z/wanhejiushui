@@ -84,7 +84,7 @@ Page({
               setTimeout(function () {
                 wx.hideLoading(),
                   wx.showToast({
-                  title: that.data.style == 0 ? '增添成功' :'修改成功',
+                    title: that.data.style == 0 ? '增添成功' :'修改成功',
                     mask: true
                   })
               }, 500)
@@ -97,7 +97,8 @@ Page({
                 wx.hideLoading(),
                   wx.showToast({
                   title: that.data.style == 0 ? '增添失败' : '修改失败',
-                    mask: true
+                  mask: true,
+                  image: '.././images/tip.png'
                   })
               }, 500)
             }

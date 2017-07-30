@@ -1,0 +1,67 @@
+<!--pages/evaluate/evaluate.wxml-->
+<view class="grade-panel">
+  <view class="title">
+    <image src="../../images/mark.png"></image>
+    商家服务
+  </view>
+  <view class="item">
+    <text>送货速度</text>
+      <view class="star-panel" >
+        <block wx:for="{{[1,2,3,4,5]}}" wx:for-index="starid" wx:for-item="star">
+          <image bindtap="speedstar" data-star="{{star}}" src="../../images/star{{star<=speedstar?'1':''}}.png"></image>
+        </block>
+      </view>
+  </view>
+   <view class="item" style="border-bottom:1rpx dashed #eaeaea;">
+    <text>服务态度</text>
+      <view class="star-panel">
+        <block wx:for="{{[1,2,3,4,5]}}" wx:for-index="starid" wx:for-item="star">
+          <image bindtap="servicestar" data-star="{{star}}" src="../../images/star{{star<=servicestar?'1':''}}.png"></image>
+        </block>
+      </view>
+  </view>
+</view>
+
+<block wx:for="{{goods}}">
+<view class="goodsitem-panel">
+  <view class="title-panel">
+    <image class="titleimg" mode="aspectFit" src="{{imgRoute+item.picture}}"></image>
+    <view>{{item.name}}</view>
+    <view class="star-panel">
+      <block wx:for="{{[1,2,3,4,5]}}" wx:for-index="starid" wx:for-item="star">
+        <image bindtap="selectstar" data-index="{{index}}" data-star="{{star}}" src="../../images/star{{star<=item.star?'1':''}}.png"></image>
+      </block>
+    </view>
+  </view>
+  <view class="content-panel">
+    <textarea maxlength="230" placeholder="{{placeholder}}" placeholder-class="placeholder" />
+    <view class="imglist-panel">
+      <block wx:for="{{item.img}}" wx:for-item="img" wx:for-index="imgid">
+        <view class="theimg" bindtap="changeimg" data-index="{{index}}" data-imgid="{{imgid}}">
+        <image mode="aspectFit" src="{{img}}"></image>
+        <view>更换图片</view>
+        </view>
+      </block>
+      <view wx:if="{{item.imgnum<2}}" class="img-panel" bindtap="selectimg" data-index="{{index}}">
+          <image src="../../images/Photograph.png"></image>
+          <view>添加图片</view>
+      </view>
+    </view>
+  </view>
+  <view class="bottom-panel">
+    <block wx:if="{{item.anony==1}}">
+        <image bindtap="selectanony" data-index="{{index}}" src="../../images/selected.png"></image>
+    </block>
+    <block wx:else>
+        <image bindtap="selectanony" data-index="{{index}}" src="../../images/select.png"></image>
+    </block>
+    <view bindtap="selectanony" data-index="{{index}}">匿名</view>
+    <view class="remark">{{anonytip[item.anony]}}</view>
+  </view>
+</view>
+</block>
+
+
+<view class="button-panel">
+<view bindtap="commit" class="button">确定</view>
+</view>

@@ -9,20 +9,27 @@ page{
   align-items: center;/*垂直居中*/
   justify-content: center;/*水平居中*/
   color: #939393;
+  font-size:30rpx;
 }
 .container .cart-image {
-  width: 120px;
-  height: 120px;
+  width: 140px;
+  height: 140px;
+}
+.container .text{
+  color:#666666;
+  margin-bottom:30rpx;
+  font-family:'楷体';
+  font-size:30rpx;
 }
 .jumpbutton{
-  width:200rpx;
-  height:80rpx;
+  width:160rpx;
+  height:70rpx;
   border-radius: 3%;
   border:3rpx solid #ff6702;
   text-align: center; 
-  line-height:80rpx;
+  line-height:70rpx;
   color: #ff6702;
-  font-size:30rpx;
+  font-size:25rpx;
 }
 
 

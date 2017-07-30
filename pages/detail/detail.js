@@ -1,5 +1,8 @@
 // pages/detail/detail.js
 var app = getApp()
+function fomatFloat(src, pos) {
+  return Math.round(src * Math.pow(10, pos)) / Math.pow(10, pos);
+}
 Page({
   data:{
     orderindex:-1,
@@ -14,9 +17,9 @@ Page({
     },
   numreduce:function(){
     if (this.data.num>0)
-        this.setData({
-           num: this.data.num-1
-    })
+      this.setData({
+          num: this.data.num-1
+      })
   },
   numincrease:function(){
     this.setData({
@@ -37,10 +40,12 @@ Page({
     var that =this
     if (this.data.num > 0)
     {
+      var amount = that.data.goodsinfo.price * that.data.num
+      amount = fomatFloat(amount, 3)
       wx.setStorage({
         key: 'ordersummit',
         data: {
-          "amount": 1,
+          "amount": amount,
           "goodssubmmit": [
             {
               "goods_id": this.data.goodsinfo.goods_id,
@@ -59,7 +64,7 @@ Page({
           ]
         },
       })
-      wx.navigateTo({
+      wx.redirectTo({
         url: '../settlement/settlement?style=1',
       })
     }

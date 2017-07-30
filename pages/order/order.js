@@ -1,7 +1,6 @@
 // pages/order/order.js
 var app=getApp()
 Page({
-
   data: {
     myorders: [],
     select:-1,
@@ -46,7 +45,7 @@ Page({
       loading: true 
     })
     wx.request({
-    url: app.data.imgRoute+'/shop/search_order_info',
+    url: app.data.imgRoute+'/shop/search_order_info/',
       data: {
         user_id:app.data.userid,
         state:0

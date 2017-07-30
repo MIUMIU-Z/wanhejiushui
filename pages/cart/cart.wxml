@@ -2,7 +2,7 @@
 
 <view wx:if="{{num==0}}"  class="container">
   <image src="../../images/cart-null.png" class="cart-image"/>
-  <view style="color:#666666;margin-bottom:50rpx;font-size:45rpx;font-family:'楷体';">购物车快饿扁了T.T</view>
+  <view class="text">购物车快饿扁了T.T</view>
   <navigator url="../commodity/commodity" open-type="switchTab">
   <view class="jumpbutton">去逛逛</view> 
   </navigator>

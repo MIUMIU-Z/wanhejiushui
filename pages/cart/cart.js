@@ -80,10 +80,10 @@ Page({
       if (this.data.orderItems[index].edit==1)
       {
         this.data.amount = this.data.amount - this.data.orderItems[index].price;
+        this.data.amount = fomatFloat(this.data.amount, 3)
       }
 
     }
-    this.data.amount = fomatFloat(this.data.amount, 3)
     this.setData({
       orderItems: this.data.orderItems,
       num: this.data.orderItems.length,
@@ -100,10 +100,10 @@ Page({
       if (this.data.orderItems[index].edit == 1)
       {
         this.data.amount = this.data.amount + this.data.orderItems[index].price;
+        this.data.amount = fomatFloat(this.data.amount, 3)
       }
 
     }
-    this.data.amount = fomatFloat(this.data.amount, 3)
     this.setData({
       orderItems: this.data.orderItems,
       num: this.data.orderItems.length,
@@ -115,6 +115,7 @@ Page({
     if (this.data.orderItems[e.currentTarget.dataset.index].edit == 1)
     {
       this.data.amount = this.data.amount - sub.price * sub.num
+      this.data.amount = fomatFloat(this.data.amount, 3)
     }
     app.data.orderlist.splice(e.currentTarget.dataset.index, 1)
     this.data.orderItems.splice(e.currentTarget.dataset.index, 1)
@@ -156,7 +157,7 @@ Page({
       })
 
       wx.navigateTo({
-        url: '../settlement/settlement',
+        url: '../settlement/settlement?style=0',
       })
     }
     else 

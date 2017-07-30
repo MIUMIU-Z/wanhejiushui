@@ -19,6 +19,7 @@ page{
   height:100rpx;
   background:#d7000f;
 }
+
 .search-panel .inset{
   background:#FFF;
   border-radius:50rpx;

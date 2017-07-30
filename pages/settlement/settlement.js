@@ -43,6 +43,9 @@ Page({
   },
   onLoad: function (options) {
     var that =this
+    that.setData({
+      style: options.style
+    })
     wx.getStorage({
       key: 'ordersummit',
       success: function(res) {
@@ -119,19 +122,22 @@ Page({
                 mask: true
               })
           }, 500)
-          console.log('下单前的购物车', app.data.orderlist)
-          for (var i=0;i<that.data.orderlist.length;i++)
+          if(that.data.style==0)
           {
-            for (var j = 0; j < app.data.orderlist.length; j++)
+            console.log('下单前的购物车', app.data.orderlist)
+            for (var i=0;i<that.data.orderlist.length;i++)
             {
-              if (that.data.orderlist[i].goods_id == app.data.orderlist[j].goods_id)
+              for (var j = 0; j < app.data.orderlist.length; j++)
               {
-                app.data.orderlist.splice(j, 1)
-                break
+                if (that.data.orderlist[i].goods_id == app.data.orderlist[j].goods_id)
+                {
+                  app.data.orderlist.splice(j, 1)
+                  break
+                }
               }
             }
+            console.log('下完单的购物车',app.data.orderlist)
           }
-          console.log('下完单的购物车',app.data.orderlist)
           wx.navigateBack({
             delta:1
           })
@@ -153,16 +159,19 @@ Page({
                 title: '支付成功',
                 mask: true
               })
-              console.log('下单前的购物车', app.data.orderlist)
-              for (var i = 0; i < that.data.orderlist.length; i++) {
-                for (var j = 0; j < app.data.orderlist.length; j++) {
-                  if (that.data.orderlist[i].goods_id == app.data.orderlist[j].goods_id) {
-                    app.data.orderlist.splice(j, 1)
-                    break
+              if (that.data.style == 0) 
+              {
+                console.log('下单前的购物车', app.data.orderlist)
+                for (var i = 0; i < that.data.orderlist.length; i++) {
+                  for (var j = 0; j < app.data.orderlist.length; j++) {
+                    if (that.data.orderlist[i].goods_id == app.data.orderlist[j].goods_id) {
+                      app.data.orderlist.splice(j, 1)
+                      break
+                    }
                   }
                 }
+                console.log('下完单的购物车', app.data.orderlist)
               }
-              console.log('下完单的购物车', app.data.orderlist)
               wx.redirectTo({
                 url: '../order/order',
               })

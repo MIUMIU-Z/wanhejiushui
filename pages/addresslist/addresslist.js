@@ -32,7 +32,9 @@ Page({
             method: 'GET',
             success: function (resu) {
               console.log('地址列表', resu)
+            setTimeout(function(){
               wx.hideLoading()
+            },300)
               that.setData({
                 addresslist: resu.data.infos,
                 num: resu.data.infos.length
@@ -57,7 +59,7 @@ Page({
       },
       complete:function(){
         wx.showLoading({
-          title: '正在修改默认地址',
+          title: '修改默认地址中',
         })
       }
     })
