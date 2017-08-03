@@ -30,18 +30,20 @@
 -->
 
 <view class="tab-panel">
-  <view class="item" bindtap="gotocard">
-    <image src="../../images/coupon.png"></image>
-    <view>领优惠券</view>
+  <view class="item">
+    <button class="tab-btn" open-type="share" plain="true" hover-class="none"/>
+    <image src="../../images/forward.png"></image>
+    <view>分享转发</view>
   </view>
   <view class="item" bindtap="gotocomcard">
     <image src="../../images/seller.png"></image>
     <view>商家信息</view>
   </view>
   
-  <view class="item" open-type="contact" type="default-dark" session-from="weapp">
+  <view class="item">
+    <button class="tab-btn" open-type="contact" plain="true" hover-class="none"/>
     <image src="../../images/cs.png"></image>
-    <view>客服会话</view>
+    <view>客服消息</view>
   </view>
 
   <view class="item" bindtap="gotocommodity">
@@ -56,6 +58,10 @@
 </view>-->
 
 <view class="Recommend">
+<view class="title">
+  <image src="../../images/best.png"></image>
+  <view class="text">热销商品，精选推荐</view>
+</view>
 <block wx:for="{{recommend}}">
     <view class="Recblock" bindtap="gotodetail" data-index="{{index}}">
       <image mode="scaleToFit" class="Recblockimage" src="{{imgRoute+item.img}}"></image>

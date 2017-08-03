@@ -37,6 +37,7 @@
 .address-panel .item image{
   width:45rpx;
   height:40rpx;
+  vertical-align: middle;
 }
 .address-panel .item .text-panel{
   width:100%;

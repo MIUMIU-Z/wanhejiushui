@@ -1,26 +1,26 @@
 {
   "pages": [
 
-
+    "pages/comcard/comcard",
     "pages/Home/Home",
-    "pages/evaluate/evaluate",
     "pages/CoShow/CoShow",
     "pages/cart/cart",
     "pages/receipt/receipt",
+    "pages/goodslist/goodslist",
     "pages/settlement_addr/settlement_addr",
     "pages/settlement/settlement",
-      "pages/commodity/commodity",
-    "pages/goodslist/goodslist",
-    "pages/index/index",
+    "pages/commodity/commodity",
+    "pages/evaluate/evaluate",
+    "pages/order/order",
+    "pages/orderdetail/orderdetail",
     "pages/detail/detail",
+    "pages/index/index",
     "pages/praise/praise",
     "pages/address/address",
     "pages/addresslist/addresslist",
     "pages/search/search",
-    "pages/order/order",
-    "pages/orderdetail/orderdetail",
-    "pages/news/news",
-    "pages/comcard/comcard"
+    "pages/news/news"
+
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -34,7 +34,7 @@
     "color": "#808080",
     "selectedColor": "#d7000f",
     "backgroundColor": "#FFF",
-    "borderStyle": "#cccccc",
+    "borderStyle": "#eaeaea",
     "position": "bottom",
     "list": [
       {

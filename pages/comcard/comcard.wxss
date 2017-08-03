@@ -44,7 +44,7 @@
   width: 716rpx;
   margin-left:17rpx;
   font-size: 16px;
-  color: #fff;
+  color: #000;
 
 }
 
@@ -91,13 +91,14 @@
   flex:1;
   height: 32px;
   padding: 10rpx;
+  line-height:32px;
 }
 
 .info_cell_bd{
   flex:9;
 }
 .info_cell_bd_p{
-  font-size: 16px;
+  font-size: 25rpx;
   color: white;
 }
 

@@ -3,7 +3,7 @@
         <swiper class="swiper_box" indicator-dots autoplay interval="5000" duration="1000">
             <block wx:for="{{goodswiper}}">
                 <swiper-item>
-                    <image mode="aspectFit" src="{{imgRoute+item}}" class="slide-image"/>
+                    <image mode="aspectFit" bindlongtap="showimg" data-img="{{imgRoute+item}}" src="{{imgRoute+item}}" class="slide-image"/>
                 </swiper-item>
             </block>
         </swiper>
@@ -23,6 +23,13 @@
             <view class="numbutton" style="background:white;width:80rpx;">{{num}}</view>
             <view class="numbutton" bindtap="numincrease">+</view>
         </view>
+        <view class="disclaimer-panel">
+        <text></text>
+        <text style="">本商品{{goodsinfo.box_num}}瓶为一箱</text>
+        <text></text>
+        <text>，{{Disclaimer}}</text>
+        <text style="color:#FF3030;">{{Reminder}}</text>
+        </view>
     </view>
 </view>
 
@@ -38,39 +45,39 @@
 </view>
 
 <view class="panel">
-  <block wx:if="{{evaluate.num>0}}">
+  <block wx:if="{{evaluate.opinion_num>0}}">
   <view class="title">
-    <view class="titletext">评价 ({{evaluate.num}})</view>
+    <view class="titletext">评价 ({{evaluate.opinion_num}})</view>
     <view class="more" bindtap="gotopraise">
       <view class="praise">好评度</view>
-      <view class="praise" style="color:#ef3030;margin-left:10rpx;">{{evaluate.praise}}%</view>
+      <view class="praise" style="color:#8A8A8A;margin-left:10rpx;">{{evaluate.good_pro}}%</view>
       <image src="../../images/more.png"></image>
     </view>
   </view>
   <view class="content">
-    <block wx:for="{{evaluate.content}}">
-    <view class="item">
+
+    <view class="item" style="border-bottom:1rpx solid #fff;">
       <view class="toppanel">
-        <text>{{item.name}}</text>
+        <text>{{evaluate.user}}</text>
         <view class="star">
           <block wx:for="{{[1,2,3,4,5]}}" wx:for-index="starid" wx:for-item="star">
-          <image src="../../images/star{{star<=item.star?'1':''}}.png"></image>
+          <image src="../../images/star{{star<=evaluate.score?'1':''}}.png"></image>
           </block>
         </view>
       </view>
       <view class="textpanel">
-        <view>{{item.text}}</view>
+        <view>{{evaluate.content==''?'该用户未留言':evaluate.content}}</view>
       </view>
       <view class="imgpanel">
-        <block wx:for="{{item.img}}" wx:for-item="imgUrl">
-        <image mode="aspectFit" src="{{imgUrl}}"></image>
+        <block wx:for="{{evaluate.image}}" wx:for-item="imgUrl">
+        <image mode="aspectFit" src="{{imgRoute+imgUrl}}" bindlongtap="showimg" data-img="{{imgRoute+imgUrl}}"></image>
         </block>
       </view>
       <view class="timepanel">
-        <text>{{item.time}}</text>
+        <text>{{evaluate.time}}</text>
       </view>
     </view>
-    </block>
+
   </view>
   </block>
   <block wx:else>
@@ -88,8 +95,8 @@
     </view>
     <view class="image">
       <block wx:for="{{goodimg}}">
-        <image mode="aspectFit" src="{{imgRoute+item}}"></image>
-    </block>
+        <image mode="widthFix" bindlongtap="showimg" data-img="{{imgRoute+item}}" src="{{imgRoute+item}}"></image>
+      </block>
     </view>
 </view>
 
@@ -104,4 +111,8 @@
   <view class="part" bindtap="buynow" style="background:#ff5757;">
   立即购买
   </view>
+</view>
+
+<view wx:if="{{imgshow}}" class="imgshow" bindtap="backtopage">
+<image mode="widthFix" src="{{theimg}}"></image>
 </view>

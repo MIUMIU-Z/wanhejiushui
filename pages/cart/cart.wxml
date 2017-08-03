@@ -10,7 +10,7 @@
 
 <view wx:else>
 <view class="com-panel"> </view>
-  <view class="com-list-panel">
+  <view class="com-list-panel"  style="margin-bottom:100rpx;">
       <view class="com-operate">
           <view class="com-operate-select" bindtap="selectall">
             <image wx:if="{{selectall==0}}" src="../../images/select.png"></image>
@@ -40,7 +40,9 @@
           </view>
 
           <view class="com-item-detail">
-                <image src="{{imgRoute+item.img}}"></image>
+                <view class="img-panel">
+                <image mode="widthFix" src="{{imgRoute+item.img}}"></image>
+                </view>
                 <view class="righttext">
                 <text class="name">{{item.name}}</text>
                 <view class="bottomtext" wx:if="{{edit==0}}">
@@ -70,7 +72,7 @@
 
       </view>
       </block>
-      
+
       <view  class="comadd">
             <navigator url="../commodity/commodity" open-type="switchTab">
         <image src="../../images/com-add.png"></image>
@@ -83,8 +85,8 @@
       <text>合计: </text>
       <text style="color:#e3101e;">￥{{amount}}元</text>
       </view>
-      <view wx:if="{{commitconfirm==0}}" style="background:#CDCDB4;font-size:30rpx;"  class="settlement">{{btntext}}</view>
-      <view wx:if="{{commitconfirm==1}}"  bindtap="ordersubmit" class="settlement">结算</view>
+      <view wx:if="{{!commitconfirm}}" style="background:#CDCDB4;font-size:30rpx;"  class="settlement">请选择商品</view>
+      <view wx:if="{{commitconfirm}}"  bindtap="ordersubmit" class="settlement">结算</view>
   </view>
 </view>
 

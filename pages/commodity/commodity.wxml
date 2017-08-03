@@ -9,7 +9,8 @@
 <scroll-view class="com_left" scroll-y='true'>
     <block wx:for="{{types}}">
       <view bindtap="switchRightTab" data-index="{{index}}" class="com_left_items {{selectLeftid == index ? 'active' : ''}}" >
-      <view style="text-align:center;width:140rpx;">{{item.class_name}}</view>
+      <text>{{item.class_name}}</text>
+      <view wx:if="{{selectLeftid == index}}" class="leftline"></view>
       </view>
      <!--<view  wx:if="{{selectLeftid == index}}" class="subitem-panel">
       <block wx:if="{{selectLeftid == index}}" wx:for="{{item.data}}" wx:for-index="subindex" wx:for-item="subitem">
@@ -23,9 +24,9 @@
 
 <scroll-view class="com_right" scroll-y='true'>
     <block wx:for="{{goods}}">
-    <view class="item" bindtap="gotogoodslist" data-index="{{index}}">
-      <image mode="aspectFit" src="{{item.img}}"></image>
-      <view class="text">{{item.name}}</view>
+    <view class="item" bindtap="gotogoodslist" data-id="{{item.brand_id}}">
+      <image mode="widthFix" src="{{imgRoute+item.imageurl}}"></image>
+      <view class="text">{{item.brand}}</view>
     </view>
     </block>
     <!-- <block wx:for="{{goods}}">

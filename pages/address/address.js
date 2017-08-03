@@ -9,7 +9,8 @@ Page({
     region_got:false,
     province_got:false,
     city_got: false,
-    county_got: false
+    county_got: false,
+    Disclaimer:'为更好的提供免邮服务，详细地址中请注明街道或标志性区划'
   },
   onLoad:function(options){
     var that = this

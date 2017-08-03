@@ -21,12 +21,7 @@ Page({
     curImg: "",
     images: [],
     comListInfo: [],
-    address: {
-      lat: 45.7345,
-      long: 126.67572,
-      name: "万和酒水",
-      address: "哈尔滨市香坊区六顺街155-1号"
-    }
+    address: {}
   },
   /**
    * 生命周期函数--监听页面加载
@@ -170,38 +165,41 @@ Page({
   },
   onLoad: function (options) {
     var that = this;
+    that.setData({
+      imgRoute: app.data.imgRoute
+    })
     //请求数据
     wx.request({
-      url: 'https://vxlab.gxxnr.cn/applet/get/?shopid=2',
-      success: function (res) {
-        console.log(res.data);
+      url: app.data.imgRoute + '/shop/show_shopinfo/',
+      success: function(res) {
+        console.log('商家信息返回',res)
         that.setData({
-          name: res.data.name,
-          intruduce: res.data.introduction,
-          images: res.data.images,
+          name: res.data.infos.name,
+          intruduce: res.data.infos.introduction,
+          images: res.data.img,
           comListInfo: [{
             icon: 'http://wxdata-1253783629.costj.myqcloud.com/common/address.png',
             icon1: 'http://wxdata-1253783629.costj.myqcloud.com/common/addrgo.png',
-            text: res.data.location,
+            text: res.data.infos.location,
             isunread: true,
             unreadNum: 2
           }, {
             icon: 'http://wxdata-1253783629.costj.myqcloud.com/common/time.png',
-            text: res.data.time,
+            text: res.data.infos.open_time,
             isunread: false,
             unreadNum: 2
           }, {
             icon: 'http://wxdata-1253783629.costj.myqcloud.com/common/phone1.png',
             icon1: 'http://wxdata-1253783629.costj.myqcloud.com/common/call1.png',
-            text: res.data.call,
+            text: res.data.infos.phone,
             isunread: true,
             unreadNum: 1
           }],
           address: {
-            lat: res.data.lat,
-            long: res.data.long,
-            name: res.data.name,
-            location: res.data.location
+            lat: res.data.infos.lat,
+            long: res.data.infos.long,
+            name: res.data.infos.name,
+            location: res.data.infos.location
           }
 
 

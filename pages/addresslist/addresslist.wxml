@@ -24,7 +24,7 @@
 </block>
 </view>
 
-<view class="add" bindtap="add">
+<view class="add" style="{{num<=0?'margin-top:0;':''}}" bindtap="add">
 添加新地址
 </view>
 
@@ -33,4 +33,19 @@
 <view wx:if="{{num>0}}" class="topnote">
 <image src="../../images/tip1.png"></image>
 点击地址列表中任一项可以将其设为默认地址
+</view>
+
+
+<view class="Popup" wx:if="{{popup}}">
+  <view class="window">
+    <view class="title"> 
+      <image src="../../images/deltip.png"></image>
+      <view class="text">确认删除该地址？</view>
+    </view>
+    <view class="operate">
+      <view class="item" bindtap="deleteCommit">确认</view>
+      <view style="width:3rpx;height:60rpx;background:#eaeaea;margin-top:20rpx;"></view>
+      <view class="item" bindtap="canceldel">取消</view>
+    </view>
+  </view>
 </view>

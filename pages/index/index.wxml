@@ -31,16 +31,16 @@
       <view class="expand-panel">
         <view class="content">
           <view class="item" bindtap="gotoorder" data-index="1">
+            <image src="../../images/order_unsend.png"></image>
+            <view class="title">待发货</view>
+          </view>
+          <view class="item" bindtap="gotoorder" data-index="2">
             <image src="../../images/order_get.png"></image>
             <view class="title">待收货</view>
           </view>
           <view class="item" bindtap="gotoorder" data-index="3">
-            <image src="../../images/order_canceled.png"></image>
-            <view class="title">已取消</view>
-          </view>
-          <view class="item" bindtap="gotoorder" data-index="2">
-            <image src="../../images/order_complete.png"></image>
-            <view class="title">已完成</view>
+            <image src="../../images/order_unevaluated.png"></image>
+            <view class="title">未评价</view>
           </view>
         </view>
       </view>
@@ -56,7 +56,7 @@
           </view>
         </view>
         </navigator>
-
+<!--
         <navigator url="">
         <view class="item" bindtap="news" style="margin-top:20rpx;">
           <view class="content">
@@ -68,7 +68,7 @@
           </view>
         </view>
         </navigator>
-      
+-->
       </view>
 
 <view class="contact-area">

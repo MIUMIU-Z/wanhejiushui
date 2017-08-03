@@ -19,11 +19,11 @@
   发票类型
   </view>
   <view class="checkbox-panel">
-    <view bindtap="is_paper" data-index="0" class="check-box {{is_paper==0?'active':''}}">
+    <view bindtap="is_paper" data-index="{{0}}" class="check-box {{is_paper==0?'active':''}}">
       <image wx:if="{{is_paper==0}}"  src="../../images/select2.png"></image>
       <view class="text">电子发票</view>
     </view>
-    <view bindtap="is_paper" data-index="1" class="check-box {{is_paper==1?'active':''}}">
+    <view bindtap="is_paper" data-index="{{1}}" class="check-box {{is_paper==1?'active':''}}">
       <image wx:if="{{is_paper==1}}"  src="../../images/select2.png"></image>
       <view class="text">纸质发票</view>
     </view>
@@ -54,14 +54,14 @@
   <view class="topcontent-panel">
     <view class="contentitem">
       <view class="contenttitle">抬头内容：</view>
-      <input bindinput="bill_top" value="" name="bill_top"></input>
+      <input bindblur="bill_top" value="{{bill_top}}" name="bill_top"></input>
     </view>
   </view>
 
   <view wx:if="{{is_people==0}}" class="topcontent-panel">
     <view class="contentitem">
       <view class="contenttitle">纳税人识别号：</view>
-      <input bindinput="identify_num" value="" name="identify_num"></input>
+      <input bindblur="identify_num" value="{{identify_num}}" name="identify_num"></input>
     </view>
   </view>
 

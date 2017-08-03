@@ -16,9 +16,8 @@ Page({
     addrnum:-1,
     addrid:0,
     touchmove:false,
-    btntext:'还差0.1元起送',
     startprice:0.1,
-    commitconfirm:0
+    commitconfirm:false
   },
   select:function(e){
     var node = this.data.orderItems[e.currentTarget.dataset.index].edit
@@ -32,12 +31,12 @@ Page({
       amount: value,
       selectall: node == 1?0:this.data.selectall
     })
-    if (this.data.amount < this.data.startprice)
+    if (this.data.amount <=0)
     {
-      this.setData({ btntext: '还差' + (this.data.startprice - this.data.amount) + '元起送', commitconfirm:0})
+      this.setData({commitconfirm:false})
     }
     else{
-      this.setData({ btntext: '提交订单', commitconfirm:1})
+      this.setData({commitconfirm:true})
     }
   },
   selectall:function(e){
@@ -56,11 +55,11 @@ Page({
       selectall: value==1?0:1,
       amount: sum
     })
-    if (this.data.amount < this.data.startprice) {
-      this.setData({ btntext: '还差' + (this.data.startprice - this.data.amount) + '元起送', commitconfirm: 0 })
+    if (this.data.amount <=0) {
+      this.setData({ commitconfirm: false })
     }
     else {
-      this.setData({ btntext: '提交订单', commitconfirm: 1 })
+      this.setData({ commitconfirm: true })
     }
   },
   edittap:function(e){
@@ -89,6 +88,7 @@ Page({
       num: this.data.orderItems.length,
       amount: this.data.amount
     })
+    
   },
   increase: function (e) {
     var index = e.target.dataset.index
@@ -125,6 +125,12 @@ Page({
       num: this.data.num-1,
       amount:this.data.amount
     })
+    if (this.data.amount <= 0) {
+      this.setData({ commitconfirm: false })
+    }
+    else {
+      this.setData({ commitconfirm: true })
+    }
 },
   ordersubmit:function(){
 
@@ -229,11 +235,11 @@ Page({
       amount: sum
     })
 
-    if (this.data.amount < this.data.startprice) {
-      this.setData({ btntext: '还差' + (this.data.startprice - this.data.amount) + '元起送', commitconfirm: 0 })
+    if (sum <=0) {
+      this.setData({ commitconfirm: false })
     }
     else {
-      this.setData({ btntext: '提交订单', commitconfirm: 1 })
+      this.setData({ commitconfirm: true })
     }
     console.log('购物车',app.data.orderlist)
   },

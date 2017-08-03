@@ -1,56 +1,100 @@
 <!--pages/orderdetail/orderdetail.wxml-->
-<view class="detail-chief">
-    <view class="title">
-      单号：{{order.order_id}}
+
+  <view class="header">
+  </view>
+<view class="address-panel">
+  <image src="../../images/address.png"></image>
+  <view class="righttext">
+    <view class="up">
+      <view class="left">收货人：{{address.user_name}}</view>
+      <view class="right">{{address.user_phone}}</view>
     </view>
-    <view class="term">
-      <view class="term-item">
-        <text >收货人员： </text>
-        <text>{{address.user_name}}</text>
-      </view>
-      <view class="term-item">
-        <text>联系电话：</text>
-        <text>{{address.user_phone}}</text>
-      </view>
-      <view class="term-item">
-          <text>所在地域：</text>
-          <text>{{address.province}}{{address.city}}{{address.county}}</text>
-      </view>
-      <view class="term-item">
-        <text style="width:150rpx;">详细地址：</text>
-        <text>{{address.detailed}}</text>
-      </view>
-      <view class="term-item"  style="border-bottom:#FFF">
-        <text>下单时间：</text>
-        <text>{{order.time}}</text>
+    <view class="bottom">收货地址：{{address.province}} {{address.city}} {{address.county}} {{address.detailed}}</view>
+  </view>
+</view>
+<view class="reamrk">
+  <image src="../../images/remark.png"></image>
+  <view class="righttext">
+    {{order.remark==''?'无备注':order.remark}}
+  </view>
+</view>
+
+<view class="orderitem-panel"  bindtap="gotoorderdetail" data-index="{{index}}">
+    <view class="title-panel">
+      <view class="lefttext">共计1件商品</view>
+      <view class="righttext">已发货</view>
+    </view>
+    <block wx:for="{{goods}}" wx:for-item="goodsitem">
+    <view class="goodsitem">
+      <image class="titleimg" src="{{imgRoute+goodsitem.picture}}"></image>
+      <view class="textpanel">
+        <view class="name">
+          <text>{{goodsitem.name}}</text>
+          <image style="width:50rpx;height:30rpx;position:absolute;bottom:10rpx;left:0;" src="../../images/self-support.png"></image>
+        </view>
+        <view class="righttext">
+          <view class="price" style="font-weight:bold;">￥{{goodsitem.price}}</view>
+          <view class="price" style="color:#999999;">×{{goodsitem.goods_num}}</view>
+        </view>
       </view>
     </view>
-    <image class="state-note" src="../../images/paid2.png"></image>
+    </block>
+
+    <view class="count-panel">
+      <view class="item">
+        <view class="left">商品费用</view>
+        <view class="right">￥{{order.goods_money}}</view>
+      </view>
+      <view class="item">
+        <view class="left">运费</view>
+        <view class="right">+￥{{order.transport_fee}}</view>
+      </view>
+    <!--  <view class="item">
+        <view class="left">优惠</view>
+        <view class="right">-￥0</view>
+      </view>-->
+      <view class="item" style="font-size:30rpx;">
+        <view class="left" >实付款</view>
+        <view class="right" style="color:#ff5500;font-weight:bold;">￥{{order.money}}</view>
+      </view>
+    </view>
+  
   </view>
 
-  <view class="detail-remark">
-    <view class="title">选购列表：</view>
-    <view class="com-item">
-        <block wx:for="{{goods}}">
-          <view class="com-item-detail">
-                <image src="{{imgRoute+item.goods_info.picture}}"></image>
-                <view class="righttext">
-                <text class="name">{{item.goods_info.name}}</text>
-                <view class="bottomtext">
-                <text class="price">￥{{item.goods_info.price}}</text>
-            
-                <text class="num">×{{item.goods_num}}</text>
-                
-                </view>
-                </view>
-          </view>
-        </block>
+<view class="order-panel">
+  <view class="item" style="  height:50rpx;;line-height:50rpx;">
+  订单编号：{{order.order_id}}
   </view>
+  <view class="item">
+  付款类型：{{order.paymethod==0?'货到付款':'在线支付'}}
   </view>
+  <!--<view wx:if="{{order.paymethod==1}}" class="item">
+  微信支付交易号：暂无
+  </view>-->
+  <view class="item">
+  创建时间：{{order.time}}
+  </view>
+  <view wx:if="{{order.paymethod==1}}" class="item">
+  支付时间：{{order.time}}
+  </view>
+  <view wx:if="{{order.paymethod==0 && order.state<=2}}" class="item">
+  支付时间：尚未支付
+  </view>
+  <!--<view class="item">
+  发货时间：{{order.state>1?'':'尚未发货'}}
+  </view>
+  <view wx:if="{{order.state<=2}}" class="item">
+  收货时间：尚未收货
+  </view>-->
+  <!--<image src="../../images/paid2.png" class="noteimg"></image>-->
+  <view class="tail">
+  </view>
+</view>
 
-<view wx:if="{{order.state==2}}" class="btn" bindtap="orderconfirm">
-确认收货
+
+<block wx:if="{{order.state>1 && order.state<5}}">
+<view class="btn-panel" wx:if="{{order.state==2 || (order.state!=2 &&order.opinion_state==0)}}">
+  <view class="btn" wx:if="{{order.state!=2}}" bindtap="gotoevaluate" data-index="{{order.order_id}}">评价</view>
+  <view class="btn" wx:if="{{order.state==2}}" bindtap="orderconfirm">确认收货</view>
 </view>
-<view wx:if="{{order.state==1 && order.is_paid==0}}" class="btn" style="background:#EB3F2F;" bindtap="payorder">
-在线付款
-</view>
+</block>

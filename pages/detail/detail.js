@@ -12,9 +12,26 @@ Page({
     goodimg:[],
     num:0,
     imgRoute: '',
-    evaluate: {
-      num: 1, praise: 99, content: [{ name: '刘国峰', star: 4, text: '哎吆，不错哦', img: ['../../images/title.png','../../images/title.png'],time:'2017-07-24 17:11'}]}
+    imgshow:false,
+    theimg:'',
+    evaluate: {},
+    Disclaimer: '不满一箱的商品，运费将按照整箱计算，欢迎购买。',
+    Reminder:'（黑龙江省哈尔滨市内的用户将享受免运费服务，哈市二环内满500元起送，二环外满1000元起送，三环外满1200元起送）'
+
     },
+  showimg:function(e){
+    console.log(e)
+    this.setData({
+      theimg: e.currentTarget.dataset.img,
+      imgshow: true,
+    })
+  },
+  backtopage:function () {
+    this.setData({
+      theimg: '',
+      imgshow: false,
+    })
+  },
   numreduce:function(){
     if (this.data.num>0)
       this.setData({
@@ -152,10 +169,12 @@ Page({
           },
           success: function(resu) {
             console.log(resu)
-              that.setData({
+
+            that.setData({
+              evaluate: resu.data.infos.comment,
                 goodswiper: resu.data.infos.img_list,
                 goodimg:resu.data.infos.detail_list
-              })
+            })
           }
         })
       },

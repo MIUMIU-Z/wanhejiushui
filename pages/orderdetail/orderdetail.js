@@ -5,14 +5,17 @@ Page({
   data: {
     order: {},
     address: {},
-    goods: []
+    goods: [],
+    thestate: ['', '待发货', '待收货', '已收货', '已完成', '已取消'],
+    opinion: ['', '已评价', '未评完', '未评价'],
+
   },
   orderconfirm:function(){
     wx.request({
       url: app.data.imgRoute +'/shop/confirm_gotgoods/',
       data: {
         order_id:this.data.order.order_id
-        },
+      },
       method:'GET',
       success:function(res){
           console.log('确认收货',res)
@@ -23,6 +26,11 @@ Page({
     })
     
   },
+  gotoevaluate: function (e) {
+    wx.navigateTo({
+      url: '../evaluate/evaluate?id=' + e.currentTarget.dataset.index,
+    })
+  },
   onLoad: function () {
     var that = this
     that.setData({
@@ -31,21 +39,21 @@ Page({
     wx.getStorage({
       key: 'selectedorder',
       success: function(res) {
+        console.log(res)
         that.setData({
           address:res.data.addr,
           order: res.data,
+          goods: res.data.goods
         })
         wx.request({
-          url: app.data.imgRoute+'/shop/show_order_goods_info/',
+          url: app.data.imgRoute +'/shop/show_order_goods_info/',
         data: {
           order_id: res.data.order_id
         },
         method: 'GET',
         success: function (res) {
           console.log('订单详情',res)
-          that.setData({
-            goods: res.data.infos
-          })
+          
         }
       })
       },

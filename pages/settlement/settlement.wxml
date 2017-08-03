@@ -44,7 +44,7 @@
     <view class="up-panel">
       <image src="../../images/remark.png" style="margin-top:15rpx;width:55rpx;height:55rpx;margin-right:10rpx;"/>
       <view class="uptext" >
-      <input placeholder="备注" bindinput="getremark" ></input>
+      <input placeholder="备注" value="{{remark}}" bindblur="getremark" ></input>
       </view>
     </view>
   </view>
@@ -54,9 +54,9 @@
   <view class="content">
     <image src="../../images/receipt.png"></image>
     <view class="lefttext">发票</view>
-    <view></view>
+    <view class="righttext">{{receipt.need_bill==0?'无发票':receipt.is_paper==0?'电子发票':'纸质发票'}}</view>
   </view>
-  <image style="top:35rpx;" class="more-img" src="../../images/more-right.png" ></image>
+  <image style="top:30rpx;" class="more-img" src="../../images/more-right.png" ></image>
 </view>
 
 
@@ -69,7 +69,9 @@
   <view class="goods-panel">
     <block wx:for="{{orderlist}}">
         <view class="item">
-            <image class="goodsimage" mode="aspectFit" src="{{imgRoute+item.img}}"></image>
+            <view class="img-panel">
+              <image mode="widthFix" src="{{imgRoute+item.img}}"></image>
+            </view>
             <view class="name">{{item.name}}</view>
             <view class="num">×{{item.num}}</view>
             <view class="price">￥{{item.price}}</view>
@@ -91,15 +93,28 @@
     <view class="righttext">-￥{{discount}}元</view>
   </view>
   <view class="item" style="padding-top:10rpx;font-weight:bold;border-top:1rpx dashed #eaeaea;">
-    <view class="righttext" style="font-size:30rpx;">￥{{amount}}元</view>
+    <view class="righttext" style="font-size:30rpx;">￥{{Actual_payment}}元</view>
     <view class="lefttext" style="font-size:30rpx;float:right;margin-right:10rpx;">合计:</view>
   </view>
 </view>
 
 </view>
 
+<view class="btn-panel">
+  <block wx:if="{{commitConfirm}}">
+  <view class="btn" bindtap="ordersubmmit" style="{{paymethod==1?'background:#1aad19;':''}}"> 
+  {{paymethod==0?'提交订单':'微信支付'}}
+  </view>
+  </block>
+  <block wx:else>
+  <view class="btn"  bindtap="ordersubmmit" style="border:1rpx solid #989899;color:#fafafa;background:#a9a9ab;"> 
+  {{difference}}
+  </view>
+  </block>
+</view>
+<!--
 <block wx:if="{{paymethod==0}}">
-<view class="btn" bindtap="ordersubmmit"> 
+<view wx:if="{{commitConfirm}}" class="btn" bindtap="ordersubmmit" > 
   提交订单
 </view>
 </block>
@@ -108,3 +123,4 @@
   微信支付
 </view>
 </block>
+-->

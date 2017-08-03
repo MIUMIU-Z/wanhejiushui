@@ -1,4 +1,6 @@
 <!--pages/praise/praise.wxml-->
+
+<scroll-view style="height:{{windowHeight}}px;width:{{windowWidth}}px;" bindscrolltolower="reachbottom" scroll-top="{{vertical}}" scroll-y="true"  bindscroll="scroll" enable-back-to-top="true">
 <view class="top-panel">
   <view bindtap="changetype" data-index="0" class="btn {{type==0?'active':''}}">
     全部({{praisenum[0]}})
@@ -21,24 +23,22 @@
   </view>
 </view>
 
-
-  <view class="praiselist">
     <block wx:for="{{praiselist}}">
     <view class="item">
       <view class="toppanel">
-        <text>{{item.name}}</text>
+        <text>{{item.user_name}}</text>
         <view class="star">
           <block wx:for="{{[1,2,3,4,5]}}" wx:for-index="starid" wx:for-item="star">
-          <image src="../../images/star{{star<=item.star?'1':''}}.png"></image>
+          <image src="../../images/star{{star<=item.score?'1':''}}.png"></image>
           </block>
         </view>
       </view>
       <view class="textpanel">
-        <view>{{item.text}}</view>
+        <view>{{item.commemt_content==''?'该用户未留言':item.commemt_content}}</view>
       </view>
       <view class="imgpanel">
-        <block wx:for="{{item.img}}" wx:for-item="imgUrl">
-        <image mode="aspectFit" src="{{imgUrl}}"></image>
+        <block wx:for="{{item.img_list}}" wx:for-item="imgUrl">
+        <image mode="aspectFit" src="{{imgRoute+imgUrl}}" bindlongtap="showimg" data-img="{{imgRoute+imgUrl}}"></image>
         </block>
       </view>
       <view class="timepanel">
@@ -46,4 +46,18 @@
       </view>
     </view>
     </block>
-  </view>
+    <view wx:if="{{loading}}" class="reachbottom">
+      <image src="../../images/loading.gif"></image>
+      <view class="text">正在加载中···</view>
+    </view>
+
+</scroll-view>
+<view wx:if="{{imgshow}}" class="imgshow" bindtap="backtopage">
+<image mode="widthFix" src="{{theimg}}"></image>
+</view>
+
+
+ <view wx:if="{{backtop}}" class="backtotop" bindtap="backtotop">
+ <image src="../../images/top.png"></image>
+ <text>回到顶部</text>
+ </view>

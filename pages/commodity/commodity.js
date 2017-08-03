@@ -8,62 +8,29 @@ Page({
   },
   gotosearch:function(){
     wx.navigateTo({
-      url: '../search/search',
+      url: '../goodslist/goodslist?id='+-1,
     })
   },
   gotogoodslist:function(e){
     console.log(e)
     wx.navigateTo({
-      url: '../goodslist/goodslist',
+      url: '../goodslist/goodslist?id=1',
     })
   },
   switchRightTab: function(e) {
     var that =this
-    console.log(e)
     this.setData({
-      selectLeftid: e.currentTarget.dataset.index == that.data.selectLeftid ? -1 : e.currentTarget.dataset.index, 
-      selectLeftsubid: 0
+      selectLeftid: e.currentTarget.dataset.index, 
     })
-    if (that.data.selectLeftid!=-1)
-    {
-      that.setData({
-        goods: [{ name: '玉泉方瓶', img: '../../images/tip.png', id: 0 }, { name: '玉泉方瓶', img: '../../images/more.png', id: 0 }, { name: '玉泉方瓶', img: '../../images/order.png', id: 0 }, { name: '玉泉方瓶', img: '../../images/order.png', id: 0 }, { name: '玉泉方瓶', img: '../../images/order.png', id: 0 }, { name: '玉泉方瓶', img: '../../images/order.png', id: 0 }, { name: '玉泉方瓶', img: '../../images/order.png', id: 0 }],
-      })
-    /*wx.request({
-      url: app.data.imgRoute + '/shop/goods_class/',
-      data: {
-        goods_class: that.data.types[this.data.selectLeftid].data[0].brand_id
-      },
-      method: 'GET',
-      success: function (res) {
-        console.log('商品列表', res)
-        that.setData({
-          goods: res.data.infos,
-        })
-      }
-    })*/
-
-    }
+    that.setData({
+      goods: that.data.types[e.currentTarget.dataset.index].data
+    })
   },
   gotogoodslist:function(e){
-    /*var that = this
-    console.log(e)
-    this.setData({
-      selectLeftsubid: e.target.dataset.index,
+
+    wx.navigateTo({
+      url: '../goodslist/goodslist?id='+e.currentTarget.dataset.id,
     })
-    wx.request({
-      url: app.data.imgRoute + '/shop/goods_class/',
-      data: {
-        brand_id: e.currentTarget.dataset.id
-      },
-      method: 'GET',
-      success: function (res) {
-        console.log('商品列表', res)
-        that.setData({
-          goods: res.data.infos,
-        })
-      }
-    })*/
   },
   gotodetail:function(e){
     console.log(e.currentTarget.dataset.index)
@@ -78,30 +45,19 @@ Page({
   onLoad:function(){
     var that = this
     that.setData({
-      imgRoute: app.data.imgRoute
+      imgRoute: app.data.imgRoute,
+      /*types: [{ class_name: '白酒' }, { class_name: '啤酒' }, { class_name: '红酒' }, { class_name: '饮料' }],
+      goods: [{ name: '玉泉方瓶', img: '../../images/nullimg.png', id: 0 }, { name: '玉泉方瓶', img: '../../images/nullimg.png', id: 0 }, { name: '玉泉方瓶', img: '../../images/nullimg.png', id: 0 }, { name: '玉泉方瓶', img: '../../images/nullimg.png', id: 0 }, { name: '玉泉方瓶', img: '../../images/nullimg.png', id: 0 }, { name: '玉泉方瓶', img: '../../images/nullimg.png', id: 0 }, { name: '玉泉方瓶', img: '../../images/nullimg.png', id: 0 }],*/
     })
      wx.request({
        url: app.data.imgRoute+'/shop/get_class/',
        success: function(res) {
           console.log('商品类别',res)
           that.setData({
-            /*types: res.data.infos,*/
-            types: [{ class_name: '白酒' }, { class_name: '啤酒' }, { class_name: '红酒' }, { class_name: '饮料' }],
-            goods: [{ name: '玉泉方瓶', img: '../../images/tip.png', id: 0 }, { name: '玉泉方瓶', img: '../../images/more.png', id: 0 }, { name: '玉泉方瓶', img: '../../images/order.png', id: 0 }, { name: '玉泉方瓶', img: '../../images/order.png', id: 0 }, { name: '玉泉方瓶', img: '../../images/order.png', id: 0 }, { name: '玉泉方瓶', img: '../../images/order.png', id: 0 }, { name: '玉泉方瓶', img: '../../images/order.png', id: 0 }],
+            types: res.data.infos,
+            goods: res.data.infos[0].data
           })
-          /*wx.request({
-            url: app.data.imgRoute +'/shop/goods_class/',
-            data:{
-              goods_class: res.data.infos[0].data[0].brand_id
-            },
-            method: 'GET',
-            success: function (res) {
-              console.log('商品列表', res, res.data.infos)
-              that.setData({
-                goods: res.data.infos,
-              })
-            }
-          })*/
+         
        }
     })
   },

@@ -60,7 +60,7 @@
     详细地址
     </view>
     <view class="address-item-input">
-    <textarea max-rows="2" name="address" class="textarea" placeholder="请输入详细地址" placeholder-style="line-height:80rpx;" value="{{address.detailed}}"></textarea>
+    <textarea maxlength="200" name="address" class="textarea" placeholder="请输入详细地址" placeholder-style="line-height:80rpx;" value="{{address.detailed}}"></textarea>
     </view>
 </view>
 
@@ -76,8 +76,12 @@
 </view>
 
 
-
-<button class="save-button" formType="submit">
-<text>保存</text>
-</button>
+<view class="btn-panel">
+<button class="save-button" formType="submit">保存</button>
+</view>
 </form>
+
+<view wx:if="{{true}}" class="topnote">
+    <image src="../../images/tip1.png"></image>
+    <text>{{Disclaimer}}</text>
+</view>

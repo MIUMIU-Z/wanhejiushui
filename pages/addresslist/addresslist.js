@@ -4,7 +4,9 @@ Page({
 
   data: {
     addresslist: [],
-    num:-1
+    num:-1,
+    popup:false,
+    deladdr_id:-1
   },
 
   add:function(){
@@ -44,18 +46,22 @@ Page({
         }
         else {
           wx.hideLoading()
-          wx.showToast({
-            title: '设置失败',
-            image: '../../images/tip.png'
-          })
+          setTimeout(function(){
+            wx.showToast({
+              title: '设置失败',
+              image: '../../images/tip.png'
+            })
+          },500)
         }
       },
       fail:function(){
         wx.hideLoading()
-        wx.showToast({
-          title: '网络错误',
-          image: '../../images/tip.png'
-        })
+        setTimeout(function () {
+          wx.showToast({
+            title: '网络错误',
+            image: '../../images/tip.png'
+          })
+        }, 500)
       },
       complete:function(){
         wx.showLoading({
@@ -79,17 +85,30 @@ Page({
     
   },
   addrdelete:function(e){
+    this.setData({
+      deladdr_id: this.data.addresslist[e.target.dataset.index].addr_id,
+      popup: true,
+    })
+  },
+  canceldel:function(){
+    this.setData({
+      popup: false
+    })
+  },
+  deleteCommit:function(){
     var that = this
     wx.request({
       url: app.data.imgRoute + '/shop/delete_user_addr',
       data: {
-        addr_id: that.data.addresslist[e.target.dataset.index].addr_id
+        addr_id: that.data.deladdr_id
       },
       method: 'GET',
       success: function (resu) {
         console.log('删除地址', resu)
-        if (resu.data==1)
-        {
+        that.setData({
+          popup: false
+        })
+        if (resu.data == 1) {
           wx.request({
             url: app.data.imgRoute + '/shop/user_addrs/',
             data: {
@@ -105,12 +124,22 @@ Page({
             }
           })
         }
-        else{
+        else {
           wx.showToast({
             title: '删除失败',
-            image:'../../images/tip.png'
+            image: '../../images/tip.png'
           })
         }
+      },
+      fail: function () {
+        that.setData({
+          popup: false
+        })
+        wx.showToast({
+          title: '网络错误',
+          image: '../../images/tip.png',
+          duration: 1000
+        })
       }
     })
   },

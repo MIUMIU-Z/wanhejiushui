@@ -4,7 +4,7 @@
         <swiper class="swiper_box" indicator-dots="{{indicatorDots}}"  autoplay="{{autoplay}}" circular="true" interval="{{interval}}" duration="{{duration}}">
             <block wx:for="{{images}}">
                 <swiper-item>
-                    <image id="{{index}}" bindload= "loadingImg" src="{{item}}" bindtap="popImg" class="slide-image"/>
+                    <image id="{{index}}" bindload= "loadingImg" src="{{imgRoute+item}}" bindtap="popImg" class="slide-image"/>
                 </swiper-item>
             </block>
         </swiper>

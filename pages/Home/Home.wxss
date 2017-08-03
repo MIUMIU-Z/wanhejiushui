@@ -1,7 +1,7 @@
 /* pages/Home/Home.wxss */
 @import "../../font/font.wxss";
 page{
-    background-color: white;
+    background-color: #f8f8f8;
 }
 .title-panel{
   width:100%;
@@ -45,6 +45,7 @@ page{
   height:180rpx;
   display: flex;
   flex-direction:row;
+  background: #FFF;
 }
 .tab-panel .item{
   width:25%;
@@ -53,13 +54,37 @@ page{
   font-size:30rpx;
   color:#333333;
   padding-top:25rpx;
+  align-items: center;
+  position: relative;
 }
 .tab-panel .item image{
   width:80rpx;
   height:80rpx;
   margin-bottom:10rpx;
 }
+button[plain]{
+  border:none;
+}
+.tab-btn{
+  position:absolute;
+  top:0;
+  width:100%;
+  height:80%;
+  /*display: none;*/
+  /*visibility:hidden;*/
+  z-index:999;
+  border:none;
+}
 
+.contact-btn{
+  margin:5rpx 0rpx 20rpx 60rpx;
+  width:75rpx;
+  height:75rpx;
+  border-radius:50%;
+  background:#ffbd76;
+  align-items: center;
+  vertical-align:middle;
+}
 
 
 
@@ -128,41 +153,56 @@ page{
   text-shadow:1rpx 1rpx 1rpx rgba(33, 33, 33, 0.6);
 }
 
-view.text {
-    border-top: 1px solid #2B144F;
-    width:100%;
-    height:70rpx;
-    background: -webkit-linear-gradient(#9139E3, #2B144F);
-}
 
-.textimg{
-    width:100%;
-    height:70rpx;
-}
+
 
 .Recommend{
-    
     display: flex;
     flex-direction: row;
     flex-wrap:wrap;
-    background-color: #f8f8f8;
+    background-color: #fff;
+    margin-top:30rpx;
+    padding-bottom:30rpx;
 }
+.Recommend .title{
+  width:100%;
+  height:100rpx;
+  background:#fff;
+  text-align: center;
+  line-height:100rpx;
+  clear: both;
+  border-bottom:1rpx solid #f0f0f0;
+}
+.Recommend .title image{
+  width:50rpx;
+  height:50rpx;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right:20rpx;
+}
+.Recommend .title .text{
+  font-size:30rpx;
+  color:#ff8737;
+  display: inline-block;
+}
+
 
 .Recblock{
     width: 45%;
 
-    margin: 30rpx 2.5% 30rpx 2.5%;
+    margin: 30rpx 2.5% 0rpx 2.5%;
     align-items: center;
     display: flex;
     flex-direction: column;
+    line-height:30rpx;
 }
 .Recblockimage{
     width: 100%;
-    height: 350rpx;
+    height: 330rpx;
 }
 
 .Recblocktext{
-    margin-top: 20rpx;
+    margin-top: 10rpx;
     font-family: "黑体";
     font-size: 30rpx; 
     text-overflow: -o-ellipsis-lastline;
@@ -170,11 +210,11 @@ view.text {
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-line-clamp: 3; 
-    -webkit-box-orient: vertical
+    -webkit-box-orient: vertical;
 }
 .Recblockprice{
     font-family: "黑体";
-    margin-top: 10rpx;
+    margin-top: 5rpx;
     font-size: 25rpx;
     color: red;
 }

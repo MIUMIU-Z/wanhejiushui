@@ -36,8 +36,8 @@ page{
 
 .com-list-panel{
   background-color:#FFF;
-  border-top:1rpx solid #bbbbbb;
-  border-bottom:1rpx solid #bbbbbb;
+  border-top:1rpx solid #eaeaea;
+  border-bottom:1rpx solid #eaeaea;
   margin-bottom:20rpx;
 }
 .com-operate{
@@ -92,11 +92,17 @@ page{
   text-align: left;
   border-bottom: 1rpx solid #dadada; 
 }
-.com-item-detail image{
-  margin-top:10rpx;
+.com-item-detail .img-panel{
+  display: table-cell;
+  height:200rpx;
+  line-height:200rpx;
+
+}
+.com-item-detail .img-panel image{
+  vertical-align: middle;
   width: 170rpx;
-  height: 180rpx;
-  line-height:250rpx;
+  max-height: 180rpx;
+
 }
 .com-item-detail .righttext{
   position:relative;

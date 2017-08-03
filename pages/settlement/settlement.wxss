@@ -25,6 +25,7 @@ page{
   display:flex;
   flex-direction:row;
   margin-left:30rpx;
+  line-height:80rpx;
 }
 .deliver-panel .item .up-panel image{
   width:45rpx;
@@ -36,6 +37,10 @@ page{
 .deliver-panel .item .up-panel .uptext{
   line-height:80rpx;
   height:80rpx;
+  width:75%;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
 }
 .deliver-panel .item .up-panel input{
   line-height:80rpx;
@@ -111,16 +116,24 @@ page{
 }
 
 .order-panel .goods-panel .item{
+  margin-top:5rpx;
   width: 100%;
   height: 150rpx;
   position:relative;
+  background:#fafafa;
 }
-.order-panel .goods-panel .item .goodsimage{
-  margin-top:25rpx;
-  height: 100rpx;
-  max-width:100rpx;
+.order-panel .goods-panel .item .img-panel{
+  display: table-cell;
+  width:120rpx;
+  max-height:150rpx;
+  line-height:150rpx;
   position:absolute;
   left:10rpx;
+}
+.order-panel .goods-panel .item .img-panel image{
+  max-height: 120rpx;
+  width:120rpx;
+  vertical-align: middle;
 }
 
 .order-panel .goods-panel .item .name{
@@ -128,7 +141,7 @@ page{
   position:absolute;
   height: 150rpx;
   line-height:150rpx;
-  left:150rpx;
+  left:170rpx;
   width:200rpx;
   text-overflow: -o-ellipsis-lastline;
   overflow: hidden;
@@ -179,18 +192,25 @@ page{
   font-family: "微软雅黑";
 }
 
+.btn-panel{
 
-.btn{
+  width:100%;
+  height:100rpx;
+  border-top:1rpx solid #e6e6e6;
+  background:#FFF;
+}
+.btn-panel .btn{
+  margin-top:7rpx;
   margin-left:5%;
   width:90%;
-  height:90rpx;
-  line-height:90rpx;
+  height:86rpx;
+  line-height:80rpx;
   background:#ff5757;
   color:#FFF;
   text-align:center;
   font-size:30rpx;
   border-radius:10rpx;
-  margin-bottom:20rpx;
+
 }
 
 .receipt-panel{
@@ -205,26 +225,28 @@ page{
 }
 .receipt-panel .content{
   width:100%;
-  height:80rpx;
+  height:70rpx;
   padding:20rpx 0rpx 20rpx 30rpx;
-  display:flex;
-  flex-direction:row;
-  line-height:80rpx;
+  line-height:70rpx;
   align-items:center;
 }
 .receipt-panel .content image{
   width:40rpx;
   height:40rpx;
   margin-right:20rpx;
+  float:left;
+  margin-top:15rpx;
 }
 .receipt-panel .content .lefttext{
-  height:80rpx;
+  height:70rpx;
   float:left;
   font-size:30rpx;
 }
 
 .receipt-panel .content .righttext{
-  height:80rpx;
+  height:70rpx;
   float:right;
+  margin-right:120rpx;
   font-size:25rpx;
+  color:#a9a9a9;
 }
