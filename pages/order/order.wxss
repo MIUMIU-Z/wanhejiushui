@@ -1,7 +1,7 @@
 /* pages/order/order.wxss */
 @import "../../font/font.wxss";
 page{
-  background:#f7f7f7;
+  background:#f4f4f4;
 }
 .page-panel{
   top:0;
@@ -182,23 +182,32 @@ page{
 }
 .orderitem-panel .goodsitem{
   margin-bottom:5rpx;
-  height:150rpx;
+  height:180rpx;
   background:#fafafa;
 }
-.orderitem-panel .goodsitem .titleimg{
-  width:130rpx;
-  height:130rpx;
-  margin:10rpx 0rpx 10rpx 30rpx;
+.orderitem-panel .goodsitem .img-panel{
+  margin-top:10rpx;
+  width:150rpx;
+  height:160rpx;
+  margin-left:30rpx;
   float:left;
+  line-height:160rpx;
+  background:#fff;
+}
+.orderitem-panel .goodsitem .img-panel .titleimg{
+  width:100%;
+  max-height:150rpx;
+  vertical-align: middle;
 }
 .orderitem-panel .goodsitem .textpanel{
   float: right;
   margin-right:20rpx;
-  width:73%;
-  height:130rpx;
+  width:70%;
+  height:160rpx;
   margin:10rpx 20rpx 10rpx 0rpx;
 }
 .orderitem-panel .goodsitem .textpanel .name{
+  margin-top:5rpx;
   float:left;
   width:70%;
   height:100%;
@@ -291,4 +300,62 @@ page{
   width:80rpx;
   height:80rpx;
   margin-bottom:10rpx;
+}
+
+
+.Popup{
+  position: fixed;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  width:100%;
+  height:100%;
+  background: rgba(0,0,0,0.4);
+}
+
+.Popup .window{
+  position: fixed;
+  top:30%;
+  left:15%;
+  width:70%;
+  height:300rpx;
+  background:#fff;
+  box-shadow: 1rpx 1rpx 1rpx rgba(30,33,39,0.4);
+  border-radius:20rpx;
+}
+
+.Popup .window .title{
+  height:200rpx;
+  width:100%;
+  font-size:30rpx;
+  text-align: center;
+}
+.Popup .window .title image{
+  width:40rpx;
+  height:40rpx;
+  vertical-align: middle;
+  margin-right:30rpx;
+  display: inline-block;
+}
+.Popup .window .text{
+  color:#d81e06;
+  display: inline-block;
+  line-height:230rpx;
+}
+
+
+.Popup .window .operate{
+  border-top:1rpx solid #eaeaea;
+  height:100rpx;
+  width:100%;
+  font-size:30rpx;
+  line-height:100rpx;
+  display: flex;
+  flex-direction: row;
+}
+.Popup .window .operate .item{
+  width:49%;
+  height:100%;
+  text-align: center;
 }

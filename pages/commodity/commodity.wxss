@@ -126,14 +126,30 @@ page{
   font-size:25rpx;
   width:25%;
 }
-.com_right .item image{
+
+.com_right .item .img-panel{
   max-height:170rpx;
   max-width:100%;
+  line-height:170rpx;
+}
+
+.com_right .item .img-panel image{
+  max-height:170rpx;
+  max-width:100%;
+  vertical-align: middle;
 }
 .com_right .item .text{
   margin-top:10rpx;
+  width:100%;
   font-size:30rpx;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
 }
+
+
+
+
 /*
 .com_right .com_right_items image{
   margin-top:30rpx;

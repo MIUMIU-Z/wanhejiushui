@@ -27,5 +27,26 @@ Page({
       })
     })
   }
+  ,
+  onShareAppMessage: function () {
+    // 用户点击右上角分享
+    return {
+      title: '万和酒水小程序商城',
+      path: '/pages/Home/Home',
+      success: function (res) {
+        wx.showToast({
+          title: '转发成功',
+          duration: 500
+        })
+      },
+      fail: function (res) {
+        wx.showToast({
+          title: '转发失败',
+          image: '../../images/sad.png',
+          duration: 500
+        })
+      }
+    }
+  }
 
 })

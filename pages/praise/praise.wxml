@@ -1,5 +1,5 @@
 <!--pages/praise/praise.wxml-->
-
+<view style="{{imgshow?'filter: blur(5px);':''}}">
 <scroll-view style="height:{{windowHeight}}px;width:{{windowWidth}}px;" bindscrolltolower="reachbottom" scroll-top="{{vertical}}" scroll-y="true"  bindscroll="scroll" enable-back-to-top="true">
 <view class="top-panel">
   <view bindtap="changetype" data-index="0" class="btn {{type==0?'active':''}}">
@@ -38,7 +38,9 @@
       </view>
       <view class="imgpanel">
         <block wx:for="{{item.img_list}}" wx:for-item="imgUrl">
-        <image mode="aspectFit" src="{{imgRoute+imgUrl}}" bindlongtap="showimg" data-img="{{imgRoute+imgUrl}}"></image>
+        <view class="theimg">
+        <image mode="widthFix" src="{{imgRoute+imgUrl}}" bindlongtap="showimg" data-img="{{imgRoute+imgUrl}}"></image>
+        </view>
         </block>
       </view>
       <view class="timepanel">
@@ -52,12 +54,17 @@
     </view>
 
 </scroll-view>
-<view wx:if="{{imgshow}}" class="imgshow" bindtap="backtopage">
-<image mode="widthFix" src="{{theimg}}"></image>
-</view>
+
+
 
 
  <view wx:if="{{backtop}}" class="backtotop" bindtap="backtotop">
  <image src="../../images/top.png"></image>
  <text>回到顶部</text>
  </view>
+
+</view>
+
+ <cover-view wx:if="{{imgshow}}" class="imgshow" bindtap="backtopage">
+<image mode="widthFix" src="{{theimg}}"></image>
+</cover-view>

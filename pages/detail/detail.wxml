@@ -1,6 +1,8 @@
 <!--pages/detail/detail.wxml-->
+<view style="{{imgshow?'filter: blur(5px);':''}}">
+
 <view>
-        <swiper class="swiper_box" indicator-dots autoplay interval="5000" duration="1000">
+        <swiper class="swiper_box" indicator-dots autoplay interval="5000" >
             <block wx:for="{{goodswiper}}">
                 <swiper-item>
                     <image mode="aspectFit" bindlongtap="showimg" data-img="{{imgRoute+item}}" src="{{imgRoute+item}}" class="slide-image"/>
@@ -70,7 +72,9 @@
       </view>
       <view class="imgpanel">
         <block wx:for="{{evaluate.image}}" wx:for-item="imgUrl">
-        <image mode="aspectFit" src="{{imgRoute+imgUrl}}" bindlongtap="showimg" data-img="{{imgRoute+imgUrl}}"></image>
+        <view class="theimg">
+        <image mode="widthFix" src="{{imgRoute+imgUrl}}" bindlongtap="showimg" data-img="{{imgRoute+imgUrl}}"></image>
+        </view>
         </block>
       </view>
       <view class="timepanel">
@@ -113,6 +117,8 @@
   </view>
 </view>
 
-<view wx:if="{{imgshow}}" class="imgshow" bindtap="backtopage">
-<image mode="widthFix" src="{{theimg}}"></image>
 </view>
+
+<cover-view wx:if="{{imgshow}}" class="imgshow" bindtap="backtopage">
+<image mode="widthFix" src="{{theimg}}"></image>
+</cover-view>

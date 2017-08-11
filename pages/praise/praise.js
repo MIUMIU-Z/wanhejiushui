@@ -1,9 +1,8 @@
 // pages/praise/praise.js
-function getpraise(that, goods_id,rank,offset){
-  if (!that.data.loading) {
-   that.setData({
-     loading: true,
-    })
+function getpraise(that, goods_id,rank,offset,style){
+  that.setData({
+    loading: true,
+  })
     wx.request({
       url: app.data.imgRoute + '/shop/show_goods_comments/',
       data: {
@@ -22,17 +21,32 @@ function getpraise(that, goods_id,rank,offset){
           })
         }
         else{
-          var subgrade = [res.data.total_num, res.data.good_num, res.data.medium_num, res.data.bad_num]
-          var sublist = that.data.praiselist.concat(res.data.infos)
-          setTimeout(function(){
+          if (style==1)
+          {
+            var subgrade = [res.data.total_num, res.data.good_num, res.data.medium_num, res.data.bad_num]
+            var sublist = that.data.praiselist.concat(res.data.infos)
+            setTimeout(function () {
+              that.setData({
+                Allow_refresh: res.data.infos.length < that.data.step ? false : true,
+                loading: false,
+                praisenum: subgrade,
+                praise_degree: res.data.good_proportion,
+                praiselist: sublist
+              })
+            }, 1000)
+          }
+          else{
+            var subgrade = [res.data.total_num, res.data.good_num, res.data.medium_num, res.data.bad_num]
+            var sublist = res.data.infos
             that.setData({
-              Allow_refresh: res.data.infos.length < that.data.step?false:true,
+              Allow_refresh: res.data.infos.length < that.data.step ? false : true,
               loading: false,
               praisenum: subgrade,
               praise_degree: res.data.good_proportion,
               praiselist: sublist
             })
-          },1000)
+          }
+
         }
 
       },
@@ -44,10 +58,7 @@ function getpraise(that, goods_id,rank,offset){
         })
       }
     })
-  }
-  else {
-    console.log('已经在刷新了')
-  }
+
 }
 
 var app = getApp()
@@ -91,8 +102,16 @@ Page({
     var that = this
     if (that.data.Allow_refresh)
     {
-      that.data.stepRecord = that.data.stepRecord + that.data.step
-      getpraise(that, that.data.goods_id, that.data.type, that.data.stepRecord)
+      if (!that.data.loading) 
+      {
+        that.data.loading = true
+        that.data.stepRecord = that.data.stepRecord + that.data.step
+        getpraise(that, that.data.goods_id, that.data.type, that.data.stepRecord,1)
+      }
+      else{
+        console.log('已经在刷新了')
+      }
+
     }
     else{
       wx.showToast({
@@ -124,7 +143,7 @@ Page({
       stepRecord: 0,
       Allow_refresh: true
     })
-    getpraise(that, that.data.goods_id, that.data.type, 0)
+    getpraise(that, that.data.goods_id, that.data.type, 0,0)
   },
   onLoad: function (options) {
     console.log(options.id)
@@ -147,7 +166,13 @@ Page({
     that.setData({
       goods_id: options.id
     })
-    getpraise(that, options.id, 0, 0)
+    if (!that.data.loading) {
+      getpraise(that, options.id, 0, 0,0)
+    }
+    else {
+      console.log('已经在刷新了')
+    }
+
   },
 
 

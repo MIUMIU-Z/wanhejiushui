@@ -1,18 +1,17 @@
 // pages/order/order.js
-function reqorder(that, user_id, state, offset,style){
-  if (!that.data.loading) 
-  {
+function reqorder(that, user_id, state, offset,step,style){
     that.setData({
       loading: true,
       Allow_refresh: true,
     })
-    console.log('请求内容:', 'user_id', user_id, 'state', state,'offset',offset)
+    console.log('请求内容:', 'user_id', user_id, 'state', state,'offset',offset,'step',step)
     wx.request({
       url: that.data.imgRoute + '/shop/search_order_info/',
       data: {
         user_id: user_id,
         state: state,
-        offset:offset
+        offset:offset,
+        step:step
       },
       method: 'GET',
       success: function (res) {
@@ -28,46 +27,69 @@ function reqorder(that, user_id, state, offset,style){
           })
         }
         else {
-          var sublist = that.data.myorders.concat(res.data.infos)
           if (style==1)
           {
+            var sublist = that.data.myorders.concat(res.data.infos)
             setTimeout(function () {
               that.setData({
                 Allow_refresh: res.data.infos.length < that.data.step ? false : true,
                 myorders: sublist,
                 ordernum: sublist.length,
-                loading: false
+                loading: false,
+                numRecord: offset + res.data.infos.length
               })
-            }, 1000)
+            }, 500)
           }
           else{
+            var sublist = res.data.infos
             that.setData({
               Allow_refresh: res.data.infos.length < that.data.step ? false : true,
               myorders: sublist,
               ordernum: sublist.length,
-              loading: false
+              loading: false,
+              numRecord: offset + res.data.infos.length
             })
           }
+          console.log('当前列表数目', offset + res.data.infos.length)
         }
       },
       fail: function (res) {
         console.log('失败', res)
-        wx.showToast({
-          title: '服务器故障，请联系管理员',
+       /*wx.showToast({
+          title: '请求失败，请尝试重试',
           image: '../../images/tip.png',
           mask: true
         })
         that.setData({
           loading: false
-        })
-      },
-      complete: function (res) {
-
+        })*/
+        setTimeout(function(){
+          reqorder(that, user_id, state, offset, step, style)
+        },500)
       }
     })
+
+
+}
+
+function loadpage(that,e){
+  if (!that.data.loading) {
+    that.setData({
+      page: e.currentTarget.dataset.index,
+    })
+    console.log('更改页面')
+    that.setData({
+      myorders: [],
+      ordernum: -1,
+      stepRecord: 0,
+      numRecord: 0
+    })
+    reqorder(that, app.data.userid, e.currentTarget.dataset.index, 0, that.data.step, 0)
   }
-  else{
-    console.log('已经在刷新了')
+  else {
+    setTimeout(function () {
+      loadpage(that, e)
+    }, 500)
   }
 }
 
@@ -87,7 +109,56 @@ Page({
     vertical:0,
     backtop:false,
     Allow_refresh: true,
-    stepRecord: 0
+    stepRecord: 0,
+    numRecord:5,
+    popup: false,
+    theConfirmOrder:-1
+  },
+  orderGetReq: function (e) {
+    this.setData({
+      popup: true,
+      theConfirmOrder:e.currentTarget.dataset.index
+    })
+  },
+  confirmdel: function () {
+    this.setData({
+      popup: false,
+      theConfirmOrder:-1
+    })
+  },
+  confirmCommit() {
+    var that = this
+    that.data.stepRecord = that.data.numRecord - that.data.step
+    console.log('将起始请求点设置为', that.data.numRecord - that.data.step)
+    wx.request({
+      url: app.data.imgRoute + '/shop/confirm_gotgoods/',
+      data: {
+        order_id: that.data.theConfirmOrder
+      },
+      method: 'GET',
+      success: function (res) {
+        console.log('确认收货', res)
+        wx.showToast({
+          title: '确认收货成功',
+          mask:true,
+          duration:1000
+        })
+        reqorder(that, app.data.userid, that.data.page, 0, that.data.numRecord, 0)
+        that.setData({
+          popup: false,
+        })
+      },
+      fail: function () {
+        wx.showToast({
+          title: '确认收货失败',
+          image: '../../images/sad.png'
+        })
+        that.setData({
+          popup: false,
+          theConfirmOrder: -1
+        })
+      }
+    })
   },
   backtotop:function(){
     console.log('回到顶部')
@@ -109,13 +180,7 @@ Page({
   },
   changepage:function(e){
     var that = this
-    that.setData({
-      page: e.currentTarget.dataset.index,
-      myorders: [],
-      ordernum: -1,
-      stepRecord: 0
-    })
-    reqorder(that, app.data.userid, e.currentTarget.dataset.index,0,0)
+    loadpage(that, e)
   },
   popdel:function(e){
 
@@ -127,6 +192,9 @@ Page({
     })
   },
   gotoorderdetail:function(e){
+    var that =this
+    that.data.stepRecord = that.data.numRecord - that.data.step
+    console.log('将起始请求点设置为', that.data.numRecord - that.data.step)
     wx.setStorage({
       key: 'selectedorder',
       data: this.data.myorders[e.currentTarget.dataset.index],
@@ -140,9 +208,15 @@ Page({
     if (that.data.Allow_refresh) {
       if (!that.data.loading)
       {
+        that.data.loading = true
         that.data.stepRecord = that.data.stepRecord + that.data.step
+        console.log('步数加5')
+        reqorder(that, app.data.userid, that.data.page, that.data.stepRecord, that.data.step, 1)
+
       }
-      reqorder(that, app.data.userid, that.data.page, that.data.stepRecord, 1)
+      else{
+        console.log('已经在刷新了')
+      }
     }
     else {
       wx.showToast({
@@ -156,11 +230,13 @@ Page({
 
 
   onLoad: function (options) {
+    console.log('load', options)
     var that = this
     that.setData({
       imgRoute: app.data.imgRoute,
       page: options.page
     })
+    /*reqorder(that, app.data.userid, that.data.page, 0, that.data.step, 0)*/
     wx.getSystemInfo({
       success: function(res) {
         console.log(res)
@@ -178,14 +254,19 @@ Page({
   },
 
 
-  onShow: function () {
+  onShow: function (res) {
+
     var that =this
     that.setData({
       imgRoute: app.data.imgRoute,
-      myorders: [],
-      ordernum: -1
+      /*myorders: [],
+      ordernum: -1*/
     })
-    reqorder(that, app.data.userid,that.data.page,0,0)
+    while (that.data.loading) {
+      setTimeout(function () {
+      }, 500)
+    }
+    reqorder(that, app.data.userid, that.data.page, 0, that.data.numRecord, 0)
   },
 
 

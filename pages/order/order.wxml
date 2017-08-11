@@ -66,11 +66,13 @@
     <view class="goodslist-panel"  bindtap="gotoorderdetail" data-index="{{index}}">
     <block wx:for="{{item.goods}}" wx:for-item="goodsitem">
     <view class="goodsitem">
-      <image class="titleimg" src="{{imgRoute+goodsitem.picture}}"></image>
+      <view class="img-panel">
+      <image mode="widthFix" class="titleimg" src="{{imgRoute+goodsitem.picture}}"></image>
+      </view>
       <view class="textpanel">
         <view class="name">
           <text>{{goodsitem.name}}</text>
-          <image style="width:50rpx;height:30rpx;position:absolute;bottom:10rpx;left:0;" src="../../images/self-support.png"></image>
+          <image style="width:50rpx;height:30rpx;position:absolute;bottom:20rpx;left:0;" src="../../images/self-support.png"></image>
         </view>
         <view class="righttext">
           <view class="price" style="font-weight:bold;">￥{{goodsitem.price}}</view>
@@ -87,15 +89,19 @@
         <text>(含运费￥{{item.transport_fee}})</text>
       </view>
     </view>
-    <view class="operate-panel" wx:if="{{item.state==3 || item.state==4}}">
+    <view class="operate-panel" wx:if="{{item.state==2 || item.state==3 || item.state==4}}">
       <!--<view bindtap="popdel" data-index="{{index}}" class="lefttext">
         删除
       </view>-->
-      <view class="btn" wx:if="{{item.opinion_state!=1}}" bindtap="gotoevaluate" data-index="{{item.order_id}}">
+
+      <view class="btn" wx:if="{{item.opinion_state!=1 && item.state!=2}}" bindtap="gotoevaluate" data-index="{{item.order_id}}">
       {{opinion[item.opinion_state]}}
       </view>
-      <view class="btn" wx:if="{{item.opinion_state==1}}" style="color:#A8A8A8;border:1rpx solid #A8A8A8;">
+      <view class="btn" wx:if="{{item.opinion_state==1 && item.state!=2}}" style="color:#A8A8A8;border:1rpx solid #A8A8A8;">
       已评价
+      </view>
+      <view class="btn" wx:if="{{item.state==2}}" bindtap="orderGetReq" data-index="{{item.order_id}}">
+      确认收货
       </view>
     </view>
   </view>
@@ -111,3 +117,18 @@
  <image src="../../images/top.png"></image>
  <text>回到顶部</text>
  </view>
+
+
+ <view class="Popup" wx:if="{{popup}}">
+  <view class="window">
+    <view class="title"> 
+      <image src="../../images/deltip.png"></image>
+      <view class="text">确认收到货了么？</view>
+    </view>
+    <view class="operate">
+      <view class="item" bindtap="confirmCommit">确认</view>
+      <view style="width:3rpx;height:60rpx;background:#eaeaea;margin-top:20rpx;"></view>
+      <view class="item" bindtap="confirmdel">取消</view>
+    </view>
+  </view>
+</view>

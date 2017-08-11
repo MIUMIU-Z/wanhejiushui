@@ -1,4 +1,27 @@
 // pages/trolley/trolley.js
+
+function countAmount(that){
+  var goods = that.data.orderItems
+  var sum = 0
+  for (var i = 0; i < goods.length;i++)
+  {
+    if (goods[i].edit==1)
+    {
+      sum = sum + goods[i].num * goods[i].price
+      sum = fomatFloat(sum, 3)
+    }
+  }
+  that.setData({
+    amount:sum
+  })
+  if (sum <= 0) {
+    that.setData({ commitconfirm: false })
+  }
+  else {
+    that.setData({ commitconfirm: true })
+  }
+}
+
 function fomatFloat(src, pos) {
   return Math.round(src * Math.pow(10, pos)) / Math.pow(10, pos);
 } 
@@ -11,10 +34,6 @@ Page({
     /*orderItems: [{goods_id:1,price:0.2,name:'啤酒',num:2,edit:1}],*/
     orderItems:[],
     num:0,
-    addr:0,
-    addresslist:[],
-    addrnum:-1,
-    addrid:0,
     touchmove:false,
     startprice:0.1,
     commitconfirm:false
@@ -22,15 +41,17 @@ Page({
   select:function(e){
     var node = this.data.orderItems[e.currentTarget.dataset.index].edit
     this.data.orderItems[e.currentTarget.dataset.index].edit = node==0?1:0
-    var value = this.data.orderItems[e.currentTarget.dataset.index].num * this.data.orderItems[e.currentTarget.dataset.index].price
+   /* var value = this.data.orderItems[e.currentTarget.dataset.index].num * this.data.orderItems[e.currentTarget.dataset.index].price
     value = node == 1 ?-value:value
     value = this.data.amount + value
-    value = fomatFloat(value, 3)
+    value = fomatFloat(value, 3)*/
+    app.data.orderlist = this.data.orderItems
     this.setData({
       orderItems: this.data.orderItems,
-      amount: value,
+      /*amount: value,*/
       selectall: node == 1?0:this.data.selectall
     })
+    countAmount(this)
     if (this.data.amount <=0)
     {
       this.setData({commitconfirm:false})
@@ -42,25 +63,20 @@ Page({
   selectall:function(e){
     var sub = this.data.orderItems
     var value = this.data.selectall
-    var sum = 0
+    /*var sum = 0*/
     for (var i = 0; i < sub.length;i++)
     {
       sub[i].edit = value == 0 ?1:0
-      sum = value==0? (sum + sub[i].price * sub[i].num):0
+      /*sum = value==0? (sum + sub[i].price * sub[i].num):0*/
     }
-    sum = fomatFloat(sum,3)
-  
+    /*sum = fomatFloat(sum,3)*/
+    app.data.orderlist = sub
     this.setData({
       orderItems:sub,
       selectall: value==1?0:1,
-      amount: sum
+      /*amount: sum*/
     })
-    if (this.data.amount <=0) {
-      this.setData({ commitconfirm: false })
-    }
-    else {
-      this.setData({ commitconfirm: true })
-    }
+    countAmount(this)
   },
   edittap:function(e){
     var node=0;
@@ -76,19 +92,19 @@ Page({
     {
       this.data.orderItems[index].num = this.data.orderItems[index].num-1;
       app.data.orderlist[index].num = app.data.orderlist[index].num -1;
-      if (this.data.orderItems[index].edit==1)
+      /*if (this.data.orderItems[index].edit==1)
       {
         this.data.amount = this.data.amount - this.data.orderItems[index].price;
         this.data.amount = fomatFloat(this.data.amount, 3)
-      }
+      }*/
 
     }
     this.setData({
       orderItems: this.data.orderItems,
       num: this.data.orderItems.length,
-      amount: this.data.amount
+      /*amount: this.data.amount*/
     })
-    
+    countAmount(this)
   },
   increase: function (e) {
     var index = e.target.dataset.index
@@ -97,40 +113,35 @@ Page({
     {
       this.data.orderItems[index].num = this.data.orderItems[index].num + 1;
       app.data.orderlist[index].num = app.data.orderlist[index].num +1;
-      if (this.data.orderItems[index].edit == 1)
+      /*if (this.data.orderItems[index].edit == 1)
       {
         this.data.amount = this.data.amount + this.data.orderItems[index].price;
         this.data.amount = fomatFloat(this.data.amount, 3)
-      }
+      }*/
 
     }
     this.setData({
       orderItems: this.data.orderItems,
       num: this.data.orderItems.length,
-      amount: this.data.amount
+      /*amount: this.data.amount*/
     })
+    countAmount(this)
   },
   comdelete:function(e){
     var sub = this.data.orderItems[e.currentTarget.dataset.index]
-    if (this.data.orderItems[e.currentTarget.dataset.index].edit == 1)
+    /*if (this.data.orderItems[e.currentTarget.dataset.index].edit == 1)
     {
       this.data.amount = this.data.amount - sub.price * sub.num
       this.data.amount = fomatFloat(this.data.amount, 3)
-    }
+    }*/
     app.data.orderlist.splice(e.currentTarget.dataset.index, 1)
     this.data.orderItems.splice(e.currentTarget.dataset.index, 1)
     this.setData({
       orderItems: this.data.orderItems,
-      orderItems: app.data.orderlist,
       num: this.data.num-1,
-      amount:this.data.amount
+      /*amount:this.data.amount*/
     })
-    if (this.data.amount <= 0) {
-      this.setData({ commitconfirm: false })
-    }
-    else {
-      this.setData({ commitconfirm: true })
-    }
+    countAmount(this)
 },
   ordersubmit:function(){
 
@@ -176,38 +187,10 @@ Page({
           mask: true
         })
       }
-      else{
-        that.setData({
-          addr:1
-        })
-      }
 
     }
   },
 
-  addrpanel:function(){
-   var that = this
-   that.setData({
-     addr:that.data.addr==1?0:1
-   })
-  },
-  former: function () {
-    if (this.data.addrid>0)
-      this.setData({
-        addrid:this.data.addrid-1
-      })
-  },
-  latter:function(){
-    if (this.data.addrid < (this.data.addresslist.length-1))
-      this.setData({
-        addrid: this.data.addrid + 1
-    })
-  },
-  gotoaddress:function(){
-    wx.navigateTo({
-      url: '../addresslist/addresslist',
-    })
-  },
   onLoad:function(options){
     var that = this
     that.setData({
@@ -219,28 +202,30 @@ Page({
 
   },
   onShow:function(){
-    
+    console.log('购物车备份',app.data.orderlist)
     var sub = app.data.orderlist
-    var sum = 0
+    /*var sum = 0
     for (var i = 0; i < sub.length; i++) {
       sum = sum + sub[i].price * sub[i].num
     }
-    sum = fomatFloat(sum, 3)
-
-    this.setData({
+    sum = fomatFloat(sum, 3)*/
+    var value = 1
+    for (var i = 0; i < sub.length; i++)
+    {
+      if (sub[i].edit==0)
+      {
+        value = 0
+      }
+    }
+    this.setData({ 
       orderItems:app.data.orderlist,
       num: app.data.orderlist.length,
       selectall:1,
-      addrid: 0,
-      amount: sum
+      selectall:value
+      /*amount: sum*/
     })
+    countAmount(this)
 
-    if (sum <=0) {
-      this.setData({ commitconfirm: false })
-    }
-    else {
-      this.setData({ commitconfirm: true })
-    }
     console.log('购物车',app.data.orderlist)
   },
   onHide:function(){

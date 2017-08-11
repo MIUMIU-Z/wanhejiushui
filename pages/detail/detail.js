@@ -15,8 +15,8 @@ Page({
     imgshow:false,
     theimg:'',
     evaluate: {},
-    Disclaimer: '不满一箱的商品，运费将按照整箱计算，欢迎购买。',
-    Reminder:'（黑龙江省哈尔滨市内的用户将享受免运费服务，哈市二环内满500元起送，二环外满1000元起送，三环外满1200元起送）'
+    Disclaimer: '对于外地用户不满一箱的商品，运费将按照整箱计算，欢迎购买。',
+    Reminder:'黑龙江省哈尔滨市内的用户将享受免运费服务：哈市二环内满500元起送，二环外满1000元起送，三环外满1200元起送；上述工作时间为早8：00-晚22：00。 订单将在生成后2小时左右送到指定位置。（遇雨天雪天堵车，会稍有延误，不可抗力除外，三环外和江北的送达时间需要电话沟通约定），订单超过下午4点生成，统一第二天开店营业时送货。'
 
     },
   showimg:function(e){
@@ -109,7 +109,6 @@ Page({
       })
       app.data.orderlist.push(theorder)
       wx.showToast({
-        mask: 'True',
         title: '已添加到购物车',
         duration: 1200
       })
@@ -122,7 +121,6 @@ Page({
     {
       app.data.orderlist[this.data.orderindex].num = this.data.num
       wx.showToast({
-        mask: 'True',
         title: '已更新该商品数量',
         duration: 1200
       })
@@ -130,10 +128,10 @@ Page({
     else
     {
       wx.showToast({
-        mask:'True',
+        mask:true,
         title: '请选择商品数量',
         image:'../../images/tip.png',
-        duration:1200
+        duration:1000
       })
     }
     console.log(app.data.orderlist)

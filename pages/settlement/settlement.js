@@ -3,7 +3,8 @@ function reqfreight(that){
   console.log('运费请求地址', that.data.addresslist[that.data.addrid])
   wx.showLoading({
     title: '加载中',
-    mask: true
+    mask: true,
+    difference: '正在计算运费'
   })
   wx.request({
     url: app.data.imgRoute + '/shop/transport_fee/',
@@ -81,7 +82,7 @@ Page({
     paymethod:0,
     receipt:{},
     remark:'',
-    difference:'正在计算运费',
+    difference:'',
     commitConfirm:false
   },
   selectAddr:function(){
@@ -115,7 +116,7 @@ Page({
     })
   },
   ordersubmmit:function(){
-    if (this.data.addrid > (this.data.addresslist.length-1))
+    if (this.data.addrid > (this.data.addresslist.length - 1) || this.data.addrid==-1)
     {
       wx.showToast({
         title: '请选择地址',
@@ -275,13 +276,14 @@ Page({
       method: 'GET',
       success: function (resu) {
         console.log('结算页面地址列表', resu)
-        for (var i = 0; i < resu.data.infos.length; i++) {
+        var addrlength = resu.data.infos.length
+        for (var i = 0; i < addrlength; i++) {
           if (resu.data.infos[i].remark == 1)
             break
         }
         that.setData({
           addresslist: resu.data.infos,
-          addrnum: resu.data.infos.length,
+          addrnum: addrlength,
         })
         var theaddrid = i
         wx.getStorage({
@@ -294,10 +296,18 @@ Page({
           },
           fail:function(){
             console.log('记录没了')
-            that.setData({
-              addrid: theaddrid
-            })
-            reqfreight(that)
+            if (addrlength!=0)
+            {
+              that.setData({
+                addrid: theaddrid
+              })
+              reqfreight(that)
+            }
+            else{
+              that.setData({
+                difference: '请选择地址'
+              })
+            }
           }
         })
       }

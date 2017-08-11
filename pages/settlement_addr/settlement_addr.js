@@ -7,7 +7,8 @@ Page({
     addresslist:[]
   },
   gotoaddress:function(){
-    wx.navigateTo({
+    console.log('自己上地址页面改去')
+    wx.redirectTo({
       url: '../addresslist/addresslist',
     })
   },

@@ -25,7 +25,9 @@
 <scroll-view class="com_right" scroll-y='true'>
     <block wx:for="{{goods}}">
     <view class="item" bindtap="gotogoodslist" data-id="{{item.brand_id}}">
+      <view class="img-panel">
       <image mode="widthFix" src="{{imgRoute+item.imageurl}}"></image>
+      </view>
       <view class="text">{{item.brand}}</view>
     </view>
     </block>

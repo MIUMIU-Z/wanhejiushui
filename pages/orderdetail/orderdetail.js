@@ -7,24 +7,57 @@ Page({
     address: {},
     goods: [],
     thestate: ['', '待发货', '待收货', '已收货', '已完成', '已取消'],
-    opinion: ['', '已评价', '未评完', '未评价'],
+    opinion: ['', '已评价', '未评完', '评价'],
+    popup:false
 
   },
   orderconfirm:function(){
-    wx.request({
-      url: app.data.imgRoute +'/shop/confirm_gotgoods/',
-      data: {
-        order_id:this.data.order.order_id
-      },
-      method:'GET',
-      success:function(res){
-          console.log('确认收货',res)
+    this.setData({
+      popup: true
+    })
+  },
+  confirmdel:function(){
+    this.setData({
+      popup: false
+    })
+  },
+  makecall:function(){
+    wx.makePhoneCall({
+      phoneNumber: app.data.phoneNumber,
+      fail:function(){
+        console.log('拨打电话失败')
       }
     })
-    wx.navigateBack({
-      delta:1
+  },
+  confirmCommit(){
+    var that = this
+    wx.request({
+      url: app.data.imgRoute + '/shop/confirm_gotgoods/',
+      data: {
+        order_id: that.data.order.order_id
+      },
+      method: 'GET',
+      success: function (res) {
+        console.log('确认收货', res)
+        that.data.order.state = 3
+        wx.showToast({
+          title: '确认收货成功',
+        })
+        that.setData({
+          popup: false,
+          order: that.data.order
+        })
+      },
+      fail:function(){
+        wx.showToast({
+          title: '确认收货失败',
+          image:'../../images/sad.png'
+        })
+        that.setData({
+          popup: false
+        })
+      }
     })
-    
   },
   gotoevaluate: function (e) {
     wx.navigateTo({

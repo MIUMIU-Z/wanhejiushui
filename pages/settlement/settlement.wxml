@@ -107,7 +107,7 @@
   </view>
   </block>
   <block wx:else>
-  <view class="btn"  bindtap="ordersubmmit" style="border:1rpx solid #989899;color:#fafafa;background:#a9a9ab;"> 
+  <view class="btn"   style="border:1rpx solid #989899;color:#fafafa;background:#a9a9ab;"> 
   {{difference}}
   </view>
   </block>

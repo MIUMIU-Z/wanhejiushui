@@ -5,7 +5,11 @@ Page({
     recommend:[],
     imgRoute: ''
   },
-
+  read:function(){
+    this.setData({
+      disclaimer: false
+    })
+  },
   gotosearch:function(){
     wx.navigateTo({
       url: '../goodslist/goodslist?id='+-1,
@@ -38,7 +42,50 @@ Page({
   onLoad:function(options){
     var that = this
     that.setData({
-      imgRoute: app.data.imgRoute
+      imgRoute: app.data.imgRoute,
+    })
+    wx.request({
+      url: that.data.imgRoute + '/shop/is_ceshi/',
+      success: function (res) {
+        console.log('测试请求', res)
+        if (res.data == 1) {
+          app.data.disclaimer = true
+        }
+        else {
+          app.data.disclaimer = false
+        }
+        that.setData({
+          disclaimer: app.data.disclaimer
+        })
+      },
+      fail: function () {
+        console.log('1.5秒后重新请求',res)
+        setTimeout(function(){
+          wx.request({
+            url: that.data.imgRoute + '/shop/is_ceshi/',
+            success: function (res) {
+              console.log('测试请求', res)
+              if (res.data == 1) {
+                app.data.disclaimer = true
+              }
+              else {
+                app.data.disclaimer = false
+              }
+              that.setData({
+                disclaimer: app.data.disclaimer
+              })
+            },
+            fail: function () {
+              console.log('两次请求失败，版本未知')
+              /*wx.showToast({
+                title: '两次请求版本未知，请重启或确保小程序处于非测试状态',
+                image: '../../images/tip.png',
+                duration: 3000
+              })*/
+            }
+          })
+        },1500)
+      }
     })
   },
   onReady:function(){
@@ -84,7 +131,7 @@ Page({
     // 用户点击右上角分享
     return {
       title: '万和酒水小程序商城',
-      path: '/pages/Home',
+      path: '/pages/Home/Home',
       success: function (res) {
         wx.showToast({
           title: '转发成功',

@@ -95,23 +95,32 @@ page{
 }
 .orderitem-panel .goodsitem{
   margin-bottom:5rpx;
-  height:150rpx;
+  height:180rpx;
   background:#fafafa;
 }
-.orderitem-panel .goodsitem .titleimg{
-  width:130rpx;
-  height:130rpx;
-  margin:10rpx 0rpx 10rpx 30rpx;
+.orderitem-panel .goodsitem .img-panel{
+  margin-top:10rpx;
+  width:150rpx;
+  height:160rpx;
+  margin-left:30rpx;
   float:left;
+  line-height:160rpx;
+  background:#fff;
+}
+.orderitem-panel .goodsitem .img-panel .titleimg{
+  width:100%;
+  max-height:150rpx;
+  vertical-align: middle;
 }
 .orderitem-panel .goodsitem .textpanel{
   float: right;
   margin-right:20rpx;
-  width:73%;
-  height:130rpx;
+  width:70%;
+  height:160rpx;
   margin:10rpx 20rpx 10rpx 0rpx;
 }
 .orderitem-panel .goodsitem .textpanel .name{
+  margin-top:5rpx;
   float:left;
   width:70%;
   height:100%;
@@ -188,15 +197,16 @@ page{
 }
 .btn-panel .btn{
   float:right;
-  margin-right:30rpx;
+  margin-right:20%;
   margin-top:20rpx;
   height:60rpx;
-  width:120rpx;
+  width:60%;
   border:1rpx solid #ff2424;
   text-align: center;
   line-height:60rpx;
   color:#ff2424;
   border-radius: 50rpx;
+  background:#fff;
 }
 
 .order-panel{
@@ -229,9 +239,124 @@ page{
 }
 
 .noteimg{
-  width:250rpx;
-  height:250rpx;
+  width:200rpx;
+  height:200rpx;
   position:absolute;
-  bottom:40rpx;
+  bottom:35rpx;
+  right:50rpx;
+}
+
+
+.Popup{
+  position: fixed;
+  top:0;
+  left:0;
   right:0;
+  bottom:0;
+  width:100%;
+  height:100%;
+  background: rgba(0,0,0,0.4);
+}
+
+.Popup .window{
+  position: fixed;
+  top:30%;
+  left:15%;
+  width:70%;
+  height:300rpx;
+  background:#fff;
+  box-shadow: 1rpx 1rpx 1rpx rgba(30,33,39,0.4);
+  border-radius:20rpx;
+}
+
+.Popup .window .title{
+  height:200rpx;
+  width:100%;
+  font-size:30rpx;
+  text-align: center;
+}
+.Popup .window .title image{
+  width:40rpx;
+  height:40rpx;
+  vertical-align: middle;
+  margin-right:30rpx;
+  display: inline-block;
+}
+.Popup .window .text{
+  color:#d81e06;
+  display: inline-block;
+  line-height:230rpx;
+}
+
+
+.Popup .window .operate{
+  border-top:1rpx solid #eaeaea;
+  height:100rpx;
+  width:100%;
+  font-size:30rpx;
+  line-height:100rpx;
+  display: flex;
+  flex-direction: row;
+}
+.Popup .window .operate .item{
+  width:49%;
+  height:100%;
+  text-align: center;
+}
+
+
+.contact-title{
+  width:100%;
+  height:50rpx;
+  line-height:50rpx;
+  font-size:25rpx;
+  color:#9b9b9b;
+  background:#fff;
+}
+
+.contact-panel{
+  width:100%;
+  height:90rpx;
+  background:#fff;
+  margin-bottom:20rpx;
+  display: flex;
+  flex-direction: row;
+}
+
+.contact-panel .item{
+  margin-top:8rpx;
+  margin-left:2%;
+  width:46%;
+  height:80%;
+  border:1rpx solid #d9d9d9;
+  display: block;
+  text-align: center;
+  line-height:65rpx;
+  box-shadow: 1rpx 1rpx 1rpx rgba(217,217,217,0.4);
+  position: relative;
+}
+
+.contact-panel .item image{
+  width:45rpx;
+  height:45rpx;
+  vertical-align: middle;
+  display: inline-block;
+}
+
+.contact-panel .item .text{
+  margin-left:15rpx;
+  font-size:25rpx;
+  display: inline-block;
+}
+
+.tab-btn{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+}
+
+button[plain]{
+  border:none;
 }

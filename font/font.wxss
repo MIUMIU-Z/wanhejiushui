@@ -8,3 +8,38 @@
 	font-style: normal;
 }*/
 
+.disclaimer-background{
+  width:100%;
+  height:100%;
+  position:fixed;
+  top:0;
+  left:0;
+  background:rgba(0,0,0,0.5);
+}
+.disclaimer-panel{
+  width:80%;
+  min-height:200rpx;
+  margin-left:10%;
+  margin-top:120rpx;
+  background:#fff;
+  border-radius: 15rpx;
+  padding-bottom:40rpx;
+}
+.disclaimer-panel .title{
+  height:100rpx;
+  line-height:100rpx;
+  font-size:40rpx;
+  color:#cc0000;
+  text-align: center;
+  font-weight:bold;
+}
+
+.disclaimer-panel .content{
+  line-height:40rpx;
+  font-size:30rpx;
+
+  width:90%;
+  margin-left:5%;
+  text-align: left;
+  text-indent:2em;
+}

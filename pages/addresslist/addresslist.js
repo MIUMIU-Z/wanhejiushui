@@ -10,8 +10,15 @@ Page({
   },
 
   add:function(){
+    console.log('前去添加地址')
     wx.navigateTo({
       url: '../address/address?style=0',
+      success:function(res){
+        console.log('跳转成功',res)
+      },
+      fail:function(res){
+        console.log('跳转失败', res)
+      }
     })
   },
   setdefault: function (e) {

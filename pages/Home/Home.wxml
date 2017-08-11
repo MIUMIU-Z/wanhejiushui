@@ -12,7 +12,7 @@
 
 
 <view class="swiper">
-<swiper  autoplay indicator-dots interval="3000" circular class="swiper">
+<swiper  autoplay indicator-dots interval="5000" circular class="swiper">
 <block wx:for="{{imgUrls}}">
     <swiper-item class="swiper-item">
       <image  src="{{imgRoute+item}}" class="swiper-image" />
@@ -66,8 +66,25 @@
     <view class="Recblock" bindtap="gotodetail" data-index="{{index}}">
       <image mode="scaleToFit" class="Recblockimage" src="{{imgRoute+item.img}}"></image>
       <view class="Recblocktext"> <text>{{item.name}}</text></view>
-      <view class="Recblockprice"> <text>￥{{item.price}}</text></view>
+      <view class="Recblockbottom"> 
+      <view class="price">￥{{item.price}}</view>
+      <view class="sellnum">已售{{item.sell_num}}</view>
+      </view>
     </view>
 </block>
 </view>
 
+
+<view wx:if="{{disclaimer}}" class="disclaimer-background" bindtap="read">
+  <view class="disclaimer-panel">
+    <view class="title">
+      免责声明
+    </view>
+    <view class="content">
+      <view>该小程序目前正处于<text style="font-size:33rpx;color:red;">测试版本</text>，所提供的一切信息，仅供测试之用。</view>
+      <view>非受邀测试用户请停止使用并关闭，小程序暂不提供一切服务。若您在本小程序内选购任何商品，营销商家不会提供配送服务，产生的任何费用由用户自己承担，开发人员与营销商户概不负责。</view>
+      <view>在法律允许的范围内，在此声明,不承担用户或任何人士就使用或未能使用该小程序所提供的信息或任何链接或项目所引致的任何直接、间接、附带、从属、特殊、惩罚性或惩戒性的损害赔偿（包括但不限于收益、预期利润的损失或失去的业务、未实现预期的节省）。</view>
+      <view>凡以任何方式登陆本小程序或直接、间接使用本小程序资料者，视为自愿接受本小程序声明的约束。</view>
+    </view>
+  </view>
+</view>

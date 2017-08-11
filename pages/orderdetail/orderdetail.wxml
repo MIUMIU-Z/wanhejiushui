@@ -19,14 +19,16 @@
   </view>
 </view>
 
-<view class="orderitem-panel"  bindtap="gotoorderdetail" data-index="{{index}}">
+<view class="orderitem-panel"  bindtap="gotoorderdetail">
     <view class="title-panel">
-      <view class="lefttext">共计1件商品</view>
-      <view class="righttext">已发货</view>
+      <view class="lefttext">共计{{goods.length}}件商品</view>
+      <view class="righttext">{{thestate[order.state]}}</view>
     </view>
     <block wx:for="{{goods}}" wx:for-item="goodsitem">
     <view class="goodsitem">
-      <image class="titleimg" src="{{imgRoute+goodsitem.picture}}"></image>
+      <view class="img-panel">
+      <image mode="widthFix" class="titleimg" src="{{imgRoute+goodsitem.picture}}"></image>
+      </view>
       <view class="textpanel">
         <view class="name">
           <text>{{goodsitem.name}}</text>
@@ -45,7 +47,7 @@
         <view class="left">商品费用</view>
         <view class="right">￥{{order.goods_money}}</view>
       </view>
-      <view class="item">
+      <view class="item" style="padding-bottom:10rpx;">
         <view class="left">运费</view>
         <view class="right">+￥{{order.transport_fee}}</view>
       </view>
@@ -53,13 +55,29 @@
         <view class="left">优惠</view>
         <view class="right">-￥0</view>
       </view>-->
-      <view class="item" style="font-size:30rpx;">
+      <view class="item" style="font-size:30rpx;padding-top:20rpx;border-top:1rpx dotted #eaeaea;">
         <view class="left" >实付款</view>
         <view class="right" style="color:#ff5500;font-weight:bold;">￥{{order.money}}</view>
       </view>
     </view>
   
   </view>
+
+<view wx:if="{{order.state<=2}}" class="contact-title">
+<text style="margin-left:20rpx;">如果您想取消订单，请选择下列方式联系客服人员</text>
+</view>
+<view wx:if="{{order.state<=2}}" class="contact-panel">
+  <view class="item">
+    <button class="tab-btn" open-type="contact" plain="true" hover-class="none"/>
+    <image src="../../images/chat.png"></image>
+    <view class="text">联系客服</view>
+  </view>
+  <view class="item" bindtap="makecall">
+    <image src="../../images/call.png"></image>
+    <view class="text">拨打电话</view>
+  </view>
+</view>
+
 
 <view class="order-panel">
   <view class="item" style="  height:50rpx;;line-height:50rpx;">
@@ -74,12 +92,6 @@
   <view class="item">
   创建时间：{{order.time}}
   </view>
-  <view wx:if="{{order.paymethod==1}}" class="item">
-  支付时间：{{order.time}}
-  </view>
-  <view wx:if="{{order.paymethod==0 && order.state<=2}}" class="item">
-  支付时间：尚未支付
-  </view>
   <!--<view class="item">
   发货时间：{{order.state>1?'':'尚未发货'}}
   </view>
@@ -87,14 +99,42 @@
   收货时间：尚未收货
   </view>-->
   <!--<image src="../../images/paid2.png" class="noteimg"></image>-->
+  <block wx:if="{{order.paymethod==1}}">
+  <view class="item">
+  支付时间：{{order.time}}
+  </view>
+
+  </block>
+  <block wx:else>
+  <view wx:if="{{order.state<=2}}" class="item">
+  支付时间：尚未支付
+  </view>
+  </block>
+  <image wx:if="{{order.is_paid==1}}" src="../../images/{{order.state<=2?'paid':'got'}}.png" class="noteimg"></image>
+  <image wx:if="{{order.is_paid==0}}" src="../../images/unpaid.png" class="noteimg"></image>
   <view class="tail">
   </view>
 </view>
 
 
 <block wx:if="{{order.state>1 && order.state<5}}">
-<view class="btn-panel" wx:if="{{order.state==2 || (order.state!=2 &&order.opinion_state==0)}}">
-  <view class="btn" wx:if="{{order.state!=2}}" bindtap="gotoevaluate" data-index="{{order.order_id}}">评价</view>
+<view class="btn-panel" wx:if="{{order.state==2 || (order.state!=2 && order.opinion_state!=1)}}">
+  <view class="btn" wx:if="{{order.state!=2}}" bindtap="gotoevaluate" data-index="{{order.order_id}}">{{opinion[order.opinion_state]}}</view>
   <view class="btn" wx:if="{{order.state==2}}" bindtap="orderconfirm">确认收货</view>
 </view>
 </block>
+
+
+<view class="Popup" wx:if="{{popup}}">
+  <view class="window">
+    <view class="title"> 
+      <image src="../../images/deltip.png"></image>
+      <view class="text">确认收到货了么？</view>
+    </view>
+    <view class="operate">
+      <view class="item" bindtap="confirmCommit">确认</view>
+      <view style="width:3rpx;height:60rpx;background:#eaeaea;margin-top:20rpx;"></view>
+      <view class="item" bindtap="confirmdel">取消</view>
+    </view>
+  </view>
+</view>
