@@ -67,11 +67,11 @@ App({
       mask: true
     })
     var that = this
-    this.data.userid = 2
+    /*this.data.userid = 2
     setTimeout(function () {
       wx.hideLoading()
-    }, 500)
-    /*wx.login({
+    }, 500)*/
+    wx.login({
       success: function (res){
         var code = res.code
         wx.getUserInfo({
@@ -95,7 +95,7 @@ App({
           image:'../../images/tip.png'
         })
       }
-    })*/
+    })
   },
 
   getUserInfo:function(cb){
