@@ -20,17 +20,16 @@
 
     <view class="operate">
         <view class="numoperate">
-            <view class="numtext">数量： </view>
+            <view class="numtext">数量(瓶)： </view>
             <view class="numbutton" bindtap="numreduce">-</view>
             <view class="numbutton" style="background:white;width:80rpx;">{{num}}</view>
             <view class="numbutton" bindtap="numincrease">+</view>
         </view>
         <view class="disclaimer-panel">
-        <text></text>
-        <text style="">本商品{{goodsinfo.box_num}}瓶为一箱</text>
-        <text></text>
-        <text>，{{Disclaimer}}</text>
-        <text style="color:#FF3030;">{{Reminder}}</text>
+        <text>本商品</text>
+        <text style="color:#FF3030;font-size:30rpx;">{{goodsinfo.box_num}}</text>
+       <text>瓶为一箱</text>
+        <text>。{{Disclaimer}}</text>
         </view>
     </view>
 </view>

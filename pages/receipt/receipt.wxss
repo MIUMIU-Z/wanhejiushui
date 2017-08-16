@@ -110,7 +110,8 @@ page{
 .receipttop-panel .topcontent-panel .contentitem .contenttitle{
   height:50rpx;
   line-height:50rpx;
-  width:180rpx;
+  width:120rpx;
+  margin-right:60rpx;
   font-size:25rpx;
   color:#999999;
 }

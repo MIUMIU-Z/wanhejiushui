@@ -62,7 +62,7 @@ page{
 
 }
 .numtext{
-    width: 150rpx;
+    width: 260rpx;
     height: 50rpx;
     text-align: center;
     border:1rpx solid white;

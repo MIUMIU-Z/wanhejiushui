@@ -83,6 +83,7 @@ Page({
     receipt:{},
     remark:'',
     difference:'',
+    tax:0,
     commitConfirm:false
   },
   selectAddr:function(){
@@ -130,6 +131,8 @@ Page({
     console.log('要提交的订单',this.data.goodsubmmit)
     console.log('要提交的地址编号', that.data.addresslist[that.data.addrid].addr_id)
     console.log('要提交的发票信息',that.data.receipt)
+    console.log('字段addr_phone', that.data.receipt.address + '@' + that.data.receipt.phone)
+    console.log('字段bank_number', that.data.receipt.bank + '@' + that.data.receipt.account)
     wx.request({
       url: app.data.imgRoute + '/shop/add_order/',
       data: {
@@ -140,11 +143,13 @@ Page({
         paymethod: that.data.paymethod,
         transport_fee: that.data.freight,
         need_bill: that.data.receipt.need_bill,
-        is_paper: that.data.receipt.is_paper,
+        is_writen: that.data.receipt.is_paper,
         bill_top: that.data.receipt.bill_top,
         is_people: that.data.receipt.is_people,
         bill_content: that.data.receipt.bill_content,
         identify_num: that.data.receipt.identify_num,
+        addr_phone: that.data.receipt.address+' '+that.data.receipt.phone,
+        bank_number: that.data.receipt.bank+' '+that.data.receipt.account,
         remark: that.data.remark
       },
       method: 'POST',
@@ -348,7 +353,11 @@ Page({
         is_people: 1,
         bill_content: '',
         bill_top: '',
-        identify_num: ''
+        identify_num: '',
+        address: '',
+        phone: '',
+        bank: '',
+        account: ''
       },
     })
   },

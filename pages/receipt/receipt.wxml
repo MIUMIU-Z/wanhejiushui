@@ -21,11 +21,11 @@
   <view class="checkbox-panel">
     <view bindtap="is_paper" data-index="{{0}}" class="check-box {{is_paper==0?'active':''}}">
       <image wx:if="{{is_paper==0}}"  src="../../images/select2.png"></image>
-      <view class="text">电子发票</view>
+      <view class="text">机印发票</view>
     </view>
     <view bindtap="is_paper" data-index="{{1}}" class="check-box {{is_paper==1?'active':''}}">
       <image wx:if="{{is_paper==1}}"  src="../../images/select2.png"></image>
-      <view class="text">纸质发票</view>
+      <view class="text">手写发票</view>
     </view>
   </view>
   <view wx:if="{{is_paper==0}}" class="remark-panel">
@@ -60,8 +60,36 @@
 
   <view wx:if="{{is_people==0}}" class="topcontent-panel">
     <view class="contentitem">
-      <view class="contenttitle">纳税人识别号：</view>
+      <view class="contenttitle" style="width:180rpx;margin-right:0rpx;">纳税人识别号：</view>
       <input bindblur="identify_num" value="{{identify_num}}" name="identify_num"></input>
+    </view>
+  </view>
+
+  <view class="topcontent-panel" style="margin-top:50rpx;">
+    <view class="contentitem" >
+      <view class="contenttitle" style="border-top:1rpx dashed #eaeaea;">联系电话：</view>
+      <input bindblur="phone" value="{{phone}}" name="phone" ></input>
+    </view>
+  </view>
+
+  <view class="topcontent-panel">
+    <view class="contentitem">
+      <view class="contenttitle" >地址信息：</view>
+      <input bindblur="address" value="{{address}}" name="address"></input>
+    </view>
+  </view>
+
+  <view class="topcontent-panel">
+    <view class="contentitem">
+      <view class="contenttitle" >开户银行：</view>
+      <input bindblur="bank" value="{{bank}}" name="bank"></input>
+    </view>
+  </view>
+
+  <view class="topcontent-panel">
+    <view class="contentitem">
+      <view class="contenttitle" style="border-bottom:1rpx dashed #eaeaea;">开户账号：</view>
+      <input bindblur="account" value="{{account}}" name="account"></input>
     </view>
   </view>
 

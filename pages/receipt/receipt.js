@@ -13,7 +13,11 @@ Page({
     contenttip:'温馨提示：建议发票内容选择明细，以保证您可以享受厂商提供的售后服务',
     identify_num:'',
     bill_top:'',
-    typetip:'电子发票可作为用户报销、推权、保修的有效凭据。如您本次购买的商品暂时未实现电子发票开具，我们将自动更换为纸质普通发票。'
+    typetip:'电子发票可作为用户报销、推权、保修的有效凭据。如您本次购买的商品暂时未实现电子发票开具，我们将自动更换为纸质普通发票。',
+    address: '',
+    phone: '',
+    bank: '',
+    account: ''
   },
   need_bill:function(){
     this.setData({
@@ -27,7 +31,11 @@ Page({
         bill_top: '',
         is_people: 1,
         bill_content: '明细',
-        identify_num: ''
+        identify_num: '',
+        address:'',
+        phone: '',
+        bank: '',
+        account:''
       })
     }
   },
@@ -56,6 +64,26 @@ Page({
       identify_num: e.detail.value
     })
   },
+  bank: function (e) {
+    this.setData({
+      bank: e.detail.value
+    })
+  },
+  account: function (e) {
+    this.setData({
+      account: e.detail.value
+    })
+  },
+  address: function (e) {
+    this.setData({
+      address: e.detail.value
+    })
+  },
+  phone: function (e) {
+    this.setData({
+      phone: e.detail.value
+    })
+  },
   onLoad: function (options) {
     var that =this
     that.setData({
@@ -64,7 +92,7 @@ Page({
     wx.getStorage({
       key: 'receipt',
       success: function(res) {
-        console.log(res.data)
+        console.log('发票信息',res.data)
         that.setData({
           selectid: res.data.selectid,
           bill_content: res.data.bill_content,
@@ -72,7 +100,11 @@ Page({
           is_paper: res.data.is_paper,
           is_people: res.data.is_people,
           need_bill: res.data.need_bill,
-          identify_num: res.data.identify_num
+          identify_num: res.data.identify_num,
+          address: res.data.address,
+          phone: res.data.phone,
+          bank: res.data.bank,
+          account: res.data.account
         })
       },
     })
@@ -89,6 +121,10 @@ Page({
     })
   },
   commit:function(){
+    console.log('bank:',this.data.bank)
+    console.log('account:', this.data.account)
+    console.log('account:', this.data.account)
+    console.log('phone:', this.data.phone)
     if ((this.data.need_bill == 1 && this.data.bill_top == '') || (this.data.need_bill == 1 && this.data.is_people == 0 && this.data.identify_num==''))
     {
       wx.showToast({
@@ -98,21 +134,35 @@ Page({
       })
     }
     else{
-      wx.setStorage({
-        key: 'receipt',
-        data: {
-          selectid: this.data.selectid,
-          need_bill: this.data.need_bill,
-          is_paper: this.data.is_paper,
-          bill_top: this.data.bill_top,
-          is_people: this.data.is_people,
-          bill_content: this.data.contentlist[this.data.selectid],
-          identify_num: this.data.identify_num
-        },
-      })
-      wx.navigateBack({
-        delta: 1
-      })
+      if (this.data.need_bill == 1 && (this.data.address == '' || this.data.bank=='' || this.data.phone=='' || this.data.account==''))
+      {
+        wx.showToast({
+          title: '请填写完整发票内容',
+          image: '../../images/tip.png',
+          duration: 1000
+        })
+      }
+      else{
+        wx.setStorage({
+          key: 'receipt',
+          data: {
+            selectid: this.data.selectid,
+            need_bill: this.data.need_bill,
+            is_paper: this.data.is_paper,
+            bill_top: this.data.bill_top,
+            is_people: this.data.is_people,
+            bill_content: this.data.contentlist[this.data.selectid],
+            identify_num: this.data.identify_num,
+            address: this.data.address,
+            phone: this.data.phone,
+            bank: this.data.bank,
+            account: this.data.account
+          },
+        })
+        wx.navigateBack({
+          delta: 1
+        })
+      }
     }
 
   },
