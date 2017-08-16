@@ -12,7 +12,8 @@ Page({
     autoplay: "true",
     interval: 3000,
     duration: 500,
-    qrcode: "http://wxdata-1253783629.costj.myqcloud.com/wanhe/qr.jpg",
+    qrcode: "https://vxlabdb.gxxnr.cn/applab/wanhe1.png",
+    usqr: "https://vxlabdb.gxxnr.cn/common/ourqr.jpg",
     isshow: false,
     isqrshow: false,
 
@@ -51,7 +52,7 @@ Page({
     })
   },
 
-  popImg: function (e) {
+  /*popImg: function (e) {
     var that = this;
     console.log(e);
     that.setData({
@@ -59,7 +60,7 @@ Page({
       curImg: that.data.images[e.currentTarget.id]
     });
 
-  },
+  },*/
   delImg: function () {
     var that = this;
     that.setData({
@@ -163,6 +164,14 @@ Page({
     }
 
   },
+  previewImage: function (event) {
+    var current = event.target.dataset.src;
+
+    wx.previewImage({
+      current: current,
+      urls: [current]
+    })
+  },
   onLoad: function (options) {
     var that = this;
     that.setData({
@@ -171,14 +180,14 @@ Page({
     //请求数据
     wx.request({
       url: app.data.imgRoute + '/shop/show_shopinfo/',
-      success: function(res) {
-        console.log('商家信息返回',res)
+      success: function (res) {
+        console.log('商家信息返回', res)
         that.setData({
           name: res.data.infos.name,
           intruduce: res.data.infos.introduction,
           images: res.data.img,
           comListInfo: [{
-            icon: 'http://wxdata-1253783629.costj.myqcloud.com/common/address.png',
+            icon: 'http://wxdata-1253783629.costj.myqcloud.com/common/address1.png',
             icon1: 'http://wxdata-1253783629.costj.myqcloud.com/common/addrgo.png',
             text: res.data.infos.location,
             isunread: true,
@@ -192,6 +201,11 @@ Page({
             icon: 'http://wxdata-1253783629.costj.myqcloud.com/common/phone1.png',
             icon1: 'http://wxdata-1253783629.costj.myqcloud.com/common/call1.png',
             text: res.data.infos.phone,
+            isunread: true,
+            unreadNum: 1
+          }, {
+            icon: 'https://vxlabdb.gxxnr.cn/common/wx.png',
+            text: "pengpengport",
             isunread: true,
             unreadNum: 1
           }],

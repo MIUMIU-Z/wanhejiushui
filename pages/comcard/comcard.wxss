@@ -7,7 +7,7 @@
 }
 .swiper_box {
   width: 712rpx;
-  height: 460rpx;
+  height: 340rpx;
   margin-left:14rpx;
   border: 2px solid #dadada; 
 }
@@ -18,7 +18,7 @@
 
 }
 .titlebox {
-    margin-top: 40rpx;
+    margin-top: 4rpx;
     font-weight: bold;
 }
 
@@ -40,31 +40,34 @@
     
 }
 .text {
-  margin-top: 12rpx;
+  margin-top: 10rpx;
   width: 716rpx;
   margin-left:17rpx;
-  font-size: 30rpx;
-  color: #000;
+  font-size: 14px;
+  margin-bottom: 12rpx;
 
 }
 
 .info_list {
   display: flex;
-  height: 200rpx;
+  height: 240rpx;
   width:100%;
-  margin-top: 60rpx;
+  margin-top: 20rpx;
   padding-top: 20rpx;
   background-color: #B2BCC5;
 }
 
 .left {
    flex: 3;
-   height: 186rpx;
+   height: 240rpx;
    padding-left: 10rpx;
 }
 
 .left image{
-  display: inline;
+  height:180rpx;
+  width:180rpx;
+  margin-top:30rpx;
+
 }
 
 .right {
@@ -81,7 +84,7 @@
 .info_cell{
     display: flex;
     height: 50rpx;
-    padding: 8rpx;
+    padding: 4rpx;
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
@@ -89,34 +92,48 @@
 
 .info_cell_hd{
   flex:1;
-  height: 32px;
-  padding: 10rpx;
-  line-height:32px;
+  height: 50rpx;
+  padding-bottom: 8rpx;
 }
 
 .info_cell_bd{
   flex:9;
 }
 .info_cell_bd_p{
-  font-size: 27rpx;
+  font-size: 14px;
   color: white;
 }
 
 .badge{
-   flex:1;
-   height: 25rpx;
-   padding: 8px;
+  flex:1;
+  height: 50rpx;
+  padding-bottom: 8rpx;
 }
-
 .footer {
   margin-top: 4rpx;
   width:100%;
-  height: 80rpx;
+  height: 192rpx;
   background-color: #B2BCC5;
-  font-size: 25rpx;
-  padding-top:40rpx;
-  text-align: center;
+  font-size: 12px;
+  padding-top:16rpx;
+  text-align: left;
   color: white;
+  display: flex;
+  justify-content: center;
+}
+.footer image{
+  flex:3;
+  height:180rpx;
+  width:180rpx;
+  display: inline-block;
+  padding-left: 10rpx;
+}
+.footer .usinfo {
+  padding-top:6%;
+  flex:9;
+}
+.footer .usinfo view {
+  padding-left:50rpx;
 }
 
 .popui{

@@ -18,12 +18,12 @@
     
 
     <view class="{{isshow?'filter text':(isqrshow?'filter text':'text')}}">
-       <view style="display:inline-block; width:80rpx; height:5rpx;"></view><text>{{intruduce}}</text>
+       <view style="display:inline-block; width:56rpx; height:5rpx;"></view><text>{{intruduce}}</text>
     </view>
     
     <view class="{{isshow?'filter info_list':(isqrshow?'filter info_list':'info_list')}}">
-          <view bindtap="popQr" class="left">
-            <image mode="scaleToFill" src="{{qrcode}}"></image>
+          <view class="left">
+            <image bindtap="previewImage" mode="scaleToFill" data-src="{{qrcode}}" src="{{qrcode}}"></image>
           </view>
           <view class="right">
             <block wx:for="{{comListInfo}}">
@@ -37,9 +37,13 @@
             </block>
           </view>
    </view>
-   <view bindtap="goourcall" class="{{isshow?'filter footer':(isqrshow?'filter footer':'footer')}}">
-      <view>技术支持@哈工大社会网络研究室</view>
-      <view>联系我们：13945103823</view>
+   <view  class="{{isshow?'filter footer':(isqrshow?'filter footer':'footer')}}">
+      <image bindtap="previewImage" src="{{usqr}}" data-src="{{usqr}}"></image>
+      <view bindtap="goourcall" class="usinfo">
+        <view>技术支持@哈工大社会网络研究室</view>
+        <view>联系我们：13945103823</view>
+        <view>微信号：xuzhimings</view>
+      </view>
    </view>
 
    <view class="popui" bindtap="delImg" wx:if="{{isshow}}"><image src="{{curImg}}"></image></view>
@@ -48,7 +52,5 @@
       <image bindlongtap="downloadImg" src="{{qrcode}}"></image>
       <view>微信号：<text>yingxiong1975</text></view>
       <view>截屏扫码 可添加店家微信</view>
-   </view>
-
-   
+   </view> 
 </view>
