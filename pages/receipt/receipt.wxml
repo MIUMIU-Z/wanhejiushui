@@ -28,12 +28,12 @@
       <view class="text">手写发票</view>
     </view>
   </view>
-  <view wx:if="{{is_paper==0}}" class="remark-panel">
+  <view class="remark-panel">
   {{typetip}}
   </view>
 </view>
 
-<view wx:if="{{need_bill==1}}" class="receipttop-panel">
+<view wx:if="{{need_bill==1}}" class="receipttop-panel" style="margin-bottom:120rpx;">
   <view class="title">
   发票抬头
   </view>
@@ -95,6 +95,7 @@
 
 </view>
 
+<!--
 <view wx:if="{{need_bill==1}}" class="receiptcontent-panel">
   <view class="title">
     发票内容
@@ -112,7 +113,7 @@
   <view class="remark-panel">
   {{contenttip}}
   </view>
-</view>
+</view>-->
 
 <view class="button-panel">
 <view bindtap="commit" class="button">确定</view>

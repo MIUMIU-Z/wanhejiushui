@@ -54,7 +54,7 @@
   <view class="content">
     <image src="../../images/receipt.png"></image>
     <view class="lefttext">发票</view>
-    <view class="righttext">{{receipt.need_bill==0?'无发票':receipt.is_paper==0?'电子发票':'纸质发票'}}</view>
+    <view class="righttext">{{receipt.need_bill==0?'无发票':'开具发票'}}</view>
   </view>
   <image style="top:30rpx;" class="more-img" src="../../images/more-right.png" ></image>
 </view>
@@ -90,11 +90,11 @@
   </view>
   <view class="item">
     <view class="lefttext">税收</view>
-    <view class="righttext">-￥{{tax}}元</view>
+    <view class="righttext">+￥{{tax}}元</view>
   </view>
   <view class="item" style="padding-bottom:20rpx;">
     <view class="lefttext">优惠</view>
-    <view class="righttext">+￥{{discount}}元</view>
+    <view class="righttext">-￥{{discount}}元</view>
   </view>
   <view class="item" style="padding-top:10rpx;font-weight:bold;border-top:1rpx dashed #eaeaea;">
     <view class="righttext" style="font-size:30rpx;">￥{{Actual_payment}}元</view>

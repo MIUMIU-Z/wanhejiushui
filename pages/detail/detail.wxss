@@ -53,7 +53,7 @@ page{
   text-indent:2em;
 }
 .numoperate{
-  width: 300rpx;
+  /*width: 300rpx;*/
   height: 50rpx;
   margin-left:50rpx;
   margin-top:10rpx;
@@ -62,16 +62,17 @@ page{
 
 }
 .numtext{
-    width: 260rpx;
+    width: 150rpx;
     height: 50rpx;
-    text-align: center;
+    text-align: left;
     border:1rpx solid white;
     font-size:30rpx;
     line-height:50rpx;
 }
 .numbutton{
-    width: 50rpx;
-    height: 50rpx;
+    margin-top:2rpx;
+    width: 46rpx;
+    height: 46rpx;
     border:1rpx solid #dedede;
     text-align: center;
     background:#dedede;
@@ -108,7 +109,7 @@ page{
     margin: 30rpx 0 0 0;
     font-size:30rpx;
     padding-bottom:30rpx;
-    text-indent:2em;
+    /*text-indent:2em;*/
 }
 .detail .image{
     margin: 40rpx 0;

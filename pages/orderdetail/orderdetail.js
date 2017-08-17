@@ -78,7 +78,7 @@ Page({
           order: res.data,
           goods: res.data.goods
         })
-        wx.request({
+      /*  wx.request({
           url: app.data.imgRoute +'/shop/show_order_goods_info/',
         data: {
           order_id: res.data.order_id
@@ -88,7 +88,7 @@ Page({
           console.log('订单详情',res)
           
         }
-      })
+      })*/
       },
     })
     

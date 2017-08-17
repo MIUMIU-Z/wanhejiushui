@@ -11,7 +11,8 @@ function reqfreight(that){
     data: {
       address: that.data.addresslist[that.data.addrid].addr_id, 
       money: that.data.amount,
-      goods: that.data.goodsubmmit
+      goods: that.data.goodsubmmit,
+      need_bill: that.data.receipt.need_bill
     },
     method: 'POST',
     success: function (res) {
@@ -35,10 +36,11 @@ function reqfreight(that){
       }else{
         setTimeout(function () {
           wx.hideLoading()
-        }, 1000)
+        }, 500)
         that.setData({
           freight: res.data.transport_fee,
-          Actual_payment: res.data.transport_fee + that.data.amount,
+          tax: res.data.tax_point,
+          Actual_payment: res.data.transport_fee + that.data.amount + res.data.tax_point,
           commitConfirm: res.data.permit==1?true:false,
           difference: '还差￥'+res.data.wantting+'元起送'
         })
@@ -150,6 +152,7 @@ Page({
         identify_num: that.data.receipt.identify_num,
         addr_phone: that.data.receipt.address+' '+that.data.receipt.phone,
         bank_number: that.data.receipt.bank+' '+that.data.receipt.account,
+        tax_point: that.data.tax,
         remark: that.data.remark
       },
       method: 'POST',
@@ -251,9 +254,7 @@ Page({
               })
             }
           })
-
-        }
-        
+        } 
       },
       complete: function () {
         wx.showLoading({
@@ -347,7 +348,7 @@ Page({
     wx.setStorage({
       key: 'receipt',
       data: {
-        selectid:0,
+        /*selectid:0,*/
         need_bill: 0,
         is_paper: 1,
         is_people: 1,

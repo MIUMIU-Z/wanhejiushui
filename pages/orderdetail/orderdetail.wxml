@@ -47,14 +47,15 @@
         <view class="left">商品费用</view>
         <view class="right">￥{{order.goods_money}}</view>
       </view>
+      <view class="item">
+        <view class="left">税收</view>
+        <view class="right">+￥{{order.tax_point}}</view>
+      </view>
       <view class="item" style="padding-bottom:10rpx;">
         <view class="left">运费</view>
         <view class="right">+￥{{order.transport_fee}}</view>
       </view>
-    <!--  <view class="item">
-        <view class="left">优惠</view>
-        <view class="right">-￥0</view>
-      </view>-->
+
       <view class="item" style="font-size:30rpx;padding-top:20rpx;border-top:1rpx dotted #eaeaea;">
         <view class="left" >实付款</view>
         <view class="right" style="color:#ff5500;font-weight:bold;">￥{{order.money}}</view>
