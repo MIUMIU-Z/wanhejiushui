@@ -36,6 +36,11 @@ page{
   border:2rpx solid #ef3030;
   color:#ef3030;
 }
+.checkbox-panel .check-box.dead
+{
+  border:2rpx solid #eaeaea;
+  color:#eaeaea;
+}
 .checkbox-panel .check-box image{
   position:absolute;
   width:64rpx;

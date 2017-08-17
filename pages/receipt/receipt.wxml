@@ -19,7 +19,11 @@
   发票类型
   </view>
   <view class="checkbox-panel">
-    <view bindtap="is_paper" data-index="{{0}}" class="check-box {{is_paper==0?'active':''}}">
+    <view class="check-box dead" wx:if="{{is_people==1}}">
+      <image wx:if="{{is_paper==0}}"  src="../../images/select2.png"></image>
+      <view class="text">机印发票</view>
+    </view>
+    <view wx:if="{{is_people==0}}" bindtap="is_paper" data-index="{{0}}" class="check-box {{is_paper==0?'active':''}}">
       <image wx:if="{{is_paper==0}}"  src="../../images/select2.png"></image>
       <view class="text">机印发票</view>
     </view>

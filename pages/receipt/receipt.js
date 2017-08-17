@@ -40,8 +40,13 @@ Page({
     }
   },
   is_people:function(e){
+    if (e.currentTarget.dataset.index == 1)
+    {
+      this.data.is_paper = 1
+    }
     this.setData({
-      is_people: e.currentTarget.dataset.index
+      is_people: e.currentTarget.dataset.index,
+      is_paper: this.data.is_paper
     })
   },
   is_paper:function(e){
