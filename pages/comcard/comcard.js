@@ -1,5 +1,55 @@
 //index.js
 //获取应用实例
+function requestInfo(that) {
+  var requestObj = wx.request({
+    url: app.data.imgRoute + '/shop/show_shopinfo/',
+    success: function (res) {
+      that.setData({
+        name: res.data.infos.name,
+        intruduce: res.data.infos.introduction,
+        images: res.data.img,
+        comListInfo: [{
+          icon: 'http://wxdata-1253783629.costj.myqcloud.com/common/address1.png',
+          icon1: 'http://wxdata-1253783629.costj.myqcloud.com/common/addrgo.png',
+          text: res.data.infos.location,
+          isunread: true,
+          unreadNum: 2
+        }, {
+          icon: 'http://wxdata-1253783629.costj.myqcloud.com/common/time.png',
+          text: res.data.infos.open_time,
+          isunread: false,
+          unreadNum: 2
+        }, {
+          icon: 'http://wxdata-1253783629.costj.myqcloud.com/common/phone1.png',
+          icon1: 'http://wxdata-1253783629.costj.myqcloud.com/common/call1.png',
+          text: res.data.infos.phone,
+          isunread: true,
+          unreadNum: 1
+        }, {
+          icon: 'https://vxlabdb.gxxnr.cn/common/wx.png',
+          text: "15045117717",
+          isunread: true,
+          unreadNum: 1
+        }],
+        address: {
+          lat: res.data.infos.lat,
+          long: res.data.infos.long,
+          name: res.data.infos.name,
+          location: res.data.infos.location
+        }
+
+
+      });
+    },
+    fail: function () {
+      requestObj.abort();
+      setTimeout(function () {
+        requestInfo(that);
+      }, 100);
+    }
+  });
+
+}
 var app = getApp()
 Page({
   /**
@@ -17,8 +67,8 @@ Page({
     isshow: false,
     isqrshow: false,
 
-    name: null,
-    intruduce: null,
+    name: "",
+    intruduce: "",
     curImg: "",
     images: [],
     comListInfo: [],
@@ -30,11 +80,11 @@ Page({
   goaddr: function () {
     var that = this;
     wx.openLocation({
-      latitude: that.data.address["lat"],
-      longitude: that.data.address["long"],
+      latitude: that.data.address["long"],
+      longitude: that.data.address["lat"],
       scale: 18,
       name: that.data.address.name,
-      address: that.data.address.address
+      address: that.data.address.location
     })
 
   },
@@ -178,55 +228,10 @@ Page({
       imgRoute: app.data.imgRoute
     })
     //请求数据
-    wx.request({
-      url: app.data.imgRoute + '/shop/show_shopinfo/',
-      success: function (res) {
-        console.log('商家信息返回', res)
-        that.setData({
-          name: res.data.infos.name,
-          intruduce: res.data.infos.introduction,
-          images: res.data.img,
-          comListInfo: [{
-            icon: 'http://wxdata-1253783629.costj.myqcloud.com/common/address1.png',
-            icon1: 'http://wxdata-1253783629.costj.myqcloud.com/common/addrgo.png',
-            text: res.data.infos.location,
-            isunread: true,
-            unreadNum: 2
-          }, {
-            icon: 'http://wxdata-1253783629.costj.myqcloud.com/common/time.png',
-            text: res.data.infos.open_time,
-            isunread: false,
-            unreadNum: 2
-          }, {
-            icon: 'http://wxdata-1253783629.costj.myqcloud.com/common/phone1.png',
-            icon1: 'http://wxdata-1253783629.costj.myqcloud.com/common/call1.png',
-            text: res.data.infos.phone,
-            isunread: true,
-            unreadNum: 1
-          }, {
-            icon: 'https://vxlabdb.gxxnr.cn/common/wx.png',
-            text: "pengpengport",
-            isunread: true,
-            unreadNum: 1
-          }],
-          address: {
-            lat: res.data.infos.lat,
-            long: res.data.infos.long,
-            name: res.data.infos.name,
-            location: res.data.infos.location
-          }
-
-
-        });
-      }
-    });
     //设置
     //wx.setNavigationBarTitle({
     //  title: this.data.name
     // });
-
-
-
   },
 
   /**
@@ -240,6 +245,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    var that = this;
+    requestInfo(that);
 
   },
 
